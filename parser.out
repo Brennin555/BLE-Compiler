@@ -1,0 +1,101 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ABREASPAS
+    ABREPARTESE
+    ATRIBUICAO
+    ATRIBUIR
+    BLOCO
+    DEFVARIAVEL
+    DIGITO
+    E
+    ENQT
+    FECHAASPAS
+    FECHACHAVE
+    FECHAPARENTESE
+    IMP
+    LE
+    LINETERMINATOR
+    LOGICO
+    OPERADOR_DIVISAO
+    OPERADOR_MAIS
+    OPERADOR_MENOS
+    OPERADOR_MULTIPLICACAO
+    OU
+    PRA
+    RELACIONAL
+    SE
+    SENAO
+    SIMBOLO
+    TXT
+    VET
+    VF
+
+Grammar
+
+Rule 0     S' -> main
+Rule 1     main -> INICIO ABRECHAVE declaracoes operacoes FIM
+Rule 2     declaracoes -> TIPO ESPACO CARACTERE atribuir PONTOEVIRGULA declaracoes
+Rule 3     declaracoes -> TIPO ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir PONTOEVIRGULA declaracoes
+Rule 4     declaracoes -> ESPACO CARACTERE atribuir PONTOEVIRGULA declaracoes
+Rule 5     declaracoes -> ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir PONTOEVIRGULA declaracoes
+Rule 6     declaracoes -> ESPACO CARACTERE atribuir PONTOEVIRGULA
+Rule 7     declaracoes -> ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir PONTOEVIRGULA
+Rule 8     declaracoes -> QUEBRALINHA COMENTARIOS QUEBRALINHA declaracoes
+Rule 9     declaracoes -> COMENTARIOS QUEBRALINHA declaracoes
+Rule 10    declaracoes -> QUEBRALINHA COMENTARIOS declaracoes
+Rule 11    declaracoes -> COMENTARIOS declaracoes
+
+Terminals, with rules where they appear
+
+ABREASPAS            : 
+ABRECHAVE            : 1
+ABRECOLCHETE         : 3 5 7
+ABREPARTESE          : 
+ATRIBUICAO           : 
+ATRIBUIR             : 
+BLOCO                : 
+CARACTERE            : 2 3 4 5 6 7
+COMENTARIOS          : 8 9 10 11
+DEFVARIAVEL          : 
+DIGITO               : 
+E                    : 
+ENQT                 : 
+ESPACO               : 2 3 4 5 6 7
+FECHAASPAS           : 
+FECHACHAVE           : 
+FECHACOLCHETE        : 3 5 7
+FECHAPARENTESE       : 
+FIM                  : 1
+IMP                  : 
+INICIO               : 1
+LE                   : 
+LINETERMINATOR       : 
+LOGICO               : 
+NUM                  : 3 5 7
+OPERADOR_DIVISAO     : 
+OPERADOR_MAIS        : 
+OPERADOR_MENOS       : 
+OPERADOR_MULTIPLICACAO : 
+OU                   : 
+PONTOEVIRGULA        : 2 3 4 5 6 7
+PRA                  : 
+QUEBRALINHA          : 8 8 9 10
+RELACIONAL           : 
+SE                   : 
+SENAO                : 
+SIMBOLO              : 
+TIPO                 : 2 3
+TXT                  : 
+VET                  : 
+VF                   : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+atribuir             : 2 3 4 5 6 7
+declaracoes          : 1 2 3 4 5 8 9 10 11
+main                 : 0
+operacoes            : 1
+
