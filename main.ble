@@ -1,0 +1,3 @@
+main{
+    imp("Hello World");
+}
