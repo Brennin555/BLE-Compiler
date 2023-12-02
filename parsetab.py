@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftOPERADOR_MAISOPERADOR_MENOSleftOPERADOR_MULTIPLICACAOOPERADOR_DIVISAOABREASPAS ABRECHAVE ABRECOLCHETE ABREPARTESE ATRIBUICAO ATRIBUIR BLOCO CARACTERE COMENTARIOS DEFVARIAVEL DIGITO E ENQT ESPACO FECHAASPAS FECHACHAVE FECHACOLCHETE FECHAPARENTESE FIM IMP INICIO LE LINETERMINATOR LOGICO NUM OPERADOR_DIVISAO OPERADOR_MAIS OPERADOR_MENOS OPERADOR_MULTIPLICACAO OU PONTOEVIRGULA PRA QUEBRALINHA RELACIONAL SE SENAO SIMBOLO TIPO TXT VET VF\n    programa : main\n    \n    main : INICIO ABRECHAVE operacoes FECHACHAVE\n    \n    imp : IMP ABREPARTESE expressao FECHAPARENTESE SIMBOLO\n        | IMP ABREPARTESE expressao FECHAPARENTESE\n    \n    declaracoes : declaracao PONTOEVIRGULA declaracoes\n                | QUEBRALINHA declaracoes\n                | COMENTARIOS QUEBRALINHA declaracoes\n                | QUEBRALINHA COMENTARIOS declaracoes\n                | COMENTARIOS\n    \n    declaracao : TIPO ESPACO CARACTERE atribuir\n               | TIPO ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir\n               | ESPACO CARACTERE atribuir\n               | ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir\n    \n    atribuir : ATRIBUIR variavel\n             | ATRIBUICAO variavel\n    \n    variavel : ESPACO CARACTERE\n    \n    operacoes : expressao SIMBOLO operacoes\n              | expressao\n              | imp\n    \n    expressao : NUM\n              | variavel\n              | TXT\n              | expressao OPERADOR_MAIS expressao\n              | expressao OPERADOR_MENOS expressao\n              | expressao OPERADOR_MULTIPLICACAO expressao\n              | expressao OPERADOR_DIVISAO expressao\n              | ABREPARTESE expressao FECHAPARENTESE\n              | expressao SIMBOLO expressao\n              | expressao SIMBOLO\n    '
+_lr_signature = 'leftOPERADOR_MAISOPERADOR_MENOSleftOPERADOR_MULTIPLICACAOOPERADOR_DIVISAOABREASPAS ABRECHAVE ABRECOLCHETE ABREPARTESE ATRIBUICAO ATRIBUIR BLOCO CARACTERE COMENTARIOS DEFVARIAVEL DIGITO E ENQT ESPACO FECHAASPAS FECHACHAVE FECHACOLCHETE FECHAPARENTESE FIM IMP INICIO LE LINETERMINATOR LOGICO NUM OPERADOR_DIVISAO OPERADOR_MAIS OPERADOR_MENOS OPERADOR_MULTIPLICACAO OU PONTOEVIRGULA PRA QUEBRALINHA RELACIONAL SE SENAO SIMBOLO TIPO TXT VET VF\n    programa : main\n    \n    main : INICIO ABRECHAVE operacoes FECHACHAVE\n    \n    imp : IMP ABREPARTESE expressao FECHAPARENTESE SIMBOLO\n        | IMP ABREPARTESE expressao FECHAPARENTESE\n    \n    declaracoes : declaracao PONTOEVIRGULA declaracoes\n                | QUEBRALINHA declaracoes\n                | COMENTARIOS QUEBRALINHA declaracoes\n                | QUEBRALINHA COMENTARIOS declaracoes\n                | COMENTARIOS\n    \n    declaracao : TIPO ESPACO CARACTERE atribuir\n               | TIPO ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir\n               | ESPACO CARACTERE atribuir\n               | ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir\n    \n    atribuir : ATRIBUIR variavel\n             | ATRIBUICAO variavel\n    \n    variavel : ESPACO CARACTERE\n    \n    operacoes : expressao SIMBOLO operacoes\n              | expressao\n              | imp\n    \n    expressao : NUM\n              | variavel\n              | TXT\n              | ABREASPAS expressao FECHAASPAS\n              | expressao OPERADOR_MAIS expressao\n              | expressao OPERADOR_MENOS expressao\n              | expressao OPERADOR_MULTIPLICACAO expressao\n              | expressao OPERADOR_DIVISAO expressao\n              | ABREPARTESE expressao FECHAPARENTESE\n              | expressao SIMBOLO expressao\n              | expressao SIMBOLO\n    '
     
-_lr_action_items = {'INICIO':([0,],[3,]),'$end':([1,2,14,],[0,-1,-2,]),'ABRECHAVE':([3,],[4,]),'NUM':([4,11,15,16,17,18,19,21,30,],[8,8,8,8,8,8,8,8,8,]),'TXT':([4,11,15,16,17,18,19,21,30,],[10,10,10,10,10,10,10,10,10,]),'ABREPARTESE':([4,11,12,15,16,17,18,19,21,30,],[11,11,21,11,11,11,11,11,11,11,]),'IMP':([4,15,],[12,12,]),'ESPACO':([4,11,15,16,17,18,19,21,30,],[13,13,13,13,13,13,13,13,13,]),'FECHACHAVE':([5,6,7,8,9,10,15,22,23,24,25,26,27,28,29,30,32,33,34,],[14,-18,-19,-20,-21,-22,-29,-16,-18,-17,-23,-24,-25,-26,-27,-29,-28,-4,-3,]),'SIMBOLO':([6,8,9,10,15,20,22,23,25,26,27,28,29,30,31,32,33,],[15,-20,-21,-22,-29,30,-16,15,-23,-24,-25,-26,-27,-29,30,30,34,]),'OPERADOR_MAIS':([6,8,9,10,15,20,22,23,25,26,27,28,29,30,31,32,],[16,-20,-21,-22,-29,16,-16,16,-23,-24,-25,-26,-27,-29,16,16,]),'OPERADOR_MENOS':([6,8,9,10,15,20,22,23,25,26,27,28,29,30,31,32,],[17,-20,-21,-22,-29,17,-16,17,-23,-24,-25,-26,-27,-29,17,17,]),'OPERADOR_MULTIPLICACAO':([6,8,9,10,15,20,22,23,25,26,27,28,29,30,31,32,],[18,-20,-21,-22,-29,18,-16,18,18,18,-25,-26,-27,-29,18,18,]),'OPERADOR_DIVISAO':([6,8,9,10,15,20,22,23,25,26,27,28,29,30,31,32,],[19,-20,-21,-22,-29,19,-16,19,19,19,-25,-26,-27,-29,19,19,]),'FECHAPARENTESE':([8,9,10,20,22,25,26,27,28,29,30,31,32,],[-20,-21,-22,29,-16,-23,-24,-25,-26,-27,-29,33,-28,]),'CARACTERE':([13,],[22,]),}
+_lr_action_items = {'INICIO':([0,],[3,]),'$end':([1,2,15,],[0,-1,-2,]),'ABRECHAVE':([3,],[4,]),'NUM':([4,11,12,16,17,18,19,20,23,32,],[8,8,8,8,8,8,8,8,8,8,]),'TXT':([4,11,12,16,17,18,19,20,23,32,],[10,10,10,10,10,10,10,10,10,10,]),'ABREASPAS':([4,11,12,16,17,18,19,20,23,32,],[11,11,11,11,11,11,11,11,11,11,]),'ABREPARTESE':([4,11,12,13,16,17,18,19,20,23,32,],[12,12,12,23,12,12,12,12,12,12,12,]),'IMP':([4,16,],[13,13,]),'ESPACO':([4,11,12,16,17,18,19,20,23,32,],[14,14,14,14,14,14,14,14,14,14,]),'FECHACHAVE':([5,6,7,8,9,10,16,24,25,26,27,28,29,30,31,32,33,35,36,37,],[15,-18,-19,-20,-21,-22,-30,-16,-18,-17,-24,-25,-26,-27,-23,-30,-28,-29,-4,-3,]),'SIMBOLO':([6,8,9,10,16,21,22,24,25,27,28,29,30,31,32,33,34,35,36,],[16,-20,-21,-22,-30,32,32,-16,16,-24,-25,-26,-27,-23,-30,-28,32,32,37,]),'OPERADOR_MAIS':([6,8,9,10,16,21,22,24,25,27,28,29,30,31,32,33,34,35,],[17,-20,-21,-22,-30,17,17,-16,17,-24,-25,-26,-27,-23,-30,-28,17,17,]),'OPERADOR_MENOS':([6,8,9,10,16,21,22,24,25,27,28,29,30,31,32,33,34,35,],[18,-20,-21,-22,-30,18,18,-16,18,-24,-25,-26,-27,-23,-30,-28,18,18,]),'OPERADOR_MULTIPLICACAO':([6,8,9,10,16,21,22,24,25,27,28,29,30,31,32,33,34,35,],[19,-20,-21,-22,-30,19,19,-16,19,19,19,-26,-27,-23,-30,-28,19,19,]),'OPERADOR_DIVISAO':([6,8,9,10,16,21,22,24,25,27,28,29,30,31,32,33,34,35,],[20,-20,-21,-22,-30,20,20,-16,20,20,20,-26,-27,-23,-30,-28,20,20,]),'FECHAASPAS':([8,9,10,21,24,27,28,29,30,31,32,33,35,],[-20,-21,-22,31,-16,-24,-25,-26,-27,-23,-30,-28,-29,]),'FECHAPARENTESE':([8,9,10,22,24,27,28,29,30,31,32,33,34,35,],[-20,-21,-22,33,-16,-24,-25,-26,-27,-23,-30,-28,36,-29,]),'CARACTERE':([14,],[24,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'programa':([0,],[1,]),'main':([0,],[2,]),'operacoes':([4,15,],[5,24,]),'expressao':([4,11,15,16,17,18,19,21,30,],[6,20,23,25,26,27,28,31,32,]),'imp':([4,15,],[7,7,]),'variavel':([4,11,15,16,17,18,19,21,30,],[9,9,9,9,9,9,9,9,9,]),}
+_lr_goto_items = {'programa':([0,],[1,]),'main':([0,],[2,]),'operacoes':([4,16,],[5,26,]),'expressao':([4,11,12,16,17,18,19,20,23,32,],[6,21,22,25,27,28,29,30,34,35,]),'imp':([4,16,],[7,7,]),'variavel':([4,11,12,16,17,18,19,20,23,32,],[9,9,9,9,9,9,9,9,9,9,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -31,29 +31,30 @@ _lr_productions = [
   ('main -> INICIO ABRECHAVE operacoes FECHACHAVE','main',4,'p_main','parser_ble.py',22),
   ('imp -> IMP ABREPARTESE expressao FECHAPARENTESE SIMBOLO','imp',5,'p_imp','parser_ble.py',28),
   ('imp -> IMP ABREPARTESE expressao FECHAPARENTESE','imp',4,'p_imp','parser_ble.py',29),
-  ('declaracoes -> declaracao PONTOEVIRGULA declaracoes','declaracoes',3,'p_declaracoes','parser_ble.py',39),
-  ('declaracoes -> QUEBRALINHA declaracoes','declaracoes',2,'p_declaracoes','parser_ble.py',40),
-  ('declaracoes -> COMENTARIOS QUEBRALINHA declaracoes','declaracoes',3,'p_declaracoes','parser_ble.py',41),
-  ('declaracoes -> QUEBRALINHA COMENTARIOS declaracoes','declaracoes',3,'p_declaracoes','parser_ble.py',42),
-  ('declaracoes -> COMENTARIOS','declaracoes',1,'p_declaracoes','parser_ble.py',43),
-  ('declaracao -> TIPO ESPACO CARACTERE atribuir','declaracao',4,'p_declaracao','parser_ble.py',49),
-  ('declaracao -> TIPO ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir','declaracao',7,'p_declaracao','parser_ble.py',50),
-  ('declaracao -> ESPACO CARACTERE atribuir','declaracao',3,'p_declaracao','parser_ble.py',51),
-  ('declaracao -> ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir','declaracao',6,'p_declaracao','parser_ble.py',52),
-  ('atribuir -> ATRIBUIR variavel','atribuir',2,'p_atribuir','parser_ble.py',58),
-  ('atribuir -> ATRIBUICAO variavel','atribuir',2,'p_atribuir','parser_ble.py',59),
-  ('variavel -> ESPACO CARACTERE','variavel',2,'p_variavel','parser_ble.py',65),
-  ('operacoes -> expressao SIMBOLO operacoes','operacoes',3,'p_operacoes','parser_ble.py',71),
-  ('operacoes -> expressao','operacoes',1,'p_operacoes','parser_ble.py',72),
-  ('operacoes -> imp','operacoes',1,'p_operacoes','parser_ble.py',73),
-  ('expressao -> NUM','expressao',1,'p_expressao','parser_ble.py',79),
-  ('expressao -> variavel','expressao',1,'p_expressao','parser_ble.py',80),
-  ('expressao -> TXT','expressao',1,'p_expressao','parser_ble.py',81),
-  ('expressao -> expressao OPERADOR_MAIS expressao','expressao',3,'p_expressao','parser_ble.py',82),
-  ('expressao -> expressao OPERADOR_MENOS expressao','expressao',3,'p_expressao','parser_ble.py',83),
-  ('expressao -> expressao OPERADOR_MULTIPLICACAO expressao','expressao',3,'p_expressao','parser_ble.py',84),
-  ('expressao -> expressao OPERADOR_DIVISAO expressao','expressao',3,'p_expressao','parser_ble.py',85),
-  ('expressao -> ABREPARTESE expressao FECHAPARENTESE','expressao',3,'p_expressao','parser_ble.py',86),
-  ('expressao -> expressao SIMBOLO expressao','expressao',3,'p_expressao','parser_ble.py',87),
-  ('expressao -> expressao SIMBOLO','expressao',2,'p_expressao','parser_ble.py',88),
+  ('declaracoes -> declaracao PONTOEVIRGULA declaracoes','declaracoes',3,'p_declaracoes','parser_ble.py',37),
+  ('declaracoes -> QUEBRALINHA declaracoes','declaracoes',2,'p_declaracoes','parser_ble.py',38),
+  ('declaracoes -> COMENTARIOS QUEBRALINHA declaracoes','declaracoes',3,'p_declaracoes','parser_ble.py',39),
+  ('declaracoes -> QUEBRALINHA COMENTARIOS declaracoes','declaracoes',3,'p_declaracoes','parser_ble.py',40),
+  ('declaracoes -> COMENTARIOS','declaracoes',1,'p_declaracoes','parser_ble.py',41),
+  ('declaracao -> TIPO ESPACO CARACTERE atribuir','declaracao',4,'p_declaracao','parser_ble.py',47),
+  ('declaracao -> TIPO ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir','declaracao',7,'p_declaracao','parser_ble.py',48),
+  ('declaracao -> ESPACO CARACTERE atribuir','declaracao',3,'p_declaracao','parser_ble.py',49),
+  ('declaracao -> ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir','declaracao',6,'p_declaracao','parser_ble.py',50),
+  ('atribuir -> ATRIBUIR variavel','atribuir',2,'p_atribuir','parser_ble.py',56),
+  ('atribuir -> ATRIBUICAO variavel','atribuir',2,'p_atribuir','parser_ble.py',57),
+  ('variavel -> ESPACO CARACTERE','variavel',2,'p_variavel','parser_ble.py',63),
+  ('operacoes -> expressao SIMBOLO operacoes','operacoes',3,'p_operacoes','parser_ble.py',69),
+  ('operacoes -> expressao','operacoes',1,'p_operacoes','parser_ble.py',70),
+  ('operacoes -> imp','operacoes',1,'p_operacoes','parser_ble.py',71),
+  ('expressao -> NUM','expressao',1,'p_expressao','parser_ble.py',77),
+  ('expressao -> variavel','expressao',1,'p_expressao','parser_ble.py',78),
+  ('expressao -> TXT','expressao',1,'p_expressao','parser_ble.py',79),
+  ('expressao -> ABREASPAS expressao FECHAASPAS','expressao',3,'p_expressao','parser_ble.py',80),
+  ('expressao -> expressao OPERADOR_MAIS expressao','expressao',3,'p_expressao','parser_ble.py',81),
+  ('expressao -> expressao OPERADOR_MENOS expressao','expressao',3,'p_expressao','parser_ble.py',82),
+  ('expressao -> expressao OPERADOR_MULTIPLICACAO expressao','expressao',3,'p_expressao','parser_ble.py',83),
+  ('expressao -> expressao OPERADOR_DIVISAO expressao','expressao',3,'p_expressao','parser_ble.py',84),
+  ('expressao -> ABREPARTESE expressao FECHAPARENTESE','expressao',3,'p_expressao','parser_ble.py',85),
+  ('expressao -> expressao SIMBOLO expressao','expressao',3,'p_expressao','parser_ble.py',86),
+  ('expressao -> expressao SIMBOLO','expressao',2,'p_expressao','parser_ble.py',87),
 ]

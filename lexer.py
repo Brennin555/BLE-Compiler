@@ -80,5 +80,5 @@ with open('main.ble', 'r') as file:
 lexer.input(input_string)
 
 # Agora você pode iterar sobre os tokens diretamente
-for token in lexer:
-    print(token)
+# for token in lexer:
+#     print(token)

@@ -30,7 +30,7 @@ def p_imp(p):
     '''
     # Adicione ações conforme necessário
     strings=str(p[3])
-    print(strings)
+    print(f"{p[3]}")
 
 def p_declaracoes(p):
     '''
@@ -77,6 +77,7 @@ def p_expressao(p):
     expressao : NUM
               | variavel
               | TXT
+              | ABREASPAS expressao FECHAASPAS
               | expressao OPERADOR_MAIS expressao
               | expressao OPERADOR_MENOS expressao
               | expressao OPERADOR_MULTIPLICACAO expressao
@@ -85,6 +86,7 @@ def p_expressao(p):
               | expressao SIMBOLO expressao
               | expressao SIMBOLO
     '''
+    p[0]=p[1]
     # Adicione ações conforme necessário
 
 # Tratamento de erro sintático

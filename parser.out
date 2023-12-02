@@ -2,13 +2,11 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
-    ABREASPAS
     BLOCO
     DEFVARIAVEL
     DIGITO
     E
     ENQT
-    FECHAASPAS
     FIM
     LE
     LINETERMINATOR
@@ -46,20 +44,21 @@ Rule 19    operacoes -> imp
 Rule 20    expressao -> NUM
 Rule 21    expressao -> variavel
 Rule 22    expressao -> TXT
-Rule 23    expressao -> expressao OPERADOR_MAIS expressao
-Rule 24    expressao -> expressao OPERADOR_MENOS expressao
-Rule 25    expressao -> expressao OPERADOR_MULTIPLICACAO expressao
-Rule 26    expressao -> expressao OPERADOR_DIVISAO expressao
-Rule 27    expressao -> ABREPARTESE expressao FECHAPARENTESE
-Rule 28    expressao -> expressao SIMBOLO expressao
-Rule 29    expressao -> expressao SIMBOLO
+Rule 23    expressao -> ABREASPAS expressao FECHAASPAS
+Rule 24    expressao -> expressao OPERADOR_MAIS expressao
+Rule 25    expressao -> expressao OPERADOR_MENOS expressao
+Rule 26    expressao -> expressao OPERADOR_MULTIPLICACAO expressao
+Rule 27    expressao -> expressao OPERADOR_DIVISAO expressao
+Rule 28    expressao -> ABREPARTESE expressao FECHAPARENTESE
+Rule 29    expressao -> expressao SIMBOLO expressao
+Rule 30    expressao -> expressao SIMBOLO
 
 Terminals, with rules where they appear
 
-ABREASPAS            : 
+ABREASPAS            : 23
 ABRECHAVE            : 2
 ABRECOLCHETE         : 11 13
-ABREPARTESE          : 3 4 27
+ABREPARTESE          : 3 4 28
 ATRIBUICAO           : 15
 ATRIBUIR             : 14
 BLOCO                : 
@@ -70,10 +69,10 @@ DIGITO               :
 E                    : 
 ENQT                 : 
 ESPACO               : 10 11 12 13 16
-FECHAASPAS           : 
+FECHAASPAS           : 23
 FECHACHAVE           : 2
 FECHACOLCHETE        : 11 13
-FECHAPARENTESE       : 3 4 27
+FECHAPARENTESE       : 3 4 28
 FIM                  : 
 IMP                  : 3 4
 INICIO               : 2
@@ -81,10 +80,10 @@ LE                   :
 LINETERMINATOR       : 
 LOGICO               : 
 NUM                  : 11 13 20
-OPERADOR_DIVISAO     : 26
-OPERADOR_MAIS        : 23
-OPERADOR_MENOS       : 24
-OPERADOR_MULTIPLICACAO : 25
+OPERADOR_DIVISAO     : 27
+OPERADOR_MAIS        : 24
+OPERADOR_MENOS       : 25
+OPERADOR_MULTIPLICACAO : 26
 OU                   : 
 PONTOEVIRGULA        : 5
 PRA                  : 
@@ -92,7 +91,7 @@ QUEBRALINHA          : 6 7 8
 RELACIONAL           : 
 SE                   : 
 SENAO                : 
-SIMBOLO              : 3 17 28 29
+SIMBOLO              : 3 17 29 30
 TIPO                 : 10 11
 TXT                  : 22
 VET                  : 
@@ -104,7 +103,7 @@ Nonterminals, with rules where they appear
 atribuir             : 10 11 12 13
 declaracao           : 5
 declaracoes          : 5 6 7 8
-expressao            : 3 4 17 18 23 23 24 24 25 25 26 26 27 28 28 29
+expressao            : 3 4 17 18 23 24 24 25 25 26 26 27 27 28 29 29 30
 imp                  : 19
 main                 : 1
 operacoes            : 2 17
@@ -153,22 +152,24 @@ state 4
     (20) expressao -> . NUM
     (21) expressao -> . variavel
     (22) expressao -> . TXT
-    (23) expressao -> . expressao OPERADOR_MAIS expressao
-    (24) expressao -> . expressao OPERADOR_MENOS expressao
-    (25) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> . expressao OPERADOR_DIVISAO expressao
-    (27) expressao -> . ABREPARTESE expressao FECHAPARENTESE
-    (28) expressao -> . expressao SIMBOLO expressao
-    (29) expressao -> . expressao SIMBOLO
+    (23) expressao -> . ABREASPAS expressao FECHAASPAS
+    (24) expressao -> . expressao OPERADOR_MAIS expressao
+    (25) expressao -> . expressao OPERADOR_MENOS expressao
+    (26) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> . expressao OPERADOR_DIVISAO expressao
+    (28) expressao -> . ABREPARTESE expressao FECHAPARENTESE
+    (29) expressao -> . expressao SIMBOLO expressao
+    (30) expressao -> . expressao SIMBOLO
     (3) imp -> . IMP ABREPARTESE expressao FECHAPARENTESE SIMBOLO
     (4) imp -> . IMP ABREPARTESE expressao FECHAPARENTESE
     (16) variavel -> . ESPACO CARACTERE
 
     NUM             shift and go to state 8
     TXT             shift and go to state 10
-    ABREPARTESE     shift and go to state 11
-    IMP             shift and go to state 12
-    ESPACO          shift and go to state 13
+    ABREASPAS       shift and go to state 11
+    ABREPARTESE     shift and go to state 12
+    IMP             shift and go to state 13
+    ESPACO          shift and go to state 14
 
     operacoes                      shift and go to state 5
     expressao                      shift and go to state 6
@@ -179,26 +180,26 @@ state 5
 
     (2) main -> INICIO ABRECHAVE operacoes . FECHACHAVE
 
-    FECHACHAVE      shift and go to state 14
+    FECHACHAVE      shift and go to state 15
 
 
 state 6
 
     (17) operacoes -> expressao . SIMBOLO operacoes
     (18) operacoes -> expressao .
-    (23) expressao -> expressao . OPERADOR_MAIS expressao
-    (24) expressao -> expressao . OPERADOR_MENOS expressao
-    (25) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> expressao . OPERADOR_DIVISAO expressao
-    (28) expressao -> expressao . SIMBOLO expressao
-    (29) expressao -> expressao . SIMBOLO
+    (24) expressao -> expressao . OPERADOR_MAIS expressao
+    (25) expressao -> expressao . OPERADOR_MENOS expressao
+    (26) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> expressao . OPERADOR_DIVISAO expressao
+    (29) expressao -> expressao . SIMBOLO expressao
+    (30) expressao -> expressao . SIMBOLO
 
-    SIMBOLO         shift and go to state 15
+    SIMBOLO         shift and go to state 16
     FECHACHAVE      reduce using rule 18 (operacoes -> expressao .)
-    OPERADOR_MAIS   shift and go to state 16
-    OPERADOR_MENOS  shift and go to state 17
-    OPERADOR_MULTIPLICACAO shift and go to state 18
-    OPERADOR_DIVISAO shift and go to state 19
+    OPERADOR_MAIS   shift and go to state 17
+    OPERADOR_MENOS  shift and go to state 18
+    OPERADOR_MULTIPLICACAO shift and go to state 19
+    OPERADOR_DIVISAO shift and go to state 20
 
 
 state 7
@@ -218,6 +219,7 @@ state 8
     OPERADOR_MULTIPLICACAO reduce using rule 20 (expressao -> NUM .)
     OPERADOR_DIVISAO reduce using rule 20 (expressao -> NUM .)
     FECHACHAVE      reduce using rule 20 (expressao -> NUM .)
+    FECHAASPAS      reduce using rule 20 (expressao -> NUM .)
     FECHAPARENTESE  reduce using rule 20 (expressao -> NUM .)
 
 
@@ -231,6 +233,7 @@ state 9
     OPERADOR_MULTIPLICACAO reduce using rule 21 (expressao -> variavel .)
     OPERADOR_DIVISAO reduce using rule 21 (expressao -> variavel .)
     FECHACHAVE      reduce using rule 21 (expressao -> variavel .)
+    FECHAASPAS      reduce using rule 21 (expressao -> variavel .)
     FECHAPARENTESE  reduce using rule 21 (expressao -> variavel .)
 
 
@@ -244,228 +247,286 @@ state 10
     OPERADOR_MULTIPLICACAO reduce using rule 22 (expressao -> TXT .)
     OPERADOR_DIVISAO reduce using rule 22 (expressao -> TXT .)
     FECHACHAVE      reduce using rule 22 (expressao -> TXT .)
+    FECHAASPAS      reduce using rule 22 (expressao -> TXT .)
     FECHAPARENTESE  reduce using rule 22 (expressao -> TXT .)
 
 
 state 11
 
-    (27) expressao -> ABREPARTESE . expressao FECHAPARENTESE
+    (23) expressao -> ABREASPAS . expressao FECHAASPAS
     (20) expressao -> . NUM
     (21) expressao -> . variavel
     (22) expressao -> . TXT
-    (23) expressao -> . expressao OPERADOR_MAIS expressao
-    (24) expressao -> . expressao OPERADOR_MENOS expressao
-    (25) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> . expressao OPERADOR_DIVISAO expressao
-    (27) expressao -> . ABREPARTESE expressao FECHAPARENTESE
-    (28) expressao -> . expressao SIMBOLO expressao
-    (29) expressao -> . expressao SIMBOLO
+    (23) expressao -> . ABREASPAS expressao FECHAASPAS
+    (24) expressao -> . expressao OPERADOR_MAIS expressao
+    (25) expressao -> . expressao OPERADOR_MENOS expressao
+    (26) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> . expressao OPERADOR_DIVISAO expressao
+    (28) expressao -> . ABREPARTESE expressao FECHAPARENTESE
+    (29) expressao -> . expressao SIMBOLO expressao
+    (30) expressao -> . expressao SIMBOLO
     (16) variavel -> . ESPACO CARACTERE
 
     NUM             shift and go to state 8
     TXT             shift and go to state 10
-    ABREPARTESE     shift and go to state 11
-    ESPACO          shift and go to state 13
+    ABREASPAS       shift and go to state 11
+    ABREPARTESE     shift and go to state 12
+    ESPACO          shift and go to state 14
 
-    expressao                      shift and go to state 20
+    expressao                      shift and go to state 21
     variavel                       shift and go to state 9
 
 state 12
 
-    (3) imp -> IMP . ABREPARTESE expressao FECHAPARENTESE SIMBOLO
-    (4) imp -> IMP . ABREPARTESE expressao FECHAPARENTESE
+    (28) expressao -> ABREPARTESE . expressao FECHAPARENTESE
+    (20) expressao -> . NUM
+    (21) expressao -> . variavel
+    (22) expressao -> . TXT
+    (23) expressao -> . ABREASPAS expressao FECHAASPAS
+    (24) expressao -> . expressao OPERADOR_MAIS expressao
+    (25) expressao -> . expressao OPERADOR_MENOS expressao
+    (26) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> . expressao OPERADOR_DIVISAO expressao
+    (28) expressao -> . ABREPARTESE expressao FECHAPARENTESE
+    (29) expressao -> . expressao SIMBOLO expressao
+    (30) expressao -> . expressao SIMBOLO
+    (16) variavel -> . ESPACO CARACTERE
 
-    ABREPARTESE     shift and go to state 21
+    NUM             shift and go to state 8
+    TXT             shift and go to state 10
+    ABREASPAS       shift and go to state 11
+    ABREPARTESE     shift and go to state 12
+    ESPACO          shift and go to state 14
 
+    expressao                      shift and go to state 22
+    variavel                       shift and go to state 9
 
 state 13
 
-    (16) variavel -> ESPACO . CARACTERE
+    (3) imp -> IMP . ABREPARTESE expressao FECHAPARENTESE SIMBOLO
+    (4) imp -> IMP . ABREPARTESE expressao FECHAPARENTESE
 
-    CARACTERE       shift and go to state 22
+    ABREPARTESE     shift and go to state 23
 
 
 state 14
+
+    (16) variavel -> ESPACO . CARACTERE
+
+    CARACTERE       shift and go to state 24
+
+
+state 15
 
     (2) main -> INICIO ABRECHAVE operacoes FECHACHAVE .
 
     $end            reduce using rule 2 (main -> INICIO ABRECHAVE operacoes FECHACHAVE .)
 
 
-state 15
+state 16
 
     (17) operacoes -> expressao SIMBOLO . operacoes
-    (28) expressao -> expressao SIMBOLO . expressao
-    (29) expressao -> expressao SIMBOLO .
+    (29) expressao -> expressao SIMBOLO . expressao
+    (30) expressao -> expressao SIMBOLO .
     (17) operacoes -> . expressao SIMBOLO operacoes
     (18) operacoes -> . expressao
     (19) operacoes -> . imp
     (20) expressao -> . NUM
     (21) expressao -> . variavel
     (22) expressao -> . TXT
-    (23) expressao -> . expressao OPERADOR_MAIS expressao
-    (24) expressao -> . expressao OPERADOR_MENOS expressao
-    (25) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> . expressao OPERADOR_DIVISAO expressao
-    (27) expressao -> . ABREPARTESE expressao FECHAPARENTESE
-    (28) expressao -> . expressao SIMBOLO expressao
-    (29) expressao -> . expressao SIMBOLO
+    (23) expressao -> . ABREASPAS expressao FECHAASPAS
+    (24) expressao -> . expressao OPERADOR_MAIS expressao
+    (25) expressao -> . expressao OPERADOR_MENOS expressao
+    (26) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> . expressao OPERADOR_DIVISAO expressao
+    (28) expressao -> . ABREPARTESE expressao FECHAPARENTESE
+    (29) expressao -> . expressao SIMBOLO expressao
+    (30) expressao -> . expressao SIMBOLO
     (3) imp -> . IMP ABREPARTESE expressao FECHAPARENTESE SIMBOLO
     (4) imp -> . IMP ABREPARTESE expressao FECHAPARENTESE
     (16) variavel -> . ESPACO CARACTERE
 
-    SIMBOLO         reduce using rule 29 (expressao -> expressao SIMBOLO .)
-    OPERADOR_MAIS   reduce using rule 29 (expressao -> expressao SIMBOLO .)
-    OPERADOR_MENOS  reduce using rule 29 (expressao -> expressao SIMBOLO .)
-    OPERADOR_MULTIPLICACAO reduce using rule 29 (expressao -> expressao SIMBOLO .)
-    OPERADOR_DIVISAO reduce using rule 29 (expressao -> expressao SIMBOLO .)
-    FECHACHAVE      reduce using rule 29 (expressao -> expressao SIMBOLO .)
+    SIMBOLO         reduce using rule 30 (expressao -> expressao SIMBOLO .)
+    OPERADOR_MAIS   reduce using rule 30 (expressao -> expressao SIMBOLO .)
+    OPERADOR_MENOS  reduce using rule 30 (expressao -> expressao SIMBOLO .)
+    OPERADOR_MULTIPLICACAO reduce using rule 30 (expressao -> expressao SIMBOLO .)
+    OPERADOR_DIVISAO reduce using rule 30 (expressao -> expressao SIMBOLO .)
+    FECHACHAVE      reduce using rule 30 (expressao -> expressao SIMBOLO .)
     NUM             shift and go to state 8
     TXT             shift and go to state 10
-    ABREPARTESE     shift and go to state 11
-    IMP             shift and go to state 12
-    ESPACO          shift and go to state 13
-
-    expressao                      shift and go to state 23
-    operacoes                      shift and go to state 24
-    imp                            shift and go to state 7
-    variavel                       shift and go to state 9
-
-state 16
-
-    (23) expressao -> expressao OPERADOR_MAIS . expressao
-    (20) expressao -> . NUM
-    (21) expressao -> . variavel
-    (22) expressao -> . TXT
-    (23) expressao -> . expressao OPERADOR_MAIS expressao
-    (24) expressao -> . expressao OPERADOR_MENOS expressao
-    (25) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> . expressao OPERADOR_DIVISAO expressao
-    (27) expressao -> . ABREPARTESE expressao FECHAPARENTESE
-    (28) expressao -> . expressao SIMBOLO expressao
-    (29) expressao -> . expressao SIMBOLO
-    (16) variavel -> . ESPACO CARACTERE
-
-    NUM             shift and go to state 8
-    TXT             shift and go to state 10
-    ABREPARTESE     shift and go to state 11
-    ESPACO          shift and go to state 13
+    ABREASPAS       shift and go to state 11
+    ABREPARTESE     shift and go to state 12
+    IMP             shift and go to state 13
+    ESPACO          shift and go to state 14
 
     expressao                      shift and go to state 25
+    operacoes                      shift and go to state 26
+    imp                            shift and go to state 7
     variavel                       shift and go to state 9
 
 state 17
 
-    (24) expressao -> expressao OPERADOR_MENOS . expressao
+    (24) expressao -> expressao OPERADOR_MAIS . expressao
     (20) expressao -> . NUM
     (21) expressao -> . variavel
     (22) expressao -> . TXT
-    (23) expressao -> . expressao OPERADOR_MAIS expressao
-    (24) expressao -> . expressao OPERADOR_MENOS expressao
-    (25) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> . expressao OPERADOR_DIVISAO expressao
-    (27) expressao -> . ABREPARTESE expressao FECHAPARENTESE
-    (28) expressao -> . expressao SIMBOLO expressao
-    (29) expressao -> . expressao SIMBOLO
+    (23) expressao -> . ABREASPAS expressao FECHAASPAS
+    (24) expressao -> . expressao OPERADOR_MAIS expressao
+    (25) expressao -> . expressao OPERADOR_MENOS expressao
+    (26) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> . expressao OPERADOR_DIVISAO expressao
+    (28) expressao -> . ABREPARTESE expressao FECHAPARENTESE
+    (29) expressao -> . expressao SIMBOLO expressao
+    (30) expressao -> . expressao SIMBOLO
     (16) variavel -> . ESPACO CARACTERE
 
     NUM             shift and go to state 8
     TXT             shift and go to state 10
-    ABREPARTESE     shift and go to state 11
-    ESPACO          shift and go to state 13
-
-    expressao                      shift and go to state 26
-    variavel                       shift and go to state 9
-
-state 18
-
-    (25) expressao -> expressao OPERADOR_MULTIPLICACAO . expressao
-    (20) expressao -> . NUM
-    (21) expressao -> . variavel
-    (22) expressao -> . TXT
-    (23) expressao -> . expressao OPERADOR_MAIS expressao
-    (24) expressao -> . expressao OPERADOR_MENOS expressao
-    (25) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> . expressao OPERADOR_DIVISAO expressao
-    (27) expressao -> . ABREPARTESE expressao FECHAPARENTESE
-    (28) expressao -> . expressao SIMBOLO expressao
-    (29) expressao -> . expressao SIMBOLO
-    (16) variavel -> . ESPACO CARACTERE
-
-    NUM             shift and go to state 8
-    TXT             shift and go to state 10
-    ABREPARTESE     shift and go to state 11
-    ESPACO          shift and go to state 13
+    ABREASPAS       shift and go to state 11
+    ABREPARTESE     shift and go to state 12
+    ESPACO          shift and go to state 14
 
     expressao                      shift and go to state 27
     variavel                       shift and go to state 9
 
-state 19
+state 18
 
-    (26) expressao -> expressao OPERADOR_DIVISAO . expressao
+    (25) expressao -> expressao OPERADOR_MENOS . expressao
     (20) expressao -> . NUM
     (21) expressao -> . variavel
     (22) expressao -> . TXT
-    (23) expressao -> . expressao OPERADOR_MAIS expressao
-    (24) expressao -> . expressao OPERADOR_MENOS expressao
-    (25) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> . expressao OPERADOR_DIVISAO expressao
-    (27) expressao -> . ABREPARTESE expressao FECHAPARENTESE
-    (28) expressao -> . expressao SIMBOLO expressao
-    (29) expressao -> . expressao SIMBOLO
+    (23) expressao -> . ABREASPAS expressao FECHAASPAS
+    (24) expressao -> . expressao OPERADOR_MAIS expressao
+    (25) expressao -> . expressao OPERADOR_MENOS expressao
+    (26) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> . expressao OPERADOR_DIVISAO expressao
+    (28) expressao -> . ABREPARTESE expressao FECHAPARENTESE
+    (29) expressao -> . expressao SIMBOLO expressao
+    (30) expressao -> . expressao SIMBOLO
     (16) variavel -> . ESPACO CARACTERE
 
     NUM             shift and go to state 8
     TXT             shift and go to state 10
-    ABREPARTESE     shift and go to state 11
-    ESPACO          shift and go to state 13
+    ABREASPAS       shift and go to state 11
+    ABREPARTESE     shift and go to state 12
+    ESPACO          shift and go to state 14
 
     expressao                      shift and go to state 28
     variavel                       shift and go to state 9
 
+state 19
+
+    (26) expressao -> expressao OPERADOR_MULTIPLICACAO . expressao
+    (20) expressao -> . NUM
+    (21) expressao -> . variavel
+    (22) expressao -> . TXT
+    (23) expressao -> . ABREASPAS expressao FECHAASPAS
+    (24) expressao -> . expressao OPERADOR_MAIS expressao
+    (25) expressao -> . expressao OPERADOR_MENOS expressao
+    (26) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> . expressao OPERADOR_DIVISAO expressao
+    (28) expressao -> . ABREPARTESE expressao FECHAPARENTESE
+    (29) expressao -> . expressao SIMBOLO expressao
+    (30) expressao -> . expressao SIMBOLO
+    (16) variavel -> . ESPACO CARACTERE
+
+    NUM             shift and go to state 8
+    TXT             shift and go to state 10
+    ABREASPAS       shift and go to state 11
+    ABREPARTESE     shift and go to state 12
+    ESPACO          shift and go to state 14
+
+    expressao                      shift and go to state 29
+    variavel                       shift and go to state 9
+
 state 20
 
-    (27) expressao -> ABREPARTESE expressao . FECHAPARENTESE
-    (23) expressao -> expressao . OPERADOR_MAIS expressao
-    (24) expressao -> expressao . OPERADOR_MENOS expressao
-    (25) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> expressao . OPERADOR_DIVISAO expressao
-    (28) expressao -> expressao . SIMBOLO expressao
-    (29) expressao -> expressao . SIMBOLO
+    (27) expressao -> expressao OPERADOR_DIVISAO . expressao
+    (20) expressao -> . NUM
+    (21) expressao -> . variavel
+    (22) expressao -> . TXT
+    (23) expressao -> . ABREASPAS expressao FECHAASPAS
+    (24) expressao -> . expressao OPERADOR_MAIS expressao
+    (25) expressao -> . expressao OPERADOR_MENOS expressao
+    (26) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> . expressao OPERADOR_DIVISAO expressao
+    (28) expressao -> . ABREPARTESE expressao FECHAPARENTESE
+    (29) expressao -> . expressao SIMBOLO expressao
+    (30) expressao -> . expressao SIMBOLO
+    (16) variavel -> . ESPACO CARACTERE
 
-    FECHAPARENTESE  shift and go to state 29
-    OPERADOR_MAIS   shift and go to state 16
-    OPERADOR_MENOS  shift and go to state 17
-    OPERADOR_MULTIPLICACAO shift and go to state 18
-    OPERADOR_DIVISAO shift and go to state 19
-    SIMBOLO         shift and go to state 30
+    NUM             shift and go to state 8
+    TXT             shift and go to state 10
+    ABREASPAS       shift and go to state 11
+    ABREPARTESE     shift and go to state 12
+    ESPACO          shift and go to state 14
 
+    expressao                      shift and go to state 30
+    variavel                       shift and go to state 9
 
 state 21
+
+    (23) expressao -> ABREASPAS expressao . FECHAASPAS
+    (24) expressao -> expressao . OPERADOR_MAIS expressao
+    (25) expressao -> expressao . OPERADOR_MENOS expressao
+    (26) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> expressao . OPERADOR_DIVISAO expressao
+    (29) expressao -> expressao . SIMBOLO expressao
+    (30) expressao -> expressao . SIMBOLO
+
+    FECHAASPAS      shift and go to state 31
+    OPERADOR_MAIS   shift and go to state 17
+    OPERADOR_MENOS  shift and go to state 18
+    OPERADOR_MULTIPLICACAO shift and go to state 19
+    OPERADOR_DIVISAO shift and go to state 20
+    SIMBOLO         shift and go to state 32
+
+
+state 22
+
+    (28) expressao -> ABREPARTESE expressao . FECHAPARENTESE
+    (24) expressao -> expressao . OPERADOR_MAIS expressao
+    (25) expressao -> expressao . OPERADOR_MENOS expressao
+    (26) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> expressao . OPERADOR_DIVISAO expressao
+    (29) expressao -> expressao . SIMBOLO expressao
+    (30) expressao -> expressao . SIMBOLO
+
+    FECHAPARENTESE  shift and go to state 33
+    OPERADOR_MAIS   shift and go to state 17
+    OPERADOR_MENOS  shift and go to state 18
+    OPERADOR_MULTIPLICACAO shift and go to state 19
+    OPERADOR_DIVISAO shift and go to state 20
+    SIMBOLO         shift and go to state 32
+
+
+state 23
 
     (3) imp -> IMP ABREPARTESE . expressao FECHAPARENTESE SIMBOLO
     (4) imp -> IMP ABREPARTESE . expressao FECHAPARENTESE
     (20) expressao -> . NUM
     (21) expressao -> . variavel
     (22) expressao -> . TXT
-    (23) expressao -> . expressao OPERADOR_MAIS expressao
-    (24) expressao -> . expressao OPERADOR_MENOS expressao
-    (25) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> . expressao OPERADOR_DIVISAO expressao
-    (27) expressao -> . ABREPARTESE expressao FECHAPARENTESE
-    (28) expressao -> . expressao SIMBOLO expressao
-    (29) expressao -> . expressao SIMBOLO
+    (23) expressao -> . ABREASPAS expressao FECHAASPAS
+    (24) expressao -> . expressao OPERADOR_MAIS expressao
+    (25) expressao -> . expressao OPERADOR_MENOS expressao
+    (26) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> . expressao OPERADOR_DIVISAO expressao
+    (28) expressao -> . ABREPARTESE expressao FECHAPARENTESE
+    (29) expressao -> . expressao SIMBOLO expressao
+    (30) expressao -> . expressao SIMBOLO
     (16) variavel -> . ESPACO CARACTERE
 
     NUM             shift and go to state 8
     TXT             shift and go to state 10
-    ABREPARTESE     shift and go to state 11
-    ESPACO          shift and go to state 13
+    ABREASPAS       shift and go to state 11
+    ABREPARTESE     shift and go to state 12
+    ESPACO          shift and go to state 14
 
-    expressao                      shift and go to state 31
+    expressao                      shift and go to state 34
     variavel                       shift and go to state 9
 
-state 22
+state 24
 
     (16) variavel -> ESPACO CARACTERE .
 
@@ -475,20 +536,21 @@ state 22
     OPERADOR_MULTIPLICACAO reduce using rule 16 (variavel -> ESPACO CARACTERE .)
     OPERADOR_DIVISAO reduce using rule 16 (variavel -> ESPACO CARACTERE .)
     FECHACHAVE      reduce using rule 16 (variavel -> ESPACO CARACTERE .)
+    FECHAASPAS      reduce using rule 16 (variavel -> ESPACO CARACTERE .)
     FECHAPARENTESE  reduce using rule 16 (variavel -> ESPACO CARACTERE .)
 
 
-state 23
+state 25
 
-    (28) expressao -> expressao SIMBOLO expressao .
+    (29) expressao -> expressao SIMBOLO expressao .
     (17) operacoes -> expressao . SIMBOLO operacoes
     (18) operacoes -> expressao .
-    (23) expressao -> expressao . OPERADOR_MAIS expressao
-    (24) expressao -> expressao . OPERADOR_MENOS expressao
-    (25) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> expressao . OPERADOR_DIVISAO expressao
-    (28) expressao -> expressao . SIMBOLO expressao
-    (29) expressao -> expressao . SIMBOLO
+    (24) expressao -> expressao . OPERADOR_MAIS expressao
+    (25) expressao -> expressao . OPERADOR_MENOS expressao
+    (26) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> expressao . OPERADOR_DIVISAO expressao
+    (29) expressao -> expressao . SIMBOLO expressao
+    (30) expressao -> expressao . SIMBOLO
 
   ! shift/reduce conflict for SIMBOLO resolved as shift
   ! reduce/reduce conflict for FECHACHAVE resolved using rule 18 (operacoes -> expressao .)
@@ -496,231 +558,254 @@ state 23
   ! shift/reduce conflict for OPERADOR_MENOS resolved as shift
   ! shift/reduce conflict for OPERADOR_MULTIPLICACAO resolved as shift
   ! shift/reduce conflict for OPERADOR_DIVISAO resolved as shift
-    SIMBOLO         shift and go to state 15
+    SIMBOLO         shift and go to state 16
     FECHACHAVE      reduce using rule 18 (operacoes -> expressao .)
-    OPERADOR_MAIS   shift and go to state 16
-    OPERADOR_MENOS  shift and go to state 17
-    OPERADOR_MULTIPLICACAO shift and go to state 18
-    OPERADOR_DIVISAO shift and go to state 19
+    OPERADOR_MAIS   shift and go to state 17
+    OPERADOR_MENOS  shift and go to state 18
+    OPERADOR_MULTIPLICACAO shift and go to state 19
+    OPERADOR_DIVISAO shift and go to state 20
 
-  ! SIMBOLO         [ reduce using rule 28 (expressao -> expressao SIMBOLO expressao .) ]
-  ! OPERADOR_MAIS   [ reduce using rule 28 (expressao -> expressao SIMBOLO expressao .) ]
-  ! OPERADOR_MENOS  [ reduce using rule 28 (expressao -> expressao SIMBOLO expressao .) ]
-  ! OPERADOR_MULTIPLICACAO [ reduce using rule 28 (expressao -> expressao SIMBOLO expressao .) ]
-  ! OPERADOR_DIVISAO [ reduce using rule 28 (expressao -> expressao SIMBOLO expressao .) ]
-  ! FECHACHAVE      [ reduce using rule 28 (expressao -> expressao SIMBOLO expressao .) ]
+  ! SIMBOLO         [ reduce using rule 29 (expressao -> expressao SIMBOLO expressao .) ]
+  ! OPERADOR_MAIS   [ reduce using rule 29 (expressao -> expressao SIMBOLO expressao .) ]
+  ! OPERADOR_MENOS  [ reduce using rule 29 (expressao -> expressao SIMBOLO expressao .) ]
+  ! OPERADOR_MULTIPLICACAO [ reduce using rule 29 (expressao -> expressao SIMBOLO expressao .) ]
+  ! OPERADOR_DIVISAO [ reduce using rule 29 (expressao -> expressao SIMBOLO expressao .) ]
+  ! FECHACHAVE      [ reduce using rule 29 (expressao -> expressao SIMBOLO expressao .) ]
 
 
-state 24
+state 26
 
     (17) operacoes -> expressao SIMBOLO operacoes .
 
     FECHACHAVE      reduce using rule 17 (operacoes -> expressao SIMBOLO operacoes .)
 
 
-state 25
-
-    (23) expressao -> expressao OPERADOR_MAIS expressao .
-    (23) expressao -> expressao . OPERADOR_MAIS expressao
-    (24) expressao -> expressao . OPERADOR_MENOS expressao
-    (25) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> expressao . OPERADOR_DIVISAO expressao
-    (28) expressao -> expressao . SIMBOLO expressao
-    (29) expressao -> expressao . SIMBOLO
-
-    SIMBOLO         reduce using rule 23 (expressao -> expressao OPERADOR_MAIS expressao .)
-    OPERADOR_MAIS   reduce using rule 23 (expressao -> expressao OPERADOR_MAIS expressao .)
-    OPERADOR_MENOS  reduce using rule 23 (expressao -> expressao OPERADOR_MAIS expressao .)
-    FECHACHAVE      reduce using rule 23 (expressao -> expressao OPERADOR_MAIS expressao .)
-    FECHAPARENTESE  reduce using rule 23 (expressao -> expressao OPERADOR_MAIS expressao .)
-    OPERADOR_MULTIPLICACAO shift and go to state 18
-    OPERADOR_DIVISAO shift and go to state 19
-
-  ! OPERADOR_MULTIPLICACAO [ reduce using rule 23 (expressao -> expressao OPERADOR_MAIS expressao .) ]
-  ! OPERADOR_DIVISAO [ reduce using rule 23 (expressao -> expressao OPERADOR_MAIS expressao .) ]
-  ! OPERADOR_MAIS   [ shift and go to state 16 ]
-  ! OPERADOR_MENOS  [ shift and go to state 17 ]
-  ! SIMBOLO         [ shift and go to state 30 ]
-
-
-state 26
-
-    (24) expressao -> expressao OPERADOR_MENOS expressao .
-    (23) expressao -> expressao . OPERADOR_MAIS expressao
-    (24) expressao -> expressao . OPERADOR_MENOS expressao
-    (25) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> expressao . OPERADOR_DIVISAO expressao
-    (28) expressao -> expressao . SIMBOLO expressao
-    (29) expressao -> expressao . SIMBOLO
-
-    SIMBOLO         reduce using rule 24 (expressao -> expressao OPERADOR_MENOS expressao .)
-    OPERADOR_MAIS   reduce using rule 24 (expressao -> expressao OPERADOR_MENOS expressao .)
-    OPERADOR_MENOS  reduce using rule 24 (expressao -> expressao OPERADOR_MENOS expressao .)
-    FECHACHAVE      reduce using rule 24 (expressao -> expressao OPERADOR_MENOS expressao .)
-    FECHAPARENTESE  reduce using rule 24 (expressao -> expressao OPERADOR_MENOS expressao .)
-    OPERADOR_MULTIPLICACAO shift and go to state 18
-    OPERADOR_DIVISAO shift and go to state 19
-
-  ! OPERADOR_MULTIPLICACAO [ reduce using rule 24 (expressao -> expressao OPERADOR_MENOS expressao .) ]
-  ! OPERADOR_DIVISAO [ reduce using rule 24 (expressao -> expressao OPERADOR_MENOS expressao .) ]
-  ! OPERADOR_MAIS   [ shift and go to state 16 ]
-  ! OPERADOR_MENOS  [ shift and go to state 17 ]
-  ! SIMBOLO         [ shift and go to state 30 ]
-
-
 state 27
 
-    (25) expressao -> expressao OPERADOR_MULTIPLICACAO expressao .
-    (23) expressao -> expressao . OPERADOR_MAIS expressao
-    (24) expressao -> expressao . OPERADOR_MENOS expressao
-    (25) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> expressao . OPERADOR_DIVISAO expressao
-    (28) expressao -> expressao . SIMBOLO expressao
-    (29) expressao -> expressao . SIMBOLO
+    (24) expressao -> expressao OPERADOR_MAIS expressao .
+    (24) expressao -> expressao . OPERADOR_MAIS expressao
+    (25) expressao -> expressao . OPERADOR_MENOS expressao
+    (26) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> expressao . OPERADOR_DIVISAO expressao
+    (29) expressao -> expressao . SIMBOLO expressao
+    (30) expressao -> expressao . SIMBOLO
 
-    SIMBOLO         reduce using rule 25 (expressao -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    OPERADOR_MAIS   reduce using rule 25 (expressao -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    OPERADOR_MENOS  reduce using rule 25 (expressao -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    OPERADOR_MULTIPLICACAO reduce using rule 25 (expressao -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    OPERADOR_DIVISAO reduce using rule 25 (expressao -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    FECHACHAVE      reduce using rule 25 (expressao -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    FECHAPARENTESE  reduce using rule 25 (expressao -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    SIMBOLO         reduce using rule 24 (expressao -> expressao OPERADOR_MAIS expressao .)
+    OPERADOR_MAIS   reduce using rule 24 (expressao -> expressao OPERADOR_MAIS expressao .)
+    OPERADOR_MENOS  reduce using rule 24 (expressao -> expressao OPERADOR_MAIS expressao .)
+    FECHACHAVE      reduce using rule 24 (expressao -> expressao OPERADOR_MAIS expressao .)
+    FECHAASPAS      reduce using rule 24 (expressao -> expressao OPERADOR_MAIS expressao .)
+    FECHAPARENTESE  reduce using rule 24 (expressao -> expressao OPERADOR_MAIS expressao .)
+    OPERADOR_MULTIPLICACAO shift and go to state 19
+    OPERADOR_DIVISAO shift and go to state 20
 
-  ! OPERADOR_MAIS   [ shift and go to state 16 ]
-  ! OPERADOR_MENOS  [ shift and go to state 17 ]
-  ! OPERADOR_MULTIPLICACAO [ shift and go to state 18 ]
-  ! OPERADOR_DIVISAO [ shift and go to state 19 ]
-  ! SIMBOLO         [ shift and go to state 30 ]
+  ! OPERADOR_MULTIPLICACAO [ reduce using rule 24 (expressao -> expressao OPERADOR_MAIS expressao .) ]
+  ! OPERADOR_DIVISAO [ reduce using rule 24 (expressao -> expressao OPERADOR_MAIS expressao .) ]
+  ! OPERADOR_MAIS   [ shift and go to state 17 ]
+  ! OPERADOR_MENOS  [ shift and go to state 18 ]
+  ! SIMBOLO         [ shift and go to state 32 ]
 
 
 state 28
 
-    (26) expressao -> expressao OPERADOR_DIVISAO expressao .
-    (23) expressao -> expressao . OPERADOR_MAIS expressao
-    (24) expressao -> expressao . OPERADOR_MENOS expressao
-    (25) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> expressao . OPERADOR_DIVISAO expressao
-    (28) expressao -> expressao . SIMBOLO expressao
-    (29) expressao -> expressao . SIMBOLO
+    (25) expressao -> expressao OPERADOR_MENOS expressao .
+    (24) expressao -> expressao . OPERADOR_MAIS expressao
+    (25) expressao -> expressao . OPERADOR_MENOS expressao
+    (26) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> expressao . OPERADOR_DIVISAO expressao
+    (29) expressao -> expressao . SIMBOLO expressao
+    (30) expressao -> expressao . SIMBOLO
 
-    SIMBOLO         reduce using rule 26 (expressao -> expressao OPERADOR_DIVISAO expressao .)
-    OPERADOR_MAIS   reduce using rule 26 (expressao -> expressao OPERADOR_DIVISAO expressao .)
-    OPERADOR_MENOS  reduce using rule 26 (expressao -> expressao OPERADOR_DIVISAO expressao .)
-    OPERADOR_MULTIPLICACAO reduce using rule 26 (expressao -> expressao OPERADOR_DIVISAO expressao .)
-    OPERADOR_DIVISAO reduce using rule 26 (expressao -> expressao OPERADOR_DIVISAO expressao .)
-    FECHACHAVE      reduce using rule 26 (expressao -> expressao OPERADOR_DIVISAO expressao .)
-    FECHAPARENTESE  reduce using rule 26 (expressao -> expressao OPERADOR_DIVISAO expressao .)
+    SIMBOLO         reduce using rule 25 (expressao -> expressao OPERADOR_MENOS expressao .)
+    OPERADOR_MAIS   reduce using rule 25 (expressao -> expressao OPERADOR_MENOS expressao .)
+    OPERADOR_MENOS  reduce using rule 25 (expressao -> expressao OPERADOR_MENOS expressao .)
+    FECHACHAVE      reduce using rule 25 (expressao -> expressao OPERADOR_MENOS expressao .)
+    FECHAASPAS      reduce using rule 25 (expressao -> expressao OPERADOR_MENOS expressao .)
+    FECHAPARENTESE  reduce using rule 25 (expressao -> expressao OPERADOR_MENOS expressao .)
+    OPERADOR_MULTIPLICACAO shift and go to state 19
+    OPERADOR_DIVISAO shift and go to state 20
 
-  ! OPERADOR_MAIS   [ shift and go to state 16 ]
-  ! OPERADOR_MENOS  [ shift and go to state 17 ]
-  ! OPERADOR_MULTIPLICACAO [ shift and go to state 18 ]
-  ! OPERADOR_DIVISAO [ shift and go to state 19 ]
-  ! SIMBOLO         [ shift and go to state 30 ]
+  ! OPERADOR_MULTIPLICACAO [ reduce using rule 25 (expressao -> expressao OPERADOR_MENOS expressao .) ]
+  ! OPERADOR_DIVISAO [ reduce using rule 25 (expressao -> expressao OPERADOR_MENOS expressao .) ]
+  ! OPERADOR_MAIS   [ shift and go to state 17 ]
+  ! OPERADOR_MENOS  [ shift and go to state 18 ]
+  ! SIMBOLO         [ shift and go to state 32 ]
 
 
 state 29
 
-    (27) expressao -> ABREPARTESE expressao FECHAPARENTESE .
+    (26) expressao -> expressao OPERADOR_MULTIPLICACAO expressao .
+    (24) expressao -> expressao . OPERADOR_MAIS expressao
+    (25) expressao -> expressao . OPERADOR_MENOS expressao
+    (26) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> expressao . OPERADOR_DIVISAO expressao
+    (29) expressao -> expressao . SIMBOLO expressao
+    (30) expressao -> expressao . SIMBOLO
 
-    SIMBOLO         reduce using rule 27 (expressao -> ABREPARTESE expressao FECHAPARENTESE .)
-    OPERADOR_MAIS   reduce using rule 27 (expressao -> ABREPARTESE expressao FECHAPARENTESE .)
-    OPERADOR_MENOS  reduce using rule 27 (expressao -> ABREPARTESE expressao FECHAPARENTESE .)
-    OPERADOR_MULTIPLICACAO reduce using rule 27 (expressao -> ABREPARTESE expressao FECHAPARENTESE .)
-    OPERADOR_DIVISAO reduce using rule 27 (expressao -> ABREPARTESE expressao FECHAPARENTESE .)
-    FECHACHAVE      reduce using rule 27 (expressao -> ABREPARTESE expressao FECHAPARENTESE .)
-    FECHAPARENTESE  reduce using rule 27 (expressao -> ABREPARTESE expressao FECHAPARENTESE .)
+    SIMBOLO         reduce using rule 26 (expressao -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    OPERADOR_MAIS   reduce using rule 26 (expressao -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    OPERADOR_MENOS  reduce using rule 26 (expressao -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    OPERADOR_MULTIPLICACAO reduce using rule 26 (expressao -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    OPERADOR_DIVISAO reduce using rule 26 (expressao -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    FECHACHAVE      reduce using rule 26 (expressao -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    FECHAASPAS      reduce using rule 26 (expressao -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    FECHAPARENTESE  reduce using rule 26 (expressao -> expressao OPERADOR_MULTIPLICACAO expressao .)
+
+  ! OPERADOR_MAIS   [ shift and go to state 17 ]
+  ! OPERADOR_MENOS  [ shift and go to state 18 ]
+  ! OPERADOR_MULTIPLICACAO [ shift and go to state 19 ]
+  ! OPERADOR_DIVISAO [ shift and go to state 20 ]
+  ! SIMBOLO         [ shift and go to state 32 ]
 
 
 state 30
 
-    (28) expressao -> expressao SIMBOLO . expressao
-    (29) expressao -> expressao SIMBOLO .
-    (20) expressao -> . NUM
-    (21) expressao -> . variavel
-    (22) expressao -> . TXT
-    (23) expressao -> . expressao OPERADOR_MAIS expressao
-    (24) expressao -> . expressao OPERADOR_MENOS expressao
-    (25) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> . expressao OPERADOR_DIVISAO expressao
-    (27) expressao -> . ABREPARTESE expressao FECHAPARENTESE
-    (28) expressao -> . expressao SIMBOLO expressao
-    (29) expressao -> . expressao SIMBOLO
-    (16) variavel -> . ESPACO CARACTERE
+    (27) expressao -> expressao OPERADOR_DIVISAO expressao .
+    (24) expressao -> expressao . OPERADOR_MAIS expressao
+    (25) expressao -> expressao . OPERADOR_MENOS expressao
+    (26) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> expressao . OPERADOR_DIVISAO expressao
+    (29) expressao -> expressao . SIMBOLO expressao
+    (30) expressao -> expressao . SIMBOLO
 
-    FECHAPARENTESE  reduce using rule 29 (expressao -> expressao SIMBOLO .)
-    OPERADOR_MAIS   reduce using rule 29 (expressao -> expressao SIMBOLO .)
-    OPERADOR_MENOS  reduce using rule 29 (expressao -> expressao SIMBOLO .)
-    OPERADOR_MULTIPLICACAO reduce using rule 29 (expressao -> expressao SIMBOLO .)
-    OPERADOR_DIVISAO reduce using rule 29 (expressao -> expressao SIMBOLO .)
-    SIMBOLO         reduce using rule 29 (expressao -> expressao SIMBOLO .)
-    FECHACHAVE      reduce using rule 29 (expressao -> expressao SIMBOLO .)
-    NUM             shift and go to state 8
-    TXT             shift and go to state 10
-    ABREPARTESE     shift and go to state 11
-    ESPACO          shift and go to state 13
+    SIMBOLO         reduce using rule 27 (expressao -> expressao OPERADOR_DIVISAO expressao .)
+    OPERADOR_MAIS   reduce using rule 27 (expressao -> expressao OPERADOR_DIVISAO expressao .)
+    OPERADOR_MENOS  reduce using rule 27 (expressao -> expressao OPERADOR_DIVISAO expressao .)
+    OPERADOR_MULTIPLICACAO reduce using rule 27 (expressao -> expressao OPERADOR_DIVISAO expressao .)
+    OPERADOR_DIVISAO reduce using rule 27 (expressao -> expressao OPERADOR_DIVISAO expressao .)
+    FECHACHAVE      reduce using rule 27 (expressao -> expressao OPERADOR_DIVISAO expressao .)
+    FECHAASPAS      reduce using rule 27 (expressao -> expressao OPERADOR_DIVISAO expressao .)
+    FECHAPARENTESE  reduce using rule 27 (expressao -> expressao OPERADOR_DIVISAO expressao .)
 
-    expressao                      shift and go to state 32
-    variavel                       shift and go to state 9
+  ! OPERADOR_MAIS   [ shift and go to state 17 ]
+  ! OPERADOR_MENOS  [ shift and go to state 18 ]
+  ! OPERADOR_MULTIPLICACAO [ shift and go to state 19 ]
+  ! OPERADOR_DIVISAO [ shift and go to state 20 ]
+  ! SIMBOLO         [ shift and go to state 32 ]
+
 
 state 31
 
-    (3) imp -> IMP ABREPARTESE expressao . FECHAPARENTESE SIMBOLO
-    (4) imp -> IMP ABREPARTESE expressao . FECHAPARENTESE
-    (23) expressao -> expressao . OPERADOR_MAIS expressao
-    (24) expressao -> expressao . OPERADOR_MENOS expressao
-    (25) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> expressao . OPERADOR_DIVISAO expressao
-    (28) expressao -> expressao . SIMBOLO expressao
-    (29) expressao -> expressao . SIMBOLO
+    (23) expressao -> ABREASPAS expressao FECHAASPAS .
 
-    FECHAPARENTESE  shift and go to state 33
-    OPERADOR_MAIS   shift and go to state 16
-    OPERADOR_MENOS  shift and go to state 17
-    OPERADOR_MULTIPLICACAO shift and go to state 18
-    OPERADOR_DIVISAO shift and go to state 19
-    SIMBOLO         shift and go to state 30
+    SIMBOLO         reduce using rule 23 (expressao -> ABREASPAS expressao FECHAASPAS .)
+    OPERADOR_MAIS   reduce using rule 23 (expressao -> ABREASPAS expressao FECHAASPAS .)
+    OPERADOR_MENOS  reduce using rule 23 (expressao -> ABREASPAS expressao FECHAASPAS .)
+    OPERADOR_MULTIPLICACAO reduce using rule 23 (expressao -> ABREASPAS expressao FECHAASPAS .)
+    OPERADOR_DIVISAO reduce using rule 23 (expressao -> ABREASPAS expressao FECHAASPAS .)
+    FECHACHAVE      reduce using rule 23 (expressao -> ABREASPAS expressao FECHAASPAS .)
+    FECHAASPAS      reduce using rule 23 (expressao -> ABREASPAS expressao FECHAASPAS .)
+    FECHAPARENTESE  reduce using rule 23 (expressao -> ABREASPAS expressao FECHAASPAS .)
 
 
 state 32
 
-    (28) expressao -> expressao SIMBOLO expressao .
-    (23) expressao -> expressao . OPERADOR_MAIS expressao
-    (24) expressao -> expressao . OPERADOR_MENOS expressao
-    (25) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) expressao -> expressao . OPERADOR_DIVISAO expressao
-    (28) expressao -> expressao . SIMBOLO expressao
-    (29) expressao -> expressao . SIMBOLO
+    (29) expressao -> expressao SIMBOLO . expressao
+    (30) expressao -> expressao SIMBOLO .
+    (20) expressao -> . NUM
+    (21) expressao -> . variavel
+    (22) expressao -> . TXT
+    (23) expressao -> . ABREASPAS expressao FECHAASPAS
+    (24) expressao -> . expressao OPERADOR_MAIS expressao
+    (25) expressao -> . expressao OPERADOR_MENOS expressao
+    (26) expressao -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> . expressao OPERADOR_DIVISAO expressao
+    (28) expressao -> . ABREPARTESE expressao FECHAPARENTESE
+    (29) expressao -> . expressao SIMBOLO expressao
+    (30) expressao -> . expressao SIMBOLO
+    (16) variavel -> . ESPACO CARACTERE
+
+    FECHAASPAS      reduce using rule 30 (expressao -> expressao SIMBOLO .)
+    OPERADOR_MAIS   reduce using rule 30 (expressao -> expressao SIMBOLO .)
+    OPERADOR_MENOS  reduce using rule 30 (expressao -> expressao SIMBOLO .)
+    OPERADOR_MULTIPLICACAO reduce using rule 30 (expressao -> expressao SIMBOLO .)
+    OPERADOR_DIVISAO reduce using rule 30 (expressao -> expressao SIMBOLO .)
+    SIMBOLO         reduce using rule 30 (expressao -> expressao SIMBOLO .)
+    FECHAPARENTESE  reduce using rule 30 (expressao -> expressao SIMBOLO .)
+    FECHACHAVE      reduce using rule 30 (expressao -> expressao SIMBOLO .)
+    NUM             shift and go to state 8
+    TXT             shift and go to state 10
+    ABREASPAS       shift and go to state 11
+    ABREPARTESE     shift and go to state 12
+    ESPACO          shift and go to state 14
+
+    expressao                      shift and go to state 35
+    variavel                       shift and go to state 9
+
+state 33
+
+    (28) expressao -> ABREPARTESE expressao FECHAPARENTESE .
+
+    SIMBOLO         reduce using rule 28 (expressao -> ABREPARTESE expressao FECHAPARENTESE .)
+    OPERADOR_MAIS   reduce using rule 28 (expressao -> ABREPARTESE expressao FECHAPARENTESE .)
+    OPERADOR_MENOS  reduce using rule 28 (expressao -> ABREPARTESE expressao FECHAPARENTESE .)
+    OPERADOR_MULTIPLICACAO reduce using rule 28 (expressao -> ABREPARTESE expressao FECHAPARENTESE .)
+    OPERADOR_DIVISAO reduce using rule 28 (expressao -> ABREPARTESE expressao FECHAPARENTESE .)
+    FECHACHAVE      reduce using rule 28 (expressao -> ABREPARTESE expressao FECHAPARENTESE .)
+    FECHAASPAS      reduce using rule 28 (expressao -> ABREPARTESE expressao FECHAPARENTESE .)
+    FECHAPARENTESE  reduce using rule 28 (expressao -> ABREPARTESE expressao FECHAPARENTESE .)
+
+
+state 34
+
+    (3) imp -> IMP ABREPARTESE expressao . FECHAPARENTESE SIMBOLO
+    (4) imp -> IMP ABREPARTESE expressao . FECHAPARENTESE
+    (24) expressao -> expressao . OPERADOR_MAIS expressao
+    (25) expressao -> expressao . OPERADOR_MENOS expressao
+    (26) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> expressao . OPERADOR_DIVISAO expressao
+    (29) expressao -> expressao . SIMBOLO expressao
+    (30) expressao -> expressao . SIMBOLO
+
+    FECHAPARENTESE  shift and go to state 36
+    OPERADOR_MAIS   shift and go to state 17
+    OPERADOR_MENOS  shift and go to state 18
+    OPERADOR_MULTIPLICACAO shift and go to state 19
+    OPERADOR_DIVISAO shift and go to state 20
+    SIMBOLO         shift and go to state 32
+
+
+state 35
+
+    (29) expressao -> expressao SIMBOLO expressao .
+    (24) expressao -> expressao . OPERADOR_MAIS expressao
+    (25) expressao -> expressao . OPERADOR_MENOS expressao
+    (26) expressao -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (27) expressao -> expressao . OPERADOR_DIVISAO expressao
+    (29) expressao -> expressao . SIMBOLO expressao
+    (30) expressao -> expressao . SIMBOLO
 
   ! shift/reduce conflict for OPERADOR_MAIS resolved as shift
   ! shift/reduce conflict for OPERADOR_MENOS resolved as shift
   ! shift/reduce conflict for OPERADOR_MULTIPLICACAO resolved as shift
   ! shift/reduce conflict for OPERADOR_DIVISAO resolved as shift
   ! shift/reduce conflict for SIMBOLO resolved as shift
-    FECHAPARENTESE  reduce using rule 28 (expressao -> expressao SIMBOLO expressao .)
-    FECHACHAVE      reduce using rule 28 (expressao -> expressao SIMBOLO expressao .)
-    OPERADOR_MAIS   shift and go to state 16
-    OPERADOR_MENOS  shift and go to state 17
-    OPERADOR_MULTIPLICACAO shift and go to state 18
-    OPERADOR_DIVISAO shift and go to state 19
-    SIMBOLO         shift and go to state 30
+    FECHAASPAS      reduce using rule 29 (expressao -> expressao SIMBOLO expressao .)
+    FECHAPARENTESE  reduce using rule 29 (expressao -> expressao SIMBOLO expressao .)
+    FECHACHAVE      reduce using rule 29 (expressao -> expressao SIMBOLO expressao .)
+    OPERADOR_MAIS   shift and go to state 17
+    OPERADOR_MENOS  shift and go to state 18
+    OPERADOR_MULTIPLICACAO shift and go to state 19
+    OPERADOR_DIVISAO shift and go to state 20
+    SIMBOLO         shift and go to state 32
 
-  ! OPERADOR_MAIS   [ reduce using rule 28 (expressao -> expressao SIMBOLO expressao .) ]
-  ! OPERADOR_MENOS  [ reduce using rule 28 (expressao -> expressao SIMBOLO expressao .) ]
-  ! OPERADOR_MULTIPLICACAO [ reduce using rule 28 (expressao -> expressao SIMBOLO expressao .) ]
-  ! OPERADOR_DIVISAO [ reduce using rule 28 (expressao -> expressao SIMBOLO expressao .) ]
-  ! SIMBOLO         [ reduce using rule 28 (expressao -> expressao SIMBOLO expressao .) ]
+  ! OPERADOR_MAIS   [ reduce using rule 29 (expressao -> expressao SIMBOLO expressao .) ]
+  ! OPERADOR_MENOS  [ reduce using rule 29 (expressao -> expressao SIMBOLO expressao .) ]
+  ! OPERADOR_MULTIPLICACAO [ reduce using rule 29 (expressao -> expressao SIMBOLO expressao .) ]
+  ! OPERADOR_DIVISAO [ reduce using rule 29 (expressao -> expressao SIMBOLO expressao .) ]
+  ! SIMBOLO         [ reduce using rule 29 (expressao -> expressao SIMBOLO expressao .) ]
 
 
-state 33
+state 36
 
     (3) imp -> IMP ABREPARTESE expressao FECHAPARENTESE . SIMBOLO
     (4) imp -> IMP ABREPARTESE expressao FECHAPARENTESE .
 
-    SIMBOLO         shift and go to state 34
+    SIMBOLO         shift and go to state 37
     FECHACHAVE      reduce using rule 4 (imp -> IMP ABREPARTESE expressao FECHAPARENTESE .)
 
 
-state 34
+state 37
 
     (3) imp -> IMP ABREPARTESE expressao FECHAPARENTESE SIMBOLO .
 
@@ -729,15 +814,15 @@ state 34
 WARNING: 
 WARNING: Conflicts:
 WARNING: 
-WARNING: shift/reduce conflict for SIMBOLO in state 23 resolved as shift
-WARNING: shift/reduce conflict for OPERADOR_MAIS in state 23 resolved as shift
-WARNING: shift/reduce conflict for OPERADOR_MENOS in state 23 resolved as shift
-WARNING: shift/reduce conflict for OPERADOR_MULTIPLICACAO in state 23 resolved as shift
-WARNING: shift/reduce conflict for OPERADOR_DIVISAO in state 23 resolved as shift
-WARNING: shift/reduce conflict for OPERADOR_MAIS in state 32 resolved as shift
-WARNING: shift/reduce conflict for OPERADOR_MENOS in state 32 resolved as shift
-WARNING: shift/reduce conflict for OPERADOR_MULTIPLICACAO in state 32 resolved as shift
-WARNING: shift/reduce conflict for OPERADOR_DIVISAO in state 32 resolved as shift
-WARNING: shift/reduce conflict for SIMBOLO in state 32 resolved as shift
-WARNING: reduce/reduce conflict in state 23 resolved using rule (operacoes -> expressao)
-WARNING: rejected rule (expressao -> expressao SIMBOLO expressao) in state 23
+WARNING: shift/reduce conflict for SIMBOLO in state 25 resolved as shift
+WARNING: shift/reduce conflict for OPERADOR_MAIS in state 25 resolved as shift
+WARNING: shift/reduce conflict for OPERADOR_MENOS in state 25 resolved as shift
+WARNING: shift/reduce conflict for OPERADOR_MULTIPLICACAO in state 25 resolved as shift
+WARNING: shift/reduce conflict for OPERADOR_DIVISAO in state 25 resolved as shift
+WARNING: shift/reduce conflict for OPERADOR_MAIS in state 35 resolved as shift
+WARNING: shift/reduce conflict for OPERADOR_MENOS in state 35 resolved as shift
+WARNING: shift/reduce conflict for OPERADOR_MULTIPLICACAO in state 35 resolved as shift
+WARNING: shift/reduce conflict for OPERADOR_DIVISAO in state 35 resolved as shift
+WARNING: shift/reduce conflict for SIMBOLO in state 35 resolved as shift
+WARNING: reduce/reduce conflict in state 25 resolved using rule (operacoes -> expressao)
+WARNING: rejected rule (expressao -> expressao SIMBOLO expressao) in state 25
