@@ -3,6 +3,7 @@ from lexer import tokens
 
 # Lista de tokens (importada do lexer)
 tk = tokens
+variaveis = []
 
 # Definindo precedência dos operadores
 precedence = (
@@ -15,38 +16,84 @@ def p_programa(p):
     '''
     programa : inicio
     '''
-    # Adicione ações conforme necessário
+    print("--------------PROGRAMA: ")
+    for i in p:
+        print(i)
 
-def p_main(p):
+def p_inicio(p):
     '''
     inicio : INICIO ABRECHAVE operacoes FECHACHAVE
     '''
+    print("--------------INICIO: ")
+    for i in p:
+        print(i)
+                
+def p_tipo(p):
+    '''
+    tipo : TXT
+         | NUM
+    '''
     # Adicione ações conforme necessário
-
-def p_comentarios(p):
+    p[0] = p[1]
+    print("O TIPO EH: ",p[0])
+    print("--------------TIPO: ")
+    for i in p:
+        print(i)
+          
+def p_txt(p):
     '''
-    comentarios : COMENTARIOS
+    txt : TXT
     '''
-    
-def p_num(p):
-    '''
-    num : NUM
-    | NUM VIRGULA NUM
-    
-    '''
-    if len(p) == 3:
-        p[0] = p[1]+p[3]*0.001
-    else:
-        p[0] = p[1]
+    p[0] = p[1]
     print(p[0])
+    print("--------------TXT: ")
+    for i in p:
+        print(i)
     
+# def p_senao(p):
+#     '''
+#     senao : SENAO ABRECHAVE operacoes FECHACHAVE
+#     '''
+#     print("--------------SENAO: ")
+#     for i in p:
+#         print(i)
+      
+# def p_se(p):
+#     '''
+#     se : SE ABREPARENTESE expressao FECHAPARENTESE ABRECHAVE operacoes FECHACHAVE
+#        | SE ABREPARENTESE expressao FECHAPARENTESE ABRECHAVE operacoes FECHACHAVE senao
+#        | SE ABREPARENTESE ID RELACIONAL NUM FECHAPARENTESE ABRECHAVE imp FECHACHAVE
+#        | SE ABREPARENTESE ID relacional ID FECHAPARENTESE ABRECHAVE imp FECHACHAVE
+#     '''
+#     # p[0] = (p[2], p[4])
+#     print("--------------SE: ")
+#     for i in p:
+#         print(i)
+    
+def p_le(p):
+    '''
+    le : LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
+       | LE ABREPARENTESE ID FECHAPARENTESE
+    '''
+    print("LEITURA DE DADO:")
+    print("Tipo: ", p[3])
+    print("Variavel: ", p[4])
+    
+    #variaveis[0] = nome variaveis[1] = valor
+    p[4] = input("")
+    print("--------------LE: ")
+    for i in p:
+        print(i)
+
 def p_imp(p):
     '''
-    imp : IMP ABREPARTESE expressao FECHAPARENTESE PONTOEVIRGULA
-        | IMP ABREPARTESE expressao FECHAPARENTESE
+    imp : IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
+        | IMP ABREPARENTESE expressao FECHAPARENTESE
     '''
-    # Adicione ações conforme necessário
     print(p[3])
+    print("--------------IMP: ")
+    for i in p:
+        print(i)
 
 def p_declaracoes(p):
     '''
@@ -55,8 +102,13 @@ def p_declaracoes(p):
                 | COMENTARIOS QUEBRALINHA declaracoes
                 | QUEBRALINHA COMENTARIOS declaracoes
                 | COMENTARIOS
+                | TIPO ID ATRIBUIR expressao PONTOEVIRGULA
+                | TIPO ID ATRIBUICAO declaracao PONTOEVIRGULA
+                | TIPO ID ATRIBUIR TXT
     '''
-    # Adicione ações conforme necessário
+    print("--------------DECLARACOES: ")
+    for i in p:
+        print(i)
 
 def p_declaracao(p):
     '''
@@ -64,49 +116,59 @@ def p_declaracao(p):
                | TIPO ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir
                | ESPACO CARACTERE atribuir
                | ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir
+               | tipo ESPACO ID ATRIBUIR expressao PONTOEVIRGULA
+               | tipo ESPACO ID ATRIBUICAO expressao PONTOEVIRGULA
+               
+                 
     '''
-    # Adicione ações conforme necessário
-
-def p_atribuir(p):
-    '''
-    atribuir : ATRIBUIR variavel
-             | ATRIBUICAO variavel
-    '''
-    # Adicione ações conforme necessário
+    print("--------------DECLARACAO: ")
+    for i in p:
+        print(i)
 
 def p_variavel(p):
     '''
     variavel : ESPACO CARACTERE
     '''
     # Adicione ações conforme necessário
-
+    print("--------------VARIAVEL: ")
+    for i in p:
+        print(i)
+    
 def p_operacoes(p):
     '''
-    operacoes : expressao SIMBOLO operacoes
+    operacoes :
               | expressao
               | imp
+              | le
+              | atribuir
+              | atribuicao
+              | operacoes
     '''
     # Adicione ações conforme necessário
-
+    print("--------------OPERACOES: ")
+    for i in p:
+        print(i)
+    
 def p_expressao(p):
     '''
     expressao : NUM
               | variavel
+              | ID
               | TXT
               | aritimetico
-              | ABREPARTESE expressao FECHAPARENTESE
-                           
+              | ABREPARENTESE expressao FECHAPARENTESE
+              | RESPOSTABOOLEANA
+              
+                         
     '''
-    # | expressao PONTOEVIRGULA expressao
-    # | expressao PONTOEVIRGULA
     if len(p) == 4:
         p[0] = p[2]
     else:
         p[0] = p[1]
-        
-
-    # Adicione ações conforme necessário
-
+    print("--------------EXPRESSAO:")
+    for i in p:
+        print(i)
+    
 def p_aritimetico(p):
     '''aritimetico  : expressao OPERADOR_DIVISAO expressao
                     | expressao OPERADOR_MULTIPLICACAO expressao
@@ -121,6 +183,89 @@ def p_aritimetico(p):
         p[0] = float(p[1]) * float(p[3])
     elif p[2] == '/':
         p[0] = float(p[1]) /  float(p[3])
+    print("ARITIMETICO: ",p)
+    for i in p:
+        print(i)
+        
+def p_atribuicao(p):
+    '''
+    atribuicao : ATRIBUIR expressao
+               | ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE   
+    '''
+
+def p_atribuir(p):
+    '''
+    atribuir : TIPO ID atribuicao PONTOEVIRGULA 
+             | TIPO ID ATRIBUIR expressao PONTOEVIRGULA 
+             | ID atribuicao PONTOEVIRGULA
+             
+    '''
+    print("--------------ATRIBUIR: ")
+    for i in p:
+        print(i)
+        
+    variaveis.append({'nome': p[2], 'valor': p[4]})
+    #imprimindo apenas valor:
+    print(variaveis[0]['valor'])
+    
+    print("Variáveis: ", variaveis)
+
+def p_bloco(p):
+    '''
+    bloco   : enqt
+            | imp
+            | bloco
+    '''
+    # p[0] = p[1]
+
+def p_condicional(p):
+    '''
+    condicional : atomica
+                | atomica LOGICO atomica
+    '''
+    if len(p) == 4:
+        if p[2] == '&&':
+            p[0] = p[1] and p[3]
+        else:
+            p[0] = p[1] or p[3]
+    else:
+        p[0] = p[1]
+        
+
+def p_condicional_atomica(p):
+    '''
+    atomica : RESPOSTABOOLEANA
+            | NUM
+            | ID
+            | NAO condicional
+            | condicional RELACIONAL condicional
+            | condicional LOGICO condicional
+    '''
+    tamanho = len(p)
+    if tamanho == 2:
+        p[0] = p[1]
+        
+    elif tamanho == 3:
+        p[0] = not p[1]
+
+    elif tamanho == 4:
+        if p[2] == '>':
+            p[0] = p[1] > p[3]
+        elif p[2] == '<':
+            p[0] = p[1] < p[3]
+        elif p[2] == '=':
+            p[0] = p[1] = p[3]
+        elif p[2] == '!=':
+            p[0] = p[1] != p[3]
+        elif p[2] == '>=':
+            p[0] = p[1] > p[3]
+        elif p[2] == '<=':
+            p[0] = p[1] > p[3]
+    
+def p_enqt(p):
+    ''' 
+    enqt : ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
+    '''
 
 # Tratamento de erro sintático
 def p_error(p):

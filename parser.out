@@ -1,1 +1,140 @@
 Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    ABREASPAS
+    BLOCO
+    DEFVARIAVEL
+    DIGITO
+    E
+    FECHAASPAS
+    FIM
+    LINETERMINATOR
+    OU
+    PRA
+    SE
+    SENAO
+    SIMBOLO
+    VET
+    VF
+    VIRGULA
+
+Grammar
+
+Rule 0     S' -> programa
+Rule 1     programa -> inicio
+Rule 2     inicio -> INICIO ABRECHAVE operacoes FECHACHAVE
+Rule 3     tipo -> TXT
+Rule 4     tipo -> NUM
+Rule 5     txt -> TXT
+Rule 6     le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
+Rule 7     le -> LE ABREPARENTESE ID FECHAPARENTESE
+Rule 8     imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
+Rule 9     imp -> IMP ABREPARENTESE expressao FECHAPARENTESE
+Rule 10    declaracoes -> declaracao PONTOEVIRGULA declaracoes
+Rule 11    declaracoes -> QUEBRALINHA declaracoes
+Rule 12    declaracoes -> COMENTARIOS QUEBRALINHA declaracoes
+Rule 13    declaracoes -> QUEBRALINHA COMENTARIOS declaracoes
+Rule 14    declaracoes -> COMENTARIOS
+Rule 15    declaracoes -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA
+Rule 16    declaracoes -> TIPO ID ATRIBUICAO declaracao PONTOEVIRGULA
+Rule 17    declaracoes -> TIPO ID ATRIBUIR TXT
+Rule 18    declaracao -> TIPO ESPACO CARACTERE atribuir
+Rule 19    declaracao -> TIPO ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir
+Rule 20    declaracao -> ESPACO CARACTERE atribuir
+Rule 21    declaracao -> ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir
+Rule 22    declaracao -> tipo ESPACO ID ATRIBUIR expressao PONTOEVIRGULA
+Rule 23    declaracao -> tipo ESPACO ID ATRIBUICAO expressao PONTOEVIRGULA
+Rule 24    variavel -> ESPACO CARACTERE
+Rule 25    aritimetico -> expressao OPERADOR_DIVISAO expressao
+Rule 26    aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao
+Rule 27    aritimetico -> expressao OPERADOR_MAIS expressao
+Rule 28    aritimetico -> expressao OPERADOR_MENOS expressao
+Rule 29    atribuicao -> ATRIBUIR expressao
+Rule 30    atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE
+Rule 31    atribuir -> TIPO ID atribuicao PONTOEVIRGULA
+Rule 32    atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA
+Rule 33    atribuir -> ID atribuicao PONTOEVIRGULA
+Rule 34    bloco -> enqt
+Rule 35    bloco -> imp
+Rule 36    bloco -> bloco
+Rule 37    condicional -> atomica
+Rule 38    condicional -> atomica LOGICO atomica
+Rule 39    atomica -> RESPOSTABOOLEANA
+Rule 40    atomica -> NUM
+Rule 41    atomica -> ID
+Rule 42    atomica -> NAO condicional
+Rule 43    atomica -> condicional RELACIONAL condicional
+Rule 44    atomica -> condicional LOGICO condicional
+Rule 45    enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
+
+Terminals, with rules where they appear
+
+ABREASPAS            : 
+ABRECHAVE            : 2 45
+ABRECOLCHETE         : 19 21 30
+ABREPARENTESE        : 6 7 8 9 45
+ATRIBUICAO           : 16 23
+ATRIBUIR             : 15 17 22 29 30 32
+BLOCO                : 
+CARACTERE            : 18 19 20 21 24
+COMENTARIOS          : 12 13 14
+DEFVARIAVEL          : 
+DIGITO               : 
+E                    : 
+ENQT                 : 45
+ESPACO               : 18 19 20 21 22 23 24
+FECHAASPAS           : 
+FECHACHAVE           : 2 45
+FECHACOLCHETE        : 19 21 30
+FECHAPARENTESE       : 6 7 8 9 45
+FIM                  : 
+ID                   : 6 7 15 16 17 22 23 31 32 33 41
+IMP                  : 8 9
+INICIO               : 2
+LE                   : 6 7
+LINETERMINATOR       : 
+LOGICO               : 38 44
+NAO                  : 42
+NUM                  : 4 19 21 40
+OPERADOR_DIVISAO     : 25
+OPERADOR_MAIS        : 27
+OPERADOR_MENOS       : 28
+OPERADOR_MULTIPLICACAO : 26
+OU                   : 
+PONTOEVIRGULA        : 6 8 10 15 16 22 23 31 32 33
+PRA                  : 
+QUEBRALINHA          : 11 12 13
+RELACIONAL           : 43
+RESPOSTABOOLEANA     : 39
+SE                   : 
+SENAO                : 
+SIMBOLO              : 
+TIPO                 : 6 15 16 17 18 19 31 32
+TXT                  : 3 5 17
+VET                  : 
+VF                   : 
+VIRGULA              : 
+error                : 
+
+Nonterminals, with rules where they appear
+
+aritimetico          : 
+atomica              : 37 38 38
+atribuicao           : 31 33
+atribuir             : 18 19 20 21
+bloco                : 36 45
+condicional          : 42 43 43 44 44 45
+declaracao           : 10 16
+declaracoes          : 10 11 12 13
+enqt                 : 34
+expressao            : 8 9 15 22 23 25 25 26 26 27 27 28 28 29 30 32
+imp                  : 35
+inicio               : 1
+le                   : 
+operacoes            : 2
+programa             : 0
+tipo                 : 22 23
+txt                  : 
+variavel             : 
+
