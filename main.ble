@@ -1,3 +1,5 @@
 main {
-    txt a: "nome_da_variavel";
+    c(x>1){
+        imp("entrou no if");
+    }
 }

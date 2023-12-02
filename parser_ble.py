@@ -40,17 +40,17 @@ def p_tipo(p):
     for i in p:
         print(i)
     
-# def p_num(p):
-#     '''
-#     num : NUM
-#     | NUM VIRGULA NUM
-#     '''
-#     if len(p) == 2:
-#         p[0] = p[1]
-#     else:
-#         p[0] = p[1] + p[2] + p[3]
-#         p[0] = p[0].replace(',', '.')
-#         p[0] = float(p[0])
+def p_num(p):
+    '''
+    num : NUM
+    | NUM VIRGULA NUM
+    '''
+    if len(p) == 2:
+        p[0] = p[1]
+    else:
+        p[0] = p[1] + p[2] + p[3]
+        p[0] = p[0].replace(',', '.')
+        p[0] = float(p[0])
         
     
 def p_txt(p):
@@ -62,6 +62,26 @@ def p_txt(p):
     print("--------------TXT: ")
     for i in p:
         print(i)
+    
+# def p_senao(p):
+#     '''
+#     senao : SENAO ABRECHAVE operacoes FECHACHAVE
+#     '''
+#     print("--------------SENAO: ")
+#     for i in p:
+#         print(i)
+      
+# def p_se(p):
+#     '''
+#     se : SE ABREPARTESE expressao FECHAPARENTESE ABRECHAVE operacoes FECHACHAVE
+#        | SE ABREPARTESE expressao FECHAPARENTESE ABRECHAVE operacoes FECHACHAVE senao
+#        | SE ABREPARTESE ID RELACIONAL NUM FECHAPARENTESE ABRECHAVE imp FECHACHAVE
+#        | SE ABREPARTESE ID relacional ID FECHAPARENTESE ABRECHAVE imp FECHACHAVE
+#     '''
+#     # p[0] = (p[2], p[4])
+#     print("--------------SE: ")
+#     for i in p:
+#         print(i)
     
 def p_le(p):
     '''
@@ -94,6 +114,7 @@ def p_declaracoes(p):
                 | COMENTARIOS
                 | TIPO ID ATRIBUIR expressao PONTOEVIRGULA
                 | TIPO ID ATRIBUICAO declaracao PONTOEVIRGULA
+                | TIPO ID ATRIBUIR TXT
     '''
     print("--------------DECLARACOES: ")
     for i in p:
@@ -147,6 +168,7 @@ def p_expressao(p):
     '''
     expressao : NUM
               | variavel
+              | ID
               | TXT
               | aritimetico
               | ABREPARTESE expressao FECHAPARENTESE                      
