@@ -42,7 +42,7 @@ t_ATRIBUICAO = r':'
 t_ENQT = r'while'
 t_PRA = r'for'
 
-t_RELACIONAL = r'[<>!]=?'
+t_RELACIONAL = r'[<>!]=? | ='
 t_LOGICO = r'[&|]'
 
 t_E = r'&&'
