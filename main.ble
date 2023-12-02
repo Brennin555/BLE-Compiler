@@ -1,3 +1,5 @@
-main{
+main {
+
+    num x: 2,3 + 3;
     imp("Hello World");
 }
