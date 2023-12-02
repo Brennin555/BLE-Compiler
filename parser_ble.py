@@ -20,14 +20,14 @@ def p_programa(p):
     for i in p:
         print(i)
 
-def p_main(p):
+def p_inicio(p):
     '''
-    inicio : INICIO ABRECHAVE operacoes FECHACHAVE
+    inicio : INICIO ABRECHAVE blocos FECHACHAVE
     '''
     print("--------------INICIO: ")
     for i in p:
         print(i)
-                
+                        
 def p_tipo(p):
     '''
     tipo : TXT
@@ -95,36 +95,6 @@ def p_imp(p):
     for i in p:
         print(i)
 
-def p_declaracoes(p):
-    '''
-    declaracoes : declaracao PONTOEVIRGULA declaracoes
-                | QUEBRALINHA declaracoes
-                | COMENTARIOS QUEBRALINHA declaracoes
-                | QUEBRALINHA COMENTARIOS declaracoes
-                | COMENTARIOS
-                | TIPO ID ATRIBUIR expressao PONTOEVIRGULA
-                | TIPO ID ATRIBUICAO declaracao PONTOEVIRGULA
-                | TIPO ID ATRIBUIR TXT
-    '''
-    print("--------------DECLARACOES: ")
-    for i in p:
-        print(i)
-
-def p_declaracao(p):
-    '''
-    declaracao : TIPO ESPACO CARACTERE atribuir
-               | TIPO ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir
-               | ESPACO CARACTERE atribuir
-               | ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir
-               | tipo ESPACO ID ATRIBUIR expressao PONTOEVIRGULA
-               | tipo ESPACO ID ATRIBUICAO expressao PONTOEVIRGULA
-               
-                 
-    '''
-    print("--------------DECLARACAO: ")
-    for i in p:
-        print(i)
-
 def p_variavel(p):
     '''
     variavel : ESPACO CARACTERE
@@ -133,18 +103,25 @@ def p_variavel(p):
     print("--------------VARIAVEL: ")
     for i in p:
         print(i)
-    
-def p_operacoes(p):
+
+def p_blocos(p):
     '''
-    operacoes :
-              | expressao
-              | imp
-              | le
-              | atribuir
-              | atribuicao
+    blocos : bloco blocos
+           | bloco
     '''
-    # Adicione ações conforme necessário
-    print("--------------OPERACOES: ")
+    print("--------------BLOCOS: ")
+    for i in p:
+        print(i)
+
+def p_bloco(p):
+    '''
+    bloco : expressao
+             | imp
+             | le
+             | atribuir
+             | atribuicao
+    '''
+    print("--------------BLOCO: ")
     for i in p:
         print(i)
     
@@ -213,8 +190,11 @@ def p_atribuir(p):
     #     else:
     #         variaveis.append({'nome': p[2], 'valor': p[4]})
     variaveis.append({'nome': p[2], 'valor': p[4]})
+    #imprimindo apenas valor:
+    print(variaveis[0]['valor'])
     
-    print("Variáveis: ", variaveis)
+    for i in variaveis:
+        print("Nome: ", i['nome'], "Valor: ", i['valor'])
     
 # Tratamento de erro sintático
 def p_error(p):

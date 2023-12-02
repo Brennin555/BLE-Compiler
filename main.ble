@@ -1,3 +1,6 @@
 main {
-    vf z: F;
+    imp("oi");
+    txt a: "teste";
+    num b: 3;
+    vf d: F;
 }
