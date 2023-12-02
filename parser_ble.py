@@ -1,10 +1,8 @@
-# parser.py
 import ply.yacc as yacc
-from lexer import tokens, lexer
-
+from lexer import tokens
 
 # Lista de tokens (importada do lexer)
-tokens = lexer.tokens
+tk = tokens
 
 # Definindo precedência dos operadores
 precedence = (
@@ -13,34 +11,71 @@ precedence = (
 )
 
 # Regras de produção e ações
-def p_main(p):
+def p_programa(p):
     '''
-    main : INICIO ABRECHAVE declaracoes operacoes FIM
+    programa : INICIO ABRECHAVE FIM
+             | INICIO ABRECHAVE declaracoes operacoes FIM
     '''
-    # Aqui você pode executar as ações desejadas para o bloco principal
+    # Adicione ações conforme necessário
 
 def p_declaracoes(p):
     '''
-    declaracoes : TIPO ESPACO CARACTERE atribuir PONTOEVIRGULA declaracoes
-                | TIPO ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir PONTOEVIRGULA declaracoes
-                | ESPACO CARACTERE atribuir PONTOEVIRGULA declaracoes
-                | ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir PONTOEVIRGULA declaracoes
-                | ESPACO CARACTERE atribuir PONTOEVIRGULA
-                | ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir PONTOEVIRGULA
-                | QUEBRALINHA COMENTARIOS QUEBRALINHA declaracoes
+    declaracoes : declaracao PONTOEVIRGULA declaracoes
+                | QUEBRALINHA declaracoes
                 | COMENTARIOS QUEBRALINHA declaracoes
                 | QUEBRALINHA COMENTARIOS declaracoes
-                | COMENTARIOS declaracoes
+                | COMENTARIOS
     '''
-    # Aqui você pode executar as ações desejadas para as declarações
+    # Adicione ações conforme necessário
 
-# Adicione outras regras conforme necessário
+def p_declaracao(p):
+    '''
+    declaracao : TIPO ESPACO CARACTERE atribuir
+               | TIPO ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir
+               | ESPACO CARACTERE atribuir
+               | ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir
+    '''
+    # Adicione ações conforme necessário
 
-# ...
+def p_atribuir(p):
+    '''
+    atribuir : ATRIBUIR variavel
+             | ATRIBUICAO variavel
+    '''
+    # Adicione ações conforme necessário
+
+def p_variavel(p):
+    '''
+    variavel : ESPACO CARACTERE
+    '''
+    # Adicione ações conforme necessário
+
+def p_operacoes(p):
+    '''
+    operacoes : expressao SIMBOLO operacoes
+              | expressao
+    '''
+    # Adicione ações conforme necessário
+
+def p_expressao(p):
+    '''
+    expressao : NUM
+              | variavel
+              | expressao OPERADOR_MAIS expressao
+              | expressao OPERADOR_MENOS expressao
+              | expressao OPERADOR_MULTIPLICACAO expressao
+              | expressao OPERADOR_DIVISAO expressao
+              | ABREPARTESE expressao FECHAPARENTESE
+    '''
+    # Adicione ações conforme necessário
 
 # Tratamento de erro sintático
 def p_error(p):
-    print(f"Syntax error at '{p.value}'")
+    print(f"Erro de sintaxe: Token inesperado '{p.value}' na linha {p.lineno}, coluna {p.lexpos}")
+
+# Adicione as ações e regras conforme necessário
 
 # Criando o analisador sintático
-parser = yacc.yacc()
+parser = yacc.yacc(debug=True, write_tables=True)
+
+# ...

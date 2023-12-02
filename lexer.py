@@ -55,6 +55,39 @@ t_FECHACHAVE = r'\}'
 t_QUEBRALINHA = r'\/\/'
 t_COMENTARIOS = r'/\*.*\*/'
 
+
+ABREASPAS = r'"'
+ABREPARTESE = r'\('
+ATRIBUICAO = r'='
+ATRIBUIR = r':'
+BLOCO = r'\(\)'
+DEFVARIAVEL = r'defvariavel'
+DIGITO = r'\d'
+E = r'&&'
+ENQT = r'enqt'
+FECHAASPAS = r'"'
+FECHACHAVE = r'\}'
+FECHAPARENTESE = r'\)'
+IMP = r'imp'
+LE = r'le'
+LINETERMINATOR = r';'
+LOGICO = r'[&|]'
+OPERADOR_DIVISAO = r'/'
+OPERADOR_MAIS = r'\+'
+OPERADOR_MENOS = r'-'
+OPERADOR_MULTIPLICACAO = r'\*'
+OU = r'\|\|'
+PRA = r'pra'
+QUEBRALINHA = r'\/\/'
+RELACIONAL = r'[<>=!]=?'
+SE = r'se'
+SENAO = r'senao'
+SIMBOLO = r'[+,.\-;]'
+TXT = r'txt'
+VET = r'vet'
+VF = r'vf'
+
+
 # Ignorar espaços em branco
 t_ignore = ' \t'
 
@@ -76,7 +109,6 @@ with open('main.ble', 'r') as file:
 
 lexer.input(input_string)
 
-# Agora você pode iterar sobre os tokens
+# Agora você pode iterar sobre os tokens diretamente
 for token in lexer:
     print(token)
-
