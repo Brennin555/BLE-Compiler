@@ -1,3 +1,12 @@
 main{
-    imp("Hello World");
+    'num x: 123,4 + 6;
+    num y: 3;'
+
+    c(x=y){
+        x: x - 1;
+    } cnn{
+        x: x + 1;
+    }
+
+    'imp ("Hello World \n");'
 }
