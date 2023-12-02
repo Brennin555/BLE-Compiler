@@ -1,5 +1,6 @@
-main {
-
-    num x: 2,3 + 3;
-    imp("Hello World");
+main{
+    num i: 0;
+    pra(i 10 +1){
+        imp("Hello World");
+    }
 }

@@ -1,8 +1,10 @@
+#parser_ble.py
 import ply.yacc as yacc
 from lexer import tokens
 
 # Lista de tokens (importada do lexer)
 tk = tokens
+variaveis = []
 
 # Definindo precedência dos operadores
 precedence = (
@@ -15,38 +17,42 @@ def p_programa(p):
     '''
     programa : inicio
     '''
-    # Adicione ações conforme necessário
 
 def p_main(p):
     '''
-    inicio : INICIO ABRECHAVE operacoes FECHACHAVE
+    inicio : INICIO ABRECHAVE bloco FECHACHAVE
+    '''
+                
+def p_tipo(p):
+    '''
+    tipo : TXT
+         | NUM
     '''
     # Adicione ações conforme necessário
+    p[0] = p[1]
 
-def p_comentarios(p):
+          
+def p_txt(p):
     '''
-    comentarios : COMENTARIOS
+    txt : TXT
     '''
+    p[0] = p[1]
     
-def p_num(p):
+def p_le(p):
     '''
-    num : NUM
-    | NUM VIRGULA NUM
-    
-    '''
-    if len(p) == 3:
-        p[0] = p[1]+p[3]*0.001
-    else:
-        p[0] = p[1]
-    print(p[0])
-    
+    le : LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
+       | LE ABREPARENTESE ID FECHAPARENTESE
+    ''' 
+    #variaveis[0] = nome variaveis[1] = valor
+    p[4] = input("")
+
 def p_imp(p):
     '''
-    imp : IMP ABREPARTESE expressao FECHAPARENTESE PONTOEVIRGULA
-        | IMP ABREPARTESE expressao FECHAPARENTESE
+    imp : IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
+        | IMP ABREPARENTESE expressao FECHAPARENTESE
     '''
-    # Adicione ações conforme necessário
     print(p[3])
+
 
 def p_declaracoes(p):
     '''
@@ -55,8 +61,10 @@ def p_declaracoes(p):
                 | COMENTARIOS QUEBRALINHA declaracoes
                 | QUEBRALINHA COMENTARIOS declaracoes
                 | COMENTARIOS
+                | TIPO ID ATRIBUIR expressao PONTOEVIRGULA
+                | TIPO ID ATRIBUICAO declaracao PONTOEVIRGULA
+                | TIPO ID ATRIBUIR TXT
     '''
-    # Adicione ações conforme necessário
 
 def p_declaracao(p):
     '''
@@ -64,38 +72,29 @@ def p_declaracao(p):
                | TIPO ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir
                | ESPACO CARACTERE atribuir
                | ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir
+               | tipo ESPACO ID ATRIBUIR expressao PONTOEVIRGULA
+               | tipo ESPACO ID ATRIBUICAO expressao PONTOEVIRGULA
+               
+                 
     '''
-    # Adicione ações conforme necessário
-
-def p_atribuir(p):
-    '''
-    atribuir : ATRIBUIR variavel
-             | ATRIBUICAO variavel
-    '''
-    # Adicione ações conforme necessário
 
 def p_variavel(p):
     '''
     variavel : ESPACO CARACTERE
     '''
     # Adicione ações conforme necessário
-
-def p_operacoes(p):
-    '''
-    operacoes : expressao SIMBOLO operacoes
-              | expressao
-              | imp
-    '''
-    # Adicione ações conforme necessário
-
+    
 def p_expressao(p):
     '''
     expressao : NUM
               | variavel
+              | ID
               | TXT
               | aritimetico
-              | ABREPARTESE expressao FECHAPARENTESE
-                           
+              | ABREPARENTESE expressao FECHAPARENTESE
+              | RESPOSTABOOLEANA
+              
+                         
     '''
     # | expressao PONTOEVIRGULA expressao
     # | expressao PONTOEVIRGULA
@@ -103,10 +102,7 @@ def p_expressao(p):
         p[0] = p[2]
     else:
         p[0] = p[1]
-        
-
-    # Adicione ações conforme necessário
-
+    
 def p_aritimetico(p):
     '''aritimetico  : expressao OPERADOR_DIVISAO expressao
                     | expressao OPERADOR_MULTIPLICACAO expressao
@@ -122,6 +118,47 @@ def p_aritimetico(p):
     elif p[2] == '/':
         p[0] = float(p[1]) /  float(p[3])
 
+        
+def p_atribuicao(p):
+    '''
+    atribuicao : ATRIBUIR expressao
+               | ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE   
+    '''
+
+def p_atribuir(p):
+    '''
+    atribuir : TIPO ID atribuicao PONTOEVIRGULA 
+             | TIPO ID ATRIBUIR expressao PONTOEVIRGULA 
+             | ID atribuicao PONTOEVIRGULA
+             
+    '''
+    variaveis.append({'nome': p[2], 'valor': p[4]})
+    print(variaveis[0]['valor'])
+
+def p_incremento(p):
+    '''
+    incremento : ID OPERADOR_MAIS NUM
+               | ID OPERADOR_MENOS NUM
+    '''
+
+def p_pra(p):
+    '''
+    pra : PRA ABREPARENTESE ID ESPACO incremento FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
+    '''
+
+
+def p_bloco(p):
+    '''
+    bloco   : imp
+            | pra
+            | le
+            | atribuir
+            | atribuicao
+            | expressao PONTOEVIRGULA bloco
+            | expressao PONTOEVIRGULA
+            
+    '''
+    p[0] = p[1]
 # Tratamento de erro sintático
 def p_error(p):
     print(f"Erro de sintaxe: Token inesperado '{p.value}' na linha {p.lineno}, coluna {p.lexpos}")
