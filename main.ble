@@ -1,6 +1,8 @@
 main {
-    imp("oi");
     txt a: "teste";
     num b: 3;
     vf d: F;
+
+    imp("oi");
+    le(num b);
 }

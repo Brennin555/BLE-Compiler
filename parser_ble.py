@@ -80,7 +80,7 @@ def p_le(p):
     print("Variavel: ", p[4])
     
     #variaveis[0] = nome variaveis[1] = valor
-    p[4] = input("")
+    # p[4] = input("")
     print("--------------LE: ")
     for i in p:
         print(i)
@@ -95,14 +95,6 @@ def p_imp(p):
     for i in p:
         print(i)
 
-def p_variavel(p):
-    '''
-    variavel : ESPACO CARACTERE
-    '''
-    # Adicione ações conforme necessário
-    print("--------------VARIAVEL: ")
-    for i in p:
-        print(i)
 
 def p_blocos(p):
     '''
@@ -127,9 +119,8 @@ def p_bloco(p):
     
 def p_expressao(p):
     '''
-    expressao : NUM
-              | variavel
-              | ID
+    expressao : ID
+              | NUM
               | TXT
               | aritimetico
               | ABREPARENTESE expressao FECHAPARENTESE
@@ -175,10 +166,9 @@ def p_atribuicao(p):
 
 def p_atribuir(p):
     '''
-    atribuir : TIPO ID atribuicao PONTOEVIRGULA 
+    atribuir : ID atribuicao PONTOEVIRGULA
+             | TIPO ID atribuicao PONTOEVIRGULA 
              | TIPO ID ATRIBUIR expressao PONTOEVIRGULA 
-             | ID atribuicao PONTOEVIRGULA
-             
     '''
     print("--------------ATRIBUIR: ")
     for i in p:
@@ -189,9 +179,9 @@ def p_atribuir(p):
     #         print("Valor de", i['nome'], "atualizado para ", i['valor'])
     #     else:
     #         variaveis.append({'nome': p[2], 'valor': p[4]})
+    
     variaveis.append({'nome': p[2], 'valor': p[4]})
     #imprimindo apenas valor:
-    print(variaveis[0]['valor'])
     
     for i in variaveis:
         print("Nome: ", i['nome'], "Valor: ", i['valor'])
