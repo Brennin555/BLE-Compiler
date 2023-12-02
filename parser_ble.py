@@ -15,7 +15,7 @@ def p_programa(p):
     '''
     programa : inicio
     '''
-    print("PROGRAMA: ")
+    print("--------------PROGRAMA: ")
     for i in p:
         print(i)
 
@@ -24,7 +24,7 @@ def p_main(p):
     inicio : INICIO ABRECHAVE operacoes FECHACHAVE
     | INICIO ABRECHAVE
     '''
-    print("INICIO: ")
+    print("--------------INICIO: ")
     for i in p:
         print(i)
         
@@ -36,7 +36,7 @@ def p_tipo(p):
     # Adicione ações conforme necessário
     p[0] = p[1]
     print("O TIPO EH: ",p[0])
-    print("TIPO: ")
+    print("--------------TIPO: ")
     for i in p:
         print(i)
     
@@ -59,7 +59,7 @@ def p_txt(p):
     '''
     p[0] = p[1]
     print(p[0])
-    print("TXT: ")
+    print("--------------TXT: ")
     for i in p:
         print(i)
     
@@ -68,8 +68,10 @@ def p_le(p):
     le : LE ABREPARTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
        | LE ABREPARTESE ID FECHAPARENTESE
     '''
-    print(p[3])
-    print("LE: ")
+    print("LEITURA DE DADO:")
+    print("Tipo: ", p[3])
+    print("Variavel: ", p[4])
+    print("--------------LE: ")
     for i in p:
         print(i)
 
@@ -79,7 +81,7 @@ def p_imp(p):
         | IMP ABREPARTESE expressao FECHAPARENTESE
     '''
     print(p[3])
-    print("IMP: ")
+    print("--------------IMP: ")
     for i in p:
         print(i)
 
@@ -93,7 +95,7 @@ def p_declaracoes(p):
                 | TIPO ID ATRIBUIR expressao PONTOEVIRGULA
                 | TIPO ID ATRIBUICAO declaracao PONTOEVIRGULA
     '''
-    print("DECLARACOES: ")
+    print("--------------DECLARACOES: ")
     for i in p:
         print(i)
 
@@ -106,7 +108,7 @@ def p_declaracao(p):
                | tipo ESPACO ID ATRIBUIR expressao PONTOEVIRGULA
                | tipo ESPACO ID ATRIBUICAO expressao PONTOEVIRGULA
     '''
-    print("DECLARACAO: ")
+    print("--------------DECLARACAO: ")
     for i in p:
         print(i)
 
@@ -116,7 +118,7 @@ def p_atribuir(p):
              | ATRIBUICAO variavel
              | TIPO ID ATRIBUIR expressao 
     '''
-    print("ATRIBUIR: ")
+    print("--------------ATRIBUIR: ")
     for i in p:
         print(i)
 
@@ -125,7 +127,7 @@ def p_variavel(p):
     variavel : ESPACO CARACTERE
     '''
     # Adicione ações conforme necessário
-    print("VARIAVEL: ")
+    print("--------------VARIAVEL: ")
     for i in p:
         print(i)
     
@@ -137,7 +139,9 @@ def p_operacoes(p):
               | le
     '''
     # Adicione ações conforme necessário
-    print("OPERACOES: ",p)
+    print("--------------OPERACOES: ")
+    for i in p:
+        print(i)
     
 def p_expressao(p):
     '''
@@ -155,7 +159,7 @@ def p_expressao(p):
         p[0] = p[1]
         
 
-    print("EXPRESSAO:")
+    print("--------------EXPRESSAO:")
     for i in p:
         print(i)
     

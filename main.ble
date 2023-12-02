@@ -1,6 +1,3 @@
 main {
-
-    txt a: "teste";
-
-    le(txt a);
+    txt a: "nome_da_variavel";
 }
