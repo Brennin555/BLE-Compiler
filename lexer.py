@@ -17,7 +17,6 @@ t_INICIO = r'main'
 t_FIM = r'end'
 t_LINETERMINATOR = r'\n'
 t_NUM = r'\d+'
-t_TXT = r'"[^"]*"'
 t_VET = r'vet'
 t_VF = r'vf'
 t_CARACTERE = r'car'
@@ -54,39 +53,7 @@ t_ABRECHAVE = r'\{'
 t_FECHACHAVE = r'\}'
 t_QUEBRALINHA = r'\/\/'
 t_COMENTARIOS = r'/\*.*\*/'
-
-
-ABREASPAS = r'"'
-ABREPARTESE = r'\('
-ATRIBUICAO = r'='
-ATRIBUIR = r':'
-BLOCO = r'\(\)'
-DEFVARIAVEL = r'defvariavel'
-DIGITO = r'\d'
-E = r'&&'
-ENQT = r'enqt'
-FECHAASPAS = r'"'
-FECHACHAVE = r'\}'
-FECHAPARENTESE = r'\)'
-IMP = r'imp'
-LE = r'le'
-LINETERMINATOR = r';'
-LOGICO = r'[&|]'
-OPERADOR_DIVISAO = r'/'
-OPERADOR_MAIS = r'\+'
-OPERADOR_MENOS = r'-'
-OPERADOR_MULTIPLICACAO = r'\*'
-OU = r'\|\|'
-PRA = r'pra'
-QUEBRALINHA = r'\/\/'
-RELACIONAL = r'[<>=!]=?'
-SE = r'se'
-SENAO = r'senao'
-SIMBOLO = r'[+,.\-;]'
-TXT = r'txt'
-VET = r'vet'
-VF = r'vf'
-
+t_TXT = r'"([^"\\]|\\.)*"'
 
 # Ignorar espaços em branco
 t_ignore = ' \t'
@@ -95,6 +62,9 @@ t_ignore = ' \t'
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += len(t.value)
+# def t_TXT(t):
+#     r'"(?:\\"|.)*?"'
+#     return t
 
 # Função para lidar com erros
 def t_error(t):
