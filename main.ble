@@ -1,6 +1,8 @@
 main{
-    'num x: 123,4 + 6;
-    num y: 3;'
+    num x: 123,4 + 6;
+    num y: 3;
+    txt texto1: "aaa";
+    vf verifica: V;
 
     c(x=y){
         x: x - 1;
@@ -8,5 +10,6 @@ main{
         x: x + 1;
     }
 
-    'imp ("Hello World \n");'
+    le (txt, texto1);
+    imp ("Hello World \n");
 }
