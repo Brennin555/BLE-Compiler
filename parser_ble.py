@@ -3,6 +3,7 @@ from lexer import tokens
 
 # Lista de tokens (importada do lexer)
 tk = tokens
+variaveis = []
 
 # Definindo precedência dos operadores
 precedence = (
@@ -22,12 +23,11 @@ def p_programa(p):
 def p_main(p):
     '''
     inicio : INICIO ABRECHAVE operacoes FECHACHAVE
-    | INICIO ABRECHAVE
     '''
     print("--------------INICIO: ")
     for i in p:
         print(i)
-        
+                
 def p_tipo(p):
     '''
     tipo : TXT
@@ -39,20 +39,7 @@ def p_tipo(p):
     print("--------------TIPO: ")
     for i in p:
         print(i)
-    
-def p_num(p):
-    '''
-    num : NUM
-    | NUM VIRGULA NUM
-    '''
-    if len(p) == 2:
-        p[0] = p[1]
-    else:
-        p[0] = p[1] + p[2] + p[3]
-        p[0] = p[0].replace(',', '.')
-        p[0] = float(p[0])
-        
-    
+          
 def p_txt(p):
     '''
     txt : TXT
@@ -73,10 +60,10 @@ def p_txt(p):
       
 # def p_se(p):
 #     '''
-#     se : SE ABREPARTESE expressao FECHAPARENTESE ABRECHAVE operacoes FECHACHAVE
-#        | SE ABREPARTESE expressao FECHAPARENTESE ABRECHAVE operacoes FECHACHAVE senao
-#        | SE ABREPARTESE ID RELACIONAL NUM FECHAPARENTESE ABRECHAVE imp FECHACHAVE
-#        | SE ABREPARTESE ID relacional ID FECHAPARENTESE ABRECHAVE imp FECHACHAVE
+#     se : SE ABREPARENTESE expressao FECHAPARENTESE ABRECHAVE operacoes FECHACHAVE
+#        | SE ABREPARENTESE expressao FECHAPARENTESE ABRECHAVE operacoes FECHACHAVE senao
+#        | SE ABREPARENTESE ID RELACIONAL NUM FECHAPARENTESE ABRECHAVE imp FECHACHAVE
+#        | SE ABREPARENTESE ID relacional ID FECHAPARENTESE ABRECHAVE imp FECHACHAVE
 #     '''
 #     # p[0] = (p[2], p[4])
 #     print("--------------SE: ")
@@ -85,20 +72,23 @@ def p_txt(p):
     
 def p_le(p):
     '''
-    le : LE ABREPARTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
-       | LE ABREPARTESE ID FECHAPARENTESE
+    le : LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
+       | LE ABREPARENTESE ID FECHAPARENTESE
     '''
     print("LEITURA DE DADO:")
     print("Tipo: ", p[3])
     print("Variavel: ", p[4])
+    
+    #variaveis[0] = nome variaveis[1] = valor
+    p[4] = input("")
     print("--------------LE: ")
     for i in p:
         print(i)
 
 def p_imp(p):
     '''
-    imp : IMP ABREPARTESE expressao FECHAPARENTESE PONTOEVIRGULA
-        | IMP ABREPARTESE expressao FECHAPARENTESE
+    imp : IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
+        | IMP ABREPARENTESE expressao FECHAPARENTESE
     '''
     print(p[3])
     print("--------------IMP: ")
@@ -128,18 +118,10 @@ def p_declaracao(p):
                | ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir
                | tipo ESPACO ID ATRIBUIR expressao PONTOEVIRGULA
                | tipo ESPACO ID ATRIBUICAO expressao PONTOEVIRGULA
+               
+                 
     '''
     print("--------------DECLARACAO: ")
-    for i in p:
-        print(i)
-
-def p_atribuir(p):
-    '''
-    atribuir : ATRIBUIR variavel
-             | ATRIBUICAO variavel
-             | TIPO ID ATRIBUIR expressao 
-    '''
-    print("--------------ATRIBUIR: ")
     for i in p:
         print(i)
 
@@ -154,10 +136,12 @@ def p_variavel(p):
     
 def p_operacoes(p):
     '''
-    operacoes : expressao SIMBOLO operacoes
+    operacoes :
               | expressao
               | imp
               | le
+              | atribuir
+              | atribuicao
     '''
     # Adicione ações conforme necessário
     print("--------------OPERACOES: ")
@@ -171,7 +155,10 @@ def p_expressao(p):
               | ID
               | TXT
               | aritimetico
-              | ABREPARTESE expressao FECHAPARENTESE                      
+              | ABREPARENTESE expressao FECHAPARENTESE
+              | RESPOSTABOOLEANA
+              
+                         
     '''
     # | expressao PONTOEVIRGULA expressao
     # | expressao PONTOEVIRGULA
@@ -202,6 +189,32 @@ def p_aritimetico(p):
     print("ARITIMETICO: ",p)
     for i in p:
         print(i)
+        
+def p_atribuicao(p):
+    '''
+    atribuicao : ATRIBUIR expressao
+               | ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE   
+    '''
+
+def p_atribuir(p):
+    '''
+    atribuir : TIPO ID atribuicao PONTOEVIRGULA 
+             | TIPO ID ATRIBUIR expressao PONTOEVIRGULA 
+             | ID atribuicao PONTOEVIRGULA
+             
+    '''
+    print("--------------ATRIBUIR: ")
+    for i in p:
+        print(i)
+    # for i in variaveis:
+    #     if i['nome'] == p[2]:
+    #         i['valor'] = p[4]
+    #         print("Valor de", i['nome'], "atualizado para ", i['valor'])
+    #     else:
+    #         variaveis.append({'nome': p[2], 'valor': p[4]})
+    variaveis.append({'nome': p[2], 'valor': p[4]})
+    
+    print("Variáveis: ", variaveis)
     
 # Tratamento de erro sintático
 def p_error(p):

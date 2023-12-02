@@ -1,5 +1,3 @@
 main {
-    c(x>1){
-        imp("entrou no if");
-    }
+    vf z: F;
 }
