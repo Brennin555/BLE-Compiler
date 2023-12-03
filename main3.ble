@@ -1,9 +1,15 @@
 main{
     num x: 12;
-    num k: 2;
-    (k<x)->{
+    num k: 23239;
+    
+    imp("advinhe o numero");
+    
+    (k>x)->{
         (x!=k)->{
-            imp("pamonha");
+            c(k!=x e k!=23239){
+                imp("tente novamente");
+            }
+
             le(num k);
         }
     }
