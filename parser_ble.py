@@ -5,6 +5,7 @@ from lexer import tokens
 tk = tokens
 variaveis = []
 variaveis.append({'nome': '', 'valor': ''})
+tab = {'t': '\t', 'count': 0}
 
 """ Mantendo a Identação?
 - Criar uma variavel que contenha apenas o tab (var_tab) e outra que servirá como count ;
@@ -207,13 +208,18 @@ def p_enqt(p):
     ''' 
     enqt : ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE blocos FECHACHAVE
     '''
-    p[0] = f'while {p[2]} :\n\t{p[6]}'
+    p[0] = f'while {p[2]} :\n{tabulacao(p[6])}'
 
 # Tratamento de erro sintático
 def p_error(p):
     print(f"Erro de sintaxe: Token inesperado '{p.value}' na linha {p.lineno}, coluna {p.lexpos}")
 
 # Adicione as ações e regras conforme necessário
+def tabulacao(s):
+    aux = s.split('\n')
+    aux = ['\t'+i for i in aux]
+    return '\n'.join(aux)
+
 
 # Criando o analisador sintático
 parser = yacc.yacc(debug=True, write_tables=True)

@@ -1,7 +1,10 @@
 main{
     num x: 12;
-    (12<4)->{
-        imp("pamonha");
-        le(num k);
+    num k: 2;
+    (k<x)->{
+        (x!=k)->{
+            imp("pamonha");
+            le(num k);
+        }
     }
 }
