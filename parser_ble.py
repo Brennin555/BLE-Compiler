@@ -29,7 +29,12 @@ def p_inicio(p):
     # print("--------------INICIO: ")
     # for i in p:
     #     print(i)
-    print(p[3])
+    
+    f = open("ble_code.py", "w")
+    f.write(f'{p[3]}')
+    f.close()
+
+    # print(p[3])
     
 def p_id(p):
     '''
@@ -85,6 +90,12 @@ def p_blocos(p):
     # for i in p:
     #     print(i)
 
+def p_comentarios(p):
+    '''
+    comentarios : COMENTARIOS
+    '''
+    p[0] = ''
+
 def p_bloco(p):
     '''
     bloco : enqt
@@ -94,6 +105,7 @@ def p_bloco(p):
              | le
              | atribuir
              | atribuicao
+             | comentarios
     '''
     p[0] = p[1]
     # print("--------------BLOCO: ")
@@ -145,6 +157,11 @@ def p_atribuicao(p):
         p[0] = f'{p[2]}'
     else:
         p[0] = f'[{p[2]}]'
+        
+    if p[2] == 'F':
+        p[0] = 'False'
+    elif p[2] == 'V':
+        p[0] = 'True'
         
 def p_lista(p):
     '''
@@ -263,14 +280,14 @@ def p_pra(p):
     pra : PRA ABREPARENTESE id expressao expressao FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
     '''
     p[0] = ''
-    inicio=0
     final=int(p[4])
     inc=int(p[5])
 
     for x in variaveis:
        if(x['nome'] == p[3]):
-          inicio=float(x['valor'])        
-    p[0] = f'for {p[3]} in range({inicio},{final},{inc}):\n{tabulacao(p[8])}'
+          inicio=float(x['valor'])
+          
+    p[0] = f'for {p[3]} in range({int(inicio)},{final},{inc}):\n{tabulacao(p[8])}'
     # print(inicio,final,inc)
 # ---------------------------------------------------------------------   
 

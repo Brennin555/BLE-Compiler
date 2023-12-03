@@ -2,7 +2,7 @@
 import ply.lex as lex
 
 programaEscolhido = 2
-# programaEscolhido = int(input("Qual main deseja executar? : "))
+programaEscolhido = int(input("Qual main deseja executar? : "))
 
 
 reserved_words = {

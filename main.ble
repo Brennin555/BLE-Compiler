@@ -2,6 +2,7 @@ main{
     num i: 0;
     vf verifica: F;
     num j: 7;
+    'comentariooo'
 
     pra(i 10 1){
         imp("Hello World");
