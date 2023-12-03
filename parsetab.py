@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'leftOPERADOR_MAISOPERADOR_MENOSleftOPERADOR_MULTIPLICACAOOPERADOR_DIVISAOABREASPAS ABRECHAVE ABRECOLCHETE ABREPARTESE ATRIBUICAO ATRIBUIR BLOCO CARACTERE COMENTARIOS DEFVARIAVEL DIGITO E ENQT ESPACO FECHAASPAS FECHACHAVE FECHACOLCHETE FECHAPARENTESE FIM ID IMP INICIO LE LINETERMINATOR LOGICO NUM OPERADOR_DIVISAO OPERADOR_MAIS OPERADOR_MENOS OPERADOR_MULTIPLICACAO OU PONTOEVIRGULA PRA QUEBRALINHA RELACIONAL SE SENAO SIMBOLO TIPO TXT VET VF VIRGULA\n    programa : inicio\n    \n    inicio : INICIO ABRECHAVE operacoes FECHACHAVE\n    \n    comentarios : COMENTARIOS\n    \n    num : NUM\n    | NUM VIRGULA NUM\n    \n    \n    imp : IMP ABREPARTESE expressao FECHAPARENTESE PONTOEVIRGULA\n        | IMP ABREPARTESE expressao FECHAPARENTESE\n    \n    declaracoes : declaracao PONTOEVIRGULA declaracoes\n                | QUEBRALINHA declaracoes\n                | COMENTARIOS QUEBRALINHA declaracoes\n                | QUEBRALINHA COMENTARIOS declaracoes\n                | COMENTARIOS\n    \n    declaracao : TIPO ESPACO CARACTERE atribuir\n               | TIPO ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir\n               | ESPACO CARACTERE atribuir\n               | ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir\n    \n    atribuir : ATRIBUIR variavel\n             | ATRIBUICAO variavel\n    \n    variavel : ESPACO CARACTERE\n    \n    operacoes : expressao SIMBOLO operacoes\n              | expressao\n              | imp\n    \n    expressao : NUM\n              | variavel\n              | TXT\n              | aritimetico\n              | ABREPARTESE expressao FECHAPARENTESE\n                           \n    aritimetico  : expressao OPERADOR_DIVISAO expressao\n                    | expressao OPERADOR_MULTIPLICACAO expressao\n                    | expressao OPERADOR_MAIS expressao\n                    | expressao OPERADOR_MENOS expressao\n    '
+_lr_signature = 'leftOPERADOR_MAISOPERADOR_MENOSleftOPERADOR_MULTIPLICACAOOPERADOR_DIVISAOrightNAOABREASPAS ABRECHAVE ABRECOLCHETE ABREPARENTESE ATRIBUICAO ATRIBUIR BLOCO BLOCOS CARACTERE COMENTARIOS DEFVARIAVEL DIGITO E ENQT ESPACO FECHAASPAS FECHACHAVE FECHACOLCHETE FECHAPARENTESE FIM ID IMP INICIO LE LINETERMINATOR LOGICO NAO NUM OPERADOR_DIVISAO OPERADOR_MAIS OPERADOR_MENOS OPERADOR_MULTIPLICACAO OU PONTOEVIRGULA PRA QUEBRALINHA RELACIONAL RESPOSTABOOLEANA SE SENAO SIMBOLO TIPO TXT VET VF VIRGULA\n    programa : inicio\n    \n    inicio : INICIO ABRECHAVE blocos FECHACHAVE\n    \n    id : ID\n    \n    le : LE ABREPARENTESE TIPO id FECHAPARENTESE PONTOEVIRGULA\n    \n    imp : IMP ABREPARENTESE str FECHAPARENTESE PONTOEVIRGULA\n        | IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA\n    str  : TXT\n    \n    blocos : bloco blocos\n           | bloco\n    \n    bloco : enqt\n             | se\n             | imp\n             | le\n             | atribuir\n             | atribuicao\n    \n    expressao : id\n              | NUM\n              | aritimetico\n              | ABREPARENTESE expressao FECHAPARENTESE\n              | RESPOSTABOOLEANA                     \n    aritimetico  : expressao OPERADOR_DIVISAO expressao\n                    | expressao OPERADOR_MULTIPLICACAO expressao\n                    | expressao OPERADOR_MAIS expressao\n                    | expressao OPERADOR_MENOS expressao\n    \n    atribuicao : ATRIBUIR expressao\n               | ATRIBUIR ABRECOLCHETE lista FECHACOLCHETE   \n    \n    lista : NUM\n          | id\n          | lista VIRGULA lista\n    \n    atribuir : id atribuicao PONTOEVIRGULA\n             | TIPO ID atribuicao PONTOEVIRGULA \n    \n    condicional : atomica\n                | atomica LOGICO atomica\n    \n    atomica : RESPOSTABOOLEANA\n            | NUM\n            | id\n            | NAO condicional\n            | condicional RELACIONAL condicional\n     \n    enqt : ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE blocos FECHACHAVE\n    \n    senao : SENAO ABRECHAVE bloco FECHACHAVE\n    \n    se : SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE\n        | SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao\n      '
     
-_lr_action_items = {'INICIO':([0,],[3,]),'$end':([1,2,15,],[0,-1,-2,]),'ABRECHAVE':([3,],[4,]),'NUM':([4,12,16,17,18,19,20,22,],[8,8,8,8,8,8,8,8,]),'TXT':([4,12,16,17,18,19,20,22,],[10,10,10,10,10,10,10,10,]),'ABREPARTESE':([4,12,13,16,17,18,19,20,22,],[12,12,22,12,12,12,12,12,12,]),'IMP':([4,16,],[13,13,]),'ESPACO':([4,12,16,17,18,19,20,22,],[14,14,14,14,14,14,14,14,]),'FECHACHAVE':([5,6,7,8,9,10,11,23,24,25,26,27,28,29,31,32,],[15,-21,-22,-23,-24,-25,-26,-19,-20,-28,-29,-30,-31,-27,-7,-6,]),'SIMBOLO':([6,8,9,10,11,23,25,26,27,28,29,],[16,-23,-24,-25,-26,-19,-28,-29,-30,-31,-27,]),'OPERADOR_DIVISAO':([6,8,9,10,11,21,23,25,26,27,28,29,30,],[17,-23,-24,-25,-26,17,-19,-28,-29,17,17,-27,17,]),'OPERADOR_MULTIPLICACAO':([6,8,9,10,11,21,23,25,26,27,28,29,30,],[18,-23,-24,-25,-26,18,-19,-28,-29,18,18,-27,18,]),'OPERADOR_MAIS':([6,8,9,10,11,21,23,25,26,27,28,29,30,],[19,-23,-24,-25,-26,19,-19,-28,-29,-30,-31,-27,19,]),'OPERADOR_MENOS':([6,8,9,10,11,21,23,25,26,27,28,29,30,],[20,-23,-24,-25,-26,20,-19,-28,-29,-30,-31,-27,20,]),'FECHAPARENTESE':([8,9,10,11,21,23,25,26,27,28,29,30,],[-23,-24,-25,-26,29,-19,-28,-29,-30,-31,-27,31,]),'CARACTERE':([14,],[23,]),'PONTOEVIRGULA':([31,],[32,]),}
+_lr_action_items = {'INICIO':([0,],[3,]),'$end':([1,2,21,],[0,-1,-2,]),'ABRECHAVE':([3,60,64,88,],[4,76,77,89,]),'ABREPARENTESE':([4,6,7,8,9,10,11,12,14,15,16,19,20,30,34,36,37,38,39,40,51,52,53,54,55,68,69,70,71,72,73,75,76,77,78,79,84,85,86,87,89,91,],[13,13,-10,-11,-12,-13,-14,-15,29,30,31,-3,39,39,-25,-16,-17,-18,39,-20,-30,39,39,39,39,-31,-21,-22,-23,-24,-26,-19,13,13,-5,-6,-4,-39,-41,-42,13,-40,]),'SE':([4,6,7,8,9,10,11,12,19,34,36,37,38,40,51,68,69,70,71,72,73,75,76,77,78,79,84,85,86,87,89,91,],[14,14,-10,-11,-12,-13,-14,-15,-3,-25,-16,-17,-18,-20,-30,-31,-21,-22,-23,-24,-26,-19,14,14,-5,-6,-4,-39,-41,-42,14,-40,]),'IMP':([4,6,7,8,9,10,11,12,19,34,36,37,38,40,51,68,69,70,71,72,73,75,76,77,78,79,84,85,86,87,89,91,],[15,15,-10,-11,-12,-13,-14,-15,-3,-25,-16,-17,-18,-20,-30,-31,-21,-22,-23,-24,-26,-19,15,15,-5,-6,-4,-39,-41,-42,15,-40,]),'LE':([4,6,7,8,9,10,11,12,19,34,36,37,38,40,51,68,69,70,71,72,73,75,76,77,78,79,84,85,86,87,89,91,],[16,16,-10,-11,-12,-13,-14,-15,-3,-25,-16,-17,-18,-20,-30,-31,-21,-22,-23,-24,-26,-19,16,16,-5,-6,-4,-39,-41,-42,16,-40,]),'TIPO':([4,6,7,8,9,10,11,12,19,31,34,36,37,38,40,51,68,69,70,71,72,73,75,76,77,78,79,84,85,86,87,89,91,],[17,17,-10,-11,-12,-13,-14,-15,-3,49,-25,-16,-17,-18,-20,-30,-31,-21,-22,-23,-24,-26,-19,17,17,-5,-6,-4,-39,-41,-42,17,-40,]),'ATRIBUIR':([4,6,7,8,9,10,11,12,18,19,32,34,36,37,38,40,51,68,69,70,71,72,73,75,76,77,78,79,84,85,86,87,89,91,],[20,20,-10,-11,-12,-13,-14,-15,20,-3,20,-25,-16,-17,-18,-20,-30,-31,-21,-22,-23,-24,-26,-19,20,20,-5,-6,-4,-39,-41,-42,20,-40,]),'ID':([4,6,7,8,9,10,11,12,13,17,19,20,28,29,30,34,35,36,37,38,39,40,42,43,49,51,52,53,54,55,68,69,70,71,72,73,74,75,76,77,78,79,84,85,86,87,89,91,],[19,19,-10,-11,-12,-13,-14,-15,19,32,-3,19,19,19,19,-25,19,-16,-17,-18,19,-20,19,19,19,-30,19,19,19,19,-31,-21,-22,-23,-24,-26,19,-19,19,19,-5,-6,-4,-39,-41,-42,19,-40,]),'FECHACHAVE':([5,6,7,8,9,10,11,12,19,22,34,36,37,38,40,51,68,69,70,71,72,73,75,78,79,82,83,84,85,86,87,90,91,],[21,-9,-10,-11,-12,-13,-14,-15,-3,-8,-25,-16,-17,-18,-20,-30,-31,-21,-22,-23,-24,-26,-19,-5,-6,85,86,-4,-39,-41,-42,91,-40,]),'RESPOSTABOOLEANA':([13,20,28,29,30,39,42,43,52,53,54,55,],[25,40,25,25,40,40,25,25,40,40,40,40,]),'NUM':([13,20,28,29,30,35,39,42,43,52,53,54,55,74,],[26,37,26,26,37,57,37,26,26,37,37,37,37,57,]),'NAO':([13,28,29,42,43,],[28,28,28,28,28,]),'LOGICO':([19,24,25,26,27,44,61,62,],[-3,43,-34,-35,-36,-37,-38,43,]),'FECHAPARENTESE':([19,23,24,25,26,27,36,37,38,40,44,45,46,47,48,59,61,62,67,69,70,71,72,75,],[-3,41,-32,-34,-35,-36,-16,-17,-18,-20,-37,64,65,66,-7,75,-38,-33,80,-21,-22,-23,-24,-19,]),'RELACIONAL':([19,23,24,25,26,27,44,45,61,62,63,],[-3,42,-32,-34,-35,-36,-37,42,42,-32,42,]),'OPERADOR_DIVISAO':([19,34,36,37,38,40,47,59,69,70,71,72,75,],[-3,52,-16,-17,-18,-20,52,52,-21,-22,52,52,-19,]),'OPERADOR_MULTIPLICACAO':([19,34,36,37,38,40,47,59,69,70,71,72,75,],[-3,53,-16,-17,-18,-20,53,53,-21,-22,53,53,-19,]),'OPERADOR_MAIS':([19,34,36,37,38,40,47,59,69,70,71,72,75,],[-3,54,-16,-17,-18,-20,54,54,-21,-22,-23,-24,-19,]),'OPERADOR_MENOS':([19,34,36,37,38,40,47,59,69,70,71,72,75,],[-3,55,-16,-17,-18,-20,55,55,-21,-22,-23,-24,-19,]),'PONTOEVIRGULA':([19,33,34,36,37,38,40,50,65,66,69,70,71,72,73,75,80,],[-3,51,-25,-16,-17,-18,-20,68,78,79,-21,-22,-23,-24,-26,-19,84,]),'FECHACOLCHETE':([19,56,57,58,81,],[-3,73,-27,-28,-29,]),'VIRGULA':([19,56,57,58,81,],[-3,74,-27,-28,74,]),'ABRECOLCHETE':([20,],[35,]),'TXT':([30,],[48,]),'ENQT':([41,],[60,]),'SENAO':([86,],[88,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'programa':([0,],[1,]),'inicio':([0,],[2,]),'operacoes':([4,16,],[5,24,]),'expressao':([4,12,16,17,18,19,20,22,],[6,21,6,25,26,27,28,30,]),'imp':([4,16,],[7,7,]),'variavel':([4,12,16,17,18,19,20,22,],[9,9,9,9,9,9,9,9,]),'aritimetico':([4,12,16,17,18,19,20,22,],[11,11,11,11,11,11,11,11,]),}
+_lr_goto_items = {'programa':([0,],[1,]),'inicio':([0,],[2,]),'blocos':([4,6,76,],[5,22,82,]),'bloco':([4,6,76,77,89,],[6,6,6,83,90,]),'enqt':([4,6,76,77,89,],[7,7,7,7,7,]),'se':([4,6,76,77,89,],[8,8,8,8,8,]),'imp':([4,6,76,77,89,],[9,9,9,9,9,]),'le':([4,6,76,77,89,],[10,10,10,10,10,]),'atribuir':([4,6,76,77,89,],[11,11,11,11,11,]),'atribuicao':([4,6,18,32,76,77,89,],[12,12,33,50,12,12,12,]),'id':([4,6,13,20,28,29,30,35,39,42,43,49,52,53,54,55,74,76,77,89,],[18,18,27,36,27,27,36,58,36,27,27,67,36,36,36,36,58,18,18,18,]),'condicional':([13,28,29,42,43,],[23,44,45,61,63,]),'atomica':([13,28,29,42,43,],[24,24,24,24,62,]),'expressao':([20,30,39,52,53,54,55,],[34,47,59,69,70,71,72,]),'aritimetico':([20,30,39,52,53,54,55,],[38,38,38,38,38,38,38,]),'str':([30,],[46,]),'lista':([35,74,],[56,81,]),'senao':([86,],[87,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,35 +27,46 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> programa","S'",1,None,None,None),
-  ('programa -> inicio','programa',1,'p_programa','parser_ble.py',16),
-  ('inicio -> INICIO ABRECHAVE operacoes FECHACHAVE','inicio',4,'p_main','parser_ble.py',22),
-  ('comentarios -> COMENTARIOS','comentarios',1,'p_comentarios','parser_ble.py',28),
-  ('num -> NUM','num',1,'p_num','parser_ble.py',33),
-  ('num -> NUM VIRGULA NUM','num',3,'p_num','parser_ble.py',34),
-  ('imp -> IMP ABREPARTESE expressao FECHAPARENTESE PONTOEVIRGULA','imp',5,'p_imp','parser_ble.py',45),
-  ('imp -> IMP ABREPARTESE expressao FECHAPARENTESE','imp',4,'p_imp','parser_ble.py',46),
-  ('declaracoes -> declaracao PONTOEVIRGULA declaracoes','declaracoes',3,'p_declaracoes','parser_ble.py',53),
-  ('declaracoes -> QUEBRALINHA declaracoes','declaracoes',2,'p_declaracoes','parser_ble.py',54),
-  ('declaracoes -> COMENTARIOS QUEBRALINHA declaracoes','declaracoes',3,'p_declaracoes','parser_ble.py',55),
-  ('declaracoes -> QUEBRALINHA COMENTARIOS declaracoes','declaracoes',3,'p_declaracoes','parser_ble.py',56),
-  ('declaracoes -> COMENTARIOS','declaracoes',1,'p_declaracoes','parser_ble.py',57),
-  ('declaracao -> TIPO ESPACO CARACTERE atribuir','declaracao',4,'p_declaracao','parser_ble.py',63),
-  ('declaracao -> TIPO ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir','declaracao',7,'p_declaracao','parser_ble.py',64),
-  ('declaracao -> ESPACO CARACTERE atribuir','declaracao',3,'p_declaracao','parser_ble.py',65),
-  ('declaracao -> ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir','declaracao',6,'p_declaracao','parser_ble.py',66),
-  ('atribuir -> ATRIBUIR variavel','atribuir',2,'p_atribuir','parser_ble.py',72),
-  ('atribuir -> ATRIBUICAO variavel','atribuir',2,'p_atribuir','parser_ble.py',73),
-  ('variavel -> ESPACO CARACTERE','variavel',2,'p_variavel','parser_ble.py',79),
-  ('operacoes -> expressao SIMBOLO operacoes','operacoes',3,'p_operacoes','parser_ble.py',85),
-  ('operacoes -> expressao','operacoes',1,'p_operacoes','parser_ble.py',86),
-  ('operacoes -> imp','operacoes',1,'p_operacoes','parser_ble.py',87),
-  ('expressao -> NUM','expressao',1,'p_expressao','parser_ble.py',93),
-  ('expressao -> variavel','expressao',1,'p_expressao','parser_ble.py',94),
-  ('expressao -> TXT','expressao',1,'p_expressao','parser_ble.py',95),
-  ('expressao -> aritimetico','expressao',1,'p_expressao','parser_ble.py',96),
-  ('expressao -> ABREPARTESE expressao FECHAPARENTESE','expressao',3,'p_expressao','parser_ble.py',97),
-  ('aritimetico -> expressao OPERADOR_DIVISAO expressao','aritimetico',3,'p_aritimetico','parser_ble.py',111),
-  ('aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao','aritimetico',3,'p_aritimetico','parser_ble.py',112),
-  ('aritimetico -> expressao OPERADOR_MAIS expressao','aritimetico',3,'p_aritimetico','parser_ble.py',113),
-  ('aritimetico -> expressao OPERADOR_MENOS expressao','aritimetico',3,'p_aritimetico','parser_ble.py',114),
+  ('programa -> inicio','programa',1,'p_programa','parser_ble.py',19),
+  ('inicio -> INICIO ABRECHAVE blocos FECHACHAVE','inicio',4,'p_inicio','parser_ble.py',27),
+  ('id -> ID','id',1,'p_id','parser_ble.py',36),
+  ('le -> LE ABREPARENTESE TIPO id FECHAPARENTESE PONTOEVIRGULA','le',6,'p_le','parser_ble.py',47),
+  ('imp -> IMP ABREPARENTESE str FECHAPARENTESE PONTOEVIRGULA','imp',5,'p_imp','parser_ble.py',61),
+  ('imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA','imp',5,'p_imp','parser_ble.py',62),
+  ('str -> TXT','str',1,'p_str','parser_ble.py',71),
+  ('blocos -> bloco blocos','blocos',2,'p_blocos','parser_ble.py',77),
+  ('blocos -> bloco','blocos',1,'p_blocos','parser_ble.py',78),
+  ('bloco -> enqt','bloco',1,'p_bloco','parser_ble.py',90),
+  ('bloco -> se','bloco',1,'p_bloco','parser_ble.py',91),
+  ('bloco -> imp','bloco',1,'p_bloco','parser_ble.py',92),
+  ('bloco -> le','bloco',1,'p_bloco','parser_ble.py',93),
+  ('bloco -> atribuir','bloco',1,'p_bloco','parser_ble.py',94),
+  ('bloco -> atribuicao','bloco',1,'p_bloco','parser_ble.py',95),
+  ('expressao -> id','expressao',1,'p_expressao','parser_ble.py',104),
+  ('expressao -> NUM','expressao',1,'p_expressao','parser_ble.py',105),
+  ('expressao -> aritimetico','expressao',1,'p_expressao','parser_ble.py',106),
+  ('expressao -> ABREPARENTESE expressao FECHAPARENTESE','expressao',3,'p_expressao','parser_ble.py',107),
+  ('expressao -> RESPOSTABOOLEANA','expressao',1,'p_expressao','parser_ble.py',108),
+  ('aritimetico -> expressao OPERADOR_DIVISAO expressao','aritimetico',3,'p_aritimetico','parser_ble.py',123),
+  ('aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao','aritimetico',3,'p_aritimetico','parser_ble.py',124),
+  ('aritimetico -> expressao OPERADOR_MAIS expressao','aritimetico',3,'p_aritimetico','parser_ble.py',125),
+  ('aritimetico -> expressao OPERADOR_MENOS expressao','aritimetico',3,'p_aritimetico','parser_ble.py',126),
+  ('atribuicao -> ATRIBUIR expressao','atribuicao',2,'p_atribuicao','parser_ble.py',140),
+  ('atribuicao -> ATRIBUIR ABRECOLCHETE lista FECHACOLCHETE','atribuicao',4,'p_atribuicao','parser_ble.py',141),
+  ('lista -> NUM','lista',1,'p_lista','parser_ble.py',150),
+  ('lista -> id','lista',1,'p_lista','parser_ble.py',151),
+  ('lista -> lista VIRGULA lista','lista',3,'p_lista','parser_ble.py',152),
+  ('atribuir -> id atribuicao PONTOEVIRGULA','atribuir',3,'p_atribuir','parser_ble.py',161),
+  ('atribuir -> TIPO ID atribuicao PONTOEVIRGULA','atribuir',4,'p_atribuir','parser_ble.py',162),
+  ('condicional -> atomica','condicional',1,'p_condicional','parser_ble.py',177),
+  ('condicional -> atomica LOGICO atomica','condicional',3,'p_condicional','parser_ble.py',178),
+  ('atomica -> RESPOSTABOOLEANA','atomica',1,'p_condicional_atomica','parser_ble.py',191),
+  ('atomica -> NUM','atomica',1,'p_condicional_atomica','parser_ble.py',192),
+  ('atomica -> id','atomica',1,'p_condicional_atomica','parser_ble.py',193),
+  ('atomica -> NAO condicional','atomica',2,'p_condicional_atomica','parser_ble.py',194),
+  ('atomica -> condicional RELACIONAL condicional','atomica',3,'p_condicional_atomica','parser_ble.py',195),
+  ('enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE blocos FECHACHAVE','enqt',7,'p_enqt','parser_ble.py',229),
+  ('senao -> SENAO ABRECHAVE bloco FECHACHAVE','senao',4,'p_senao','parser_ble.py',240),
+  ('se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE','se',7,'p_se','parser_ble.py',248),
+  ('se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao','se',8,'p_se','parser_ble.py',249),
 ]
