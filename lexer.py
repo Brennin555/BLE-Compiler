@@ -25,14 +25,13 @@ tokens = [
     'INICIO', 'FIM', 'LINETERMINATOR', 'NUM', 'TXT', 'VET', 'VF', 'CARACTERE',
     'DIGITO', 'ABREASPAS', 'FECHAASPAS', 'ABRECOLCHETE', 'FECHACOLCHETE', 'NAO',
     'IMP', 'LE', 'ATRIBUIR', 'ATRIBUICAO', 'SE', 'SENAO', 'ENQT', 'PRA',
-    'RELACIONAL', 'LOGICO', 'E', 'OU', 'BLOCO', 'SIMBOLO', 'DEFVARIAVEL',
+    'RELACIONAL', 'LOGICO', 'E', 'OU', 'BLOCO', 'BLOCOS', 'SIMBOLO', 'DEFVARIAVEL',
     'TIPO', 'OPERADOR_MAIS', 'OPERADOR_MENOS', 'OPERADOR_DIVISAO', 'VIRGULA',
     'OPERADOR_MULTIPLICACAO', 'ESPACO', 'PONTOEVIRGULA', 'ABREPARENTESE',
     'FECHAPARENTESE', 'ABRECHAVE', 'FECHACHAVE', 'QUEBRALINHA', 'COMENTARIOS', 'ID', 'RESPOSTABOOLEANA'
 ]
 
 # Definindo as regras de expressão regular para alguns tokens
-t_NAO = r'nao'
 t_RESPOSTABOOLEANA = r'V|F'
 t_INICIO = r'main'
 t_FIM = r'end'
@@ -40,6 +39,7 @@ t_LINETERMINATOR = r'\n'
 t_COMENTARIOS = r'\'[^\']*\''
 t_TIPO = r'txt|num|vet|vf'
 # t_NUM = r'\d+'
+t_NAO = r'nao'
 t_VET = r'vet'
 t_VF = r'vf'
 # t_CARACTERE = r'[a-zA-Z]'
@@ -54,7 +54,8 @@ t_ATRIBUIR = r':'
 t_ATRIBUICAO = r'='
 t_SE = r'c'
 t_SENAO = r'cnn'
-t_PRA = r'pra'
+t_ENQT = r'->'
+t_PRA = r'for'
 t_RELACIONAL = r'[<>!]=? | [=]'
 t_LOGICO = r'[&|]'
 t_E = r'&&'
@@ -76,12 +77,6 @@ t_FECHACHAVE = r'\}'
 t_QUEBRALINHA = r'---'
 t_TXT = r'"([^"\\]|\\.)*"'
 #t_ID = r'[a-z][a-zA-Z0-9]*'
-
-def t_ENQT(t):
-    r'->'
-    t.type = 'ENQT'
-    return t
-
 
 def t_CARACTERE(t):
     r'[a-z][a-zA-Z0-9]*'

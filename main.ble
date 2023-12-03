@@ -1,5 +1,6 @@
 main{
-    (V)->{
-        imp("azura");
+    imp("maria");
+    (1>0)->{
+        imp("roi");
     }
 }

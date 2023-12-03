@@ -22,12 +22,12 @@ def p_programa(p):
 
 def p_inicio(p):
     '''
-    inicio : INICIO ABRECHAVE operacoes FECHACHAVE
+    inicio : INICIO ABRECHAVE blocos FECHACHAVE
     '''
     print("--------------INICIO: ")
     for i in p:
         print(i)
-                
+                        
 def p_tipo(p):
     '''
     tipo : TXT
@@ -80,7 +80,7 @@ def p_le(p):
     print("Variavel: ", p[4])
     
     #variaveis[0] = nome variaveis[1] = valor
-    p[4] = input("")
+    # p[4] = input("")
     print("--------------LE: ")
     for i in p:
         print(i)
@@ -95,65 +95,33 @@ def p_imp(p):
     for i in p:
         print(i)
 
-def p_declaracoes(p):
+
+def p_blocos(p):
     '''
-    declaracoes : declaracao PONTOEVIRGULA declaracoes
-                | QUEBRALINHA declaracoes
-                | COMENTARIOS QUEBRALINHA declaracoes
-                | QUEBRALINHA COMENTARIOS declaracoes
-                | COMENTARIOS
-                | TIPO ID ATRIBUIR expressao PONTOEVIRGULA
-                | TIPO ID ATRIBUICAO declaracao PONTOEVIRGULA
-                | TIPO ID ATRIBUIR TXT
+    blocos : bloco blocos
+           | bloco
     '''
-    print("--------------DECLARACOES: ")
+    print("--------------BLOCOS: ")
     for i in p:
         print(i)
 
-def p_declaracao(p):
+def p_bloco(p):
     '''
-    declaracao : TIPO ESPACO CARACTERE atribuir
-               | TIPO ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir
-               | ESPACO CARACTERE atribuir
-               | ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir
-               | tipo ESPACO ID ATRIBUIR expressao PONTOEVIRGULA
-               | tipo ESPACO ID ATRIBUICAO expressao PONTOEVIRGULA
-               
-                 
+    bloco   :  enqt
+            | imp
+            | le
+            | atribuir
+            | atribuicao
+            | expressao
     '''
-    print("--------------DECLARACAO: ")
-    for i in p:
-        print(i)
-
-def p_variavel(p):
-    '''
-    variavel : ESPACO CARACTERE
-    '''
-    # Adicione ações conforme necessário
-    print("--------------VARIAVEL: ")
-    for i in p:
-        print(i)
-    
-def p_operacoes(p):
-    '''
-    operacoes :
-              | expressao
-              | imp
-              | le
-              | atribuir
-              | atribuicao
-              | operacoes
-    '''
-    # Adicione ações conforme necessário
-    print("--------------OPERACOES: ")
+    print("--------------BLOCO: ")
     for i in p:
         print(i)
     
 def p_expressao(p):
     '''
-    expressao : NUM
-              | variavel
-              | ID
+    expressao : ID
+              | NUM
               | TXT
               | aritimetico
               | ABREPARENTESE expressao FECHAPARENTESE
@@ -161,10 +129,14 @@ def p_expressao(p):
               
                          
     '''
+    # | expressao PONTOEVIRGULA expressao
+    # | expressao PONTOEVIRGULA
     if len(p) == 4:
         p[0] = p[2]
     else:
         p[0] = p[1]
+        
+
     print("--------------EXPRESSAO:")
     for i in p:
         print(i)
@@ -195,28 +167,19 @@ def p_atribuicao(p):
 
 def p_atribuir(p):
     '''
-    atribuir : TIPO ID atribuicao PONTOEVIRGULA 
+    atribuir : ID atribuicao PONTOEVIRGULA
+             | TIPO ID atribuicao PONTOEVIRGULA 
              | TIPO ID ATRIBUIR expressao PONTOEVIRGULA 
-             | ID atribuicao PONTOEVIRGULA
-             
     '''
     print("--------------ATRIBUIR: ")
     for i in p:
         print(i)
-        
+       
     variaveis.append({'nome': p[2], 'valor': p[4]})
     #imprimindo apenas valor:
-    print(variaveis[0]['valor'])
     
-    print("Variáveis: ", variaveis)
-
-def p_bloco(p):
-    '''
-    bloco   : enqt
-            | imp
-            | bloco
-    '''
-    # p[0] = p[1]
+    for i in variaveis:
+        print("Nome: ", i['nome'], "Valor: ", i['valor'])
 
 def p_condicional(p):
     '''
@@ -261,12 +224,19 @@ def p_condicional_atomica(p):
             p[0] = p[1] > p[3]
         elif p[2] == '<=':
             p[0] = p[1] > p[3]
+
+
     
 def p_enqt(p):
     ''' 
     enqt : ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
     '''
-
+    while p[2]:
+        print('foi')
+        p[0] = p[6]
+    print("--------------ENQT:")
+    for i in p:
+        print(i)
 # Tratamento de erro sintático
 def p_error(p):
     print(f"Erro de sintaxe: Token inesperado '{p.value}' na linha {p.lineno}, coluna {p.lexpos}")
