@@ -1,4 +1,7 @@
 main{
-    imp("rabanada");
-    imp("palito");
+    num x: 12;
+    (12<4)->{
+        imp("pamonha");
+        le(num k);
+    }
 }

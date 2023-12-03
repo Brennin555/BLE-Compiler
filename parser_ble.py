@@ -4,11 +4,19 @@ from lexer import tokens
 # Lista de tokens (importada do lexer)
 tk = tokens
 variaveis = []
+variaveis.append({'nome': '', 'valor': ''})
+
+""" Mantendo a Identação?
+- Criar uma variavel que contenha apenas o tab (var_tab) e outra que servirá como count ;
+- A cada vez que houver uma expressão que desejamos identar o count é incrementado ;
+- multiplicar o count pela var_tab antes de toda linha ;
+"""
 
 # Definindo precedência dos operadores
 precedence = (
     ('left', 'OPERADOR_MAIS', 'OPERADOR_MENOS'),
     ('left', 'OPERADOR_MULTIPLICACAO', 'OPERADOR_DIVISAO'),
+    ('right', 'NAO'),
 )
 
 # Regras de produção e ações
@@ -29,37 +37,38 @@ def p_inicio(p):
     # f.close()
     print(p[3])
 
+def p_id(p):
+    '''
+    id : ID
+    '''
+    for i in variaveis:
+        if i['nome'] == f'{p[1]}':
+            p[0] = f'{p[1]}'
+    
+    if str(p[0]) == 'None':     
+        raise NameError(f"Variavel '{p[1]}' não definida")
+
 def p_le(p):
     '''
-    le : LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
+    le : LE ABREPARENTESE TIPO id FECHAPARENTESE PONTOEVIRGULA
     '''
-    # print("LEITURA DE DADO:")
-    # print("Tipo: ", p[3])
-    # print("Variavel: ", p[4])
     if p[3] == 'txt':
         p[0] = f'{p[4]} = input()\n'
     elif p[3] == 'num':
         p[0] = f'{p[4]} = float(input())\n'
     elif p[3] == 'vet':
         p[0] = f'{p[4]} = input()\n{p[4]} = {p[4]}.split()\n{p[4]} = [int(valor) for valor in {p[4]}]\n'
-    #variaveis[0] = nome variaveis[1] = valor
-    # p[4] = input("")
-    print("--------------LE: ")
-    for i in p:
-        print(i)
 
 def p_imp(p):
     '''
     imp : IMP ABREPARENTESE str FECHAPARENTESE PONTOEVIRGULA
+        | IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
     '''
     p[0] = f'print({p[3]})\n'
-    # print("--------------IMP: ")
-    # for i in p:
-    #     print(i)
 
 def p_str(p):
-    '''str  : TXT
-            | ID
+    '''
+    str  : TXT
     '''
     p[0] = p[1]
 
@@ -72,10 +81,6 @@ def p_blocos(p):
         p[0] = p[1]
     else:
         p[0] = p[1] + p[2]
-    
-    # print("--------------BLOCOS: ")
-    # for i in p:
-    #     print(i)
 
 def p_bloco(p):
     '''
@@ -86,28 +91,18 @@ def p_bloco(p):
             | atribuicao
     '''
     p[0] = p[1]
-    # print("--------------BLOCO: ")
-    # for i in p:
-    #     print(i)
     
 def p_expressao(p):
     '''
-    expressao : ID
+    expressao : id
               | NUM
               | aritimetico
               | ABREPARENTESE expressao FECHAPARENTESE
     '''
-    # | expressao PONTOEVIRGULA expressao
-    # | expressao PONTOEVIRGULA
     if len(p) == 4:
         p[0] = f'({p[2]})'
     else:
         p[0] = p[1]
-        
-
-    # print("--------------EXPRESSAO:")
-    # for i in p:
-    #     print(i)
     
 def p_aritimetico(p):
     '''aritimetico  : expressao OPERADOR_DIVISAO expressao
@@ -148,23 +143,14 @@ def p_lista(p):
 
 def p_atribuir(p):
     '''
-    atribuir : ID atribuicao PONTOEVIRGULA
+    atribuir : id atribuicao PONTOEVIRGULA
              | TIPO ID atribuicao PONTOEVIRGULA
     '''
-    # print("--------------ATRIBUIR: ")
-    # for i in p:
-    #     print(i)
     if len(p) == 5:
-        p[0] = f'{p[2]} {p[3]}'
-        # variaveis.append({'nome': p[2], 'valor': p[4]})
+        p[0] = f'{p[2]} {p[3]}\n'
+        variaveis.append({'nome': p[2], 'valor': p[3]})
     else:
-        for i in variaveis:
-            if i['nome'] == p[1]:
-                p[1] = int(i['valor'])
-
-    #imprimindo apenas valor:
-    for i in variaveis:
-        print("Nome: ", i['nome'], "Valor: ", i['valor'])
+        p[0] = f'{p[1]} {p[2]}\n'
 
 def p_condicional(p):
     '''
@@ -173,9 +159,9 @@ def p_condicional(p):
     '''
     if len(p) == 4:
         if p[2] == '&&':
-            p[0] = p[1] and p[3]
+            p[0] = f'{p[1]} and {p[3]}'
         else:
-            p[0] = p[1] or p[3]
+            f'{p[0]} = {p[1]} or {p[3]}'
     else:
         p[0] = p[1]
         
@@ -183,7 +169,7 @@ def p_condicional(p):
 def p_condicional_atomica(p):
     '''
     atomica : RESPOSTABOOLEANA
-            | ID
+            | id
             | NUM
             | NAO condicional
             | condicional RELACIONAL condicional
@@ -192,42 +178,37 @@ def p_condicional_atomica(p):
 
     tamanho = len(p)
     if tamanho == 2:
-        for i in variaveis:
-            if i['nome'] == p[1]:
-                p[1] = int(i['valor'])
-
-        p[0] = p[1]
+        if p[1] == 'V':
+            p[0] = 'True'
+        elif p[1] == 'F':
+            p[0] = 'False'
+        else:
+            p[0] = f'{p[1]}'
 
     elif tamanho == 3:
-        p[0] = not p[1]
+        p[0] = f'not {p[1]}'
 
     elif tamanho == 4:
-        if p[2] == '>':
-            p[0] = p[1] > p[3]
-        elif p[2] == '<':
-            p[0] = p[1] < p[3]
-        elif p[2] == '=':
-            p[0] = p[1] = p[3]
-        elif p[2] == '!=':
-            p[0] = p[1] != p[3]
-        elif p[2] == '>=':
-            p[0] = p[1] > p[3]
-        elif p[2] == '<=':
-            p[0] = p[1] > p[3]
+        match(p[2]):
+            case '>':
+                p[0] = f'{p[1]} > {p[3]}'
+            case '<':
+                p[0] = f'{p[1]} < {p[3]}'
+            case '=':
+                p[0] = f'{p[1]} = {p[3]}'
+            case '!=':
+                p[0] = f'{p[1]} != {p[3]}'
+            case '>=':
+                p[0] = f'{p[1]} >= {p[3]}'
+            case '<=':
+                p[0] = f'{p[1]} <= {p[3]}'
 
-
-    
 def p_enqt(p):
     ''' 
-    enqt : ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
+    enqt : ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE blocos FECHACHAVE
     '''
-    # while p[2]:
-    #     print(p[6])
-    #     break
-    
-    print("--------------ENQT:")
-    for i in p:
-        print(i)
+    p[0] = f'while {p[2]} :\n\t{p[6]}'
+
 # Tratamento de erro sintático
 def p_error(p):
     print(f"Erro de sintaxe: Token inesperado '{p.value}' na linha {p.lineno}, coluna {p.lexpos}")
@@ -240,5 +221,7 @@ parser = yacc.yacc(debug=True, write_tables=True)
 with open('main.ble', 'r') as file:
     code = file.read()
 
-# Fazendo o parser do código
-result = parser.parse(code)
+try:
+    result = parser.parse(code)
+except NameError as e:
+    print(e)
