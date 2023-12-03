@@ -9,6 +9,7 @@ variaveis = []
 precedence = (
     ('left', 'OPERADOR_MAIS', 'OPERADOR_MENOS'),
     ('left', 'OPERADOR_MULTIPLICACAO', 'OPERADOR_DIVISAO'),
+    ('right', 'NAO')
 )
 
 # Regras de produção e ações
@@ -50,25 +51,69 @@ def p_txt(p):
     for i in p:
         print(i)
     
+def p_condicional(p):
+    '''
+    condicional : atomica
+                | atomica LOGICO atomica
+    '''
+    if len(p) == 4:
+        if p[2] == '&&':
+            p[0] = p[1] and p[3]
+        else:
+            p[0] = p[1] or p[3]
+    else:
+        p[0] = p[1]
+        
+
+def p_condicional_atomica(p):
+    '''
+    atomica : RESPOSTABOOLEANA
+            | NUM
+            | ID
+            | NAO condicional
+            | condicional RELACIONAL condicional
+    '''
+    tamanho = len(p)
+    if tamanho == 2:
+        p[0] = p[1]
+        
+    elif tamanho == 3:
+        p[0] = not p[1]
+
+    elif tamanho == 4:
+        if p[2] == '>':
+            p[0] = p[1] > p[3]
+        elif p[2] == '<':
+            p[0] = p[1] < p[3]
+        elif p[2] == '=':
+            p[0] = p[1] = p[3]
+        elif p[2] == '!=':
+            p[0] = p[1] != p[3]
+        elif p[2] == '>=':
+            p[0] = p[1] > p[3]
+        elif p[2] == '<=':
+            p[0] = p[1] > p[3]
+      
 # def p_senao(p):
 #     '''
-#     senao : SENAO ABRECHAVE operacoes FECHACHAVE
+#     senao : SENAO ABRECHAVE bloco FECHACHAVE
 #     '''
 #     print("--------------SENAO: ")
 #     for i in p:
 #         print(i)
-      
-# def p_se(p):
-#     '''
-#     se : SE ABREPARENTESE expressao FECHAPARENTESE ABRECHAVE operacoes FECHACHAVE
-#        | SE ABREPARENTESE expressao FECHAPARENTESE ABRECHAVE operacoes FECHACHAVE senao
-#        | SE ABREPARENTESE ID RELACIONAL NUM FECHAPARENTESE ABRECHAVE imp FECHACHAVE
-#        | SE ABREPARENTESE ID relacional ID FECHAPARENTESE ABRECHAVE imp FECHACHAVE
-#     '''
-#     # p[0] = (p[2], p[4])
-#     print("--------------SE: ")
-#     for i in p:
-#         print(i)
+
+def p_se(p):
+    '''
+    se : SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
+      '''
+    # p[0] = (p[2], p[4])
+    print("--------------SE: ")
+    if p[3] == True:
+        print("Condicional verdadeira")
+    else:
+        print("Condicional falsa")
+    for i in p:
+        print(i)
     
 def p_le(p):
     '''
@@ -108,6 +153,7 @@ def p_blocos(p):
 def p_bloco(p):
     '''
     bloco : expressao
+             | se
              | imp
              | le
              | atribuir

@@ -16,6 +16,7 @@ reserved_words = {
     'pra': 'PRA',
     'V': 'RESPOSTABOOLEANA',
     'F': 'RESPOSTABOOLEANA',
+    'nao': 'NAO',
     
     # Adicione outras palavras reservadas aqui
 }
@@ -25,7 +26,7 @@ tokens = [
     'INICIO', 'FIM', 'LINETERMINATOR', 'NUM', 'TXT', 'VET', 'VF', 'CARACTERE',
     'DIGITO', 'ABREASPAS', 'FECHAASPAS', 'ABRECOLCHETE', 'FECHACOLCHETE',
     'IMP', 'LE', 'ATRIBUIR', 'ATRIBUICAO', 'SE', 'SENAO', 'ENQT', 'PRA',
-    'RELACIONAL', 'LOGICO', 'E', 'OU', 'BLOCO', 'BLOCOS', 'SIMBOLO', 'DEFVARIAVEL',
+    'RELACIONAL', 'LOGICO', 'E', 'OU', 'NAO', 'BLOCO', 'BLOCOS', 'SIMBOLO', 'DEFVARIAVEL',
     'TIPO', 'OPERADOR_MAIS', 'OPERADOR_MENOS', 'OPERADOR_DIVISAO', 'VIRGULA',
     'OPERADOR_MULTIPLICACAO', 'ESPACO', 'PONTOEVIRGULA', 'ABREPARENTESE',
     'FECHAPARENTESE', 'ABRECHAVE', 'FECHACHAVE', 'QUEBRALINHA', 'COMENTARIOS', 'ID', 'RESPOSTABOOLEANA'
@@ -59,6 +60,7 @@ t_RELACIONAL = r'[<>!]=? | [=]'
 t_LOGICO = r'[&|]'
 t_E = r'&&'
 t_OU = r'\|\|'
+t_NAO = r'nao'
 t_BLOCO = r'\(\)'
 t_VIRGULA = r','
 #t_DEFVARIAVEL = r' '

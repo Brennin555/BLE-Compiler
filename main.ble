@@ -1,8 +1,5 @@
 main {
-    txt a: "teste";
-    num b: 3;
-    vf d: F;
-
-    imp("oi");
-    le(num b);
+    c(1<2){
+        imp("IMPRIMIUUU");
+    }
 }
