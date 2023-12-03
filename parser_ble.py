@@ -18,18 +18,11 @@ def p_programa(p):
     '''
     programa : inicio
     '''
-    # print("--------------PROGRAMA: ")
-    # for i in p:
-    #     print(i)
 
 def p_inicio(p):
     '''
     inicio : INICIO ABRECHAVE blocos FECHACHAVE
     '''
-    # print("--------------INICIO: ")
-    # for i in p:
-    #     print(i)
-    
     f = open("ble_code.py", "w")
     f.write(f'{p[3]}')
     f.close()
@@ -57,20 +50,13 @@ def p_le(p):
         p[0] = f'{p[4]} = float(input())\n'
     elif p[3] == 'vet':
         p[0] = f'{p[4]} = input()\n{p[4]} = {p[4]}.split()\n{p[4]} = [int(valor) for valor in {p[4]}]\n'
-        print("--------------LE: ")
-        for i in p:
-            print(i)
 
 def p_imp(p):
     '''
     imp : IMP ABREPARENTESE str FECHAPARENTESE PONTOEVIRGULA
         | IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
     '''
-    p[0] = f'print({p[3]})\n'
-    # print("--------------IMP: ")
-    # for i in p:
-    #     print(i)
-                        
+    p[0] = f'print({p[3]})\n'                  
 
 def p_str(p):
     '''str  : TXT
@@ -86,9 +72,6 @@ def p_blocos(p):
         p[0] = p[1]
     else:
         p[0] = p[1] + p[2]
-    # print("--------------BLOCOS: ")
-    # for i in p:
-    #     print(i)
 
 def p_comentarios(p):
     '''
@@ -108,9 +91,6 @@ def p_bloco(p):
              | comentarios
     '''
     p[0] = p[1]
-    # print("--------------BLOCO: ")
-    # for i in p:
-    #     print(i)
     
 def p_expressao(p):
     '''
@@ -120,18 +100,11 @@ def p_expressao(p):
               | ABREPARENTESE expressao FECHAPARENTESE
               | RESPOSTABOOLEANA                     
     '''
-    # | expressao PONTOEVIRGULA expressao
-    # | expressao PONTOEVIRGULA
     if len(p) == 4:
         p[0] = f'({p[2]})'
     else:
         p[0] = p[1]
         
-
-    # print("--------------EXPRESSAO:")
-    # for i in p:
-    #     print(i)
-    
 def p_aritimetico(p):
     '''aritimetico  : expressao OPERADOR_DIVISAO expressao
                     | expressao OPERADOR_MULTIPLICACAO expressao
@@ -186,11 +159,6 @@ def p_atribuir(p):
     else:
         p[0] = f'{p[1]} = {p[2]}\n'
     
-    # print("--------------ATRIBUIR: ")
-    # for i in p:
-    #     print(i)
-    # print(variaveis)    
-     
 def p_condicional(p):
     '''
     condicional : atomica
@@ -213,9 +181,7 @@ def p_condicional_atomica(p):
             | NAO condicional
             | condicional RELACIONAL condicional
     '''
-    
-    #se for uma string, buscar na lista de variaveis
-    
+
     tamanho = len(p)
     if tamanho == 2:
         if p[1] == 'V':
@@ -235,7 +201,7 @@ def p_condicional_atomica(p):
             case '<':
                 p[0] = f'{p[1]} < {p[3]}'
             case '=':
-                p[0] = f'{p[1]} = {p[3]}'
+                p[0] = f'{p[1]} == {p[3]}'
             case '!=':
                 p[0] = f'{p[1]} != {p[3]}'
             case '>=':
@@ -259,10 +225,7 @@ def p_senao(p):
     senao : SENAO ABRECHAVE bloco FECHACHAVE
     '''
     p[0] = f'else:\n{tabulacao(p[3])}\n'
-    # print("--------------SENAO: ")
-    # for i in p:
-    #     print(i)
-
+    
 def p_se(p):
     '''
     se : SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE
@@ -273,7 +236,6 @@ def p_se(p):
         p[0] = f'if {p[3]}:\n{tabulacao(p[6])}'
     else:
         p[0] = f'if {p[3]}:\n{tabulacao(p[6])}\n{p[8]}'
-        
     
     
 def p_pra(p):
@@ -289,7 +251,6 @@ def p_pra(p):
           inicio=float(x['valor'])
           
     p[0] = f'for {p[3]} in range({int(inicio)},{final},{inc}):\n{tabulacao(p[8])}\n'
-    # print(inicio,final,inc)
 # ---------------------------------------------------------------------   
 
     
