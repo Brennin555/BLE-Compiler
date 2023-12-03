@@ -4,6 +4,7 @@ from lexer import tokens
 # Lista de tokens (importada do lexer)
 tk = tokens
 variaveis = []
+variaveis.append({'nome': '', 'valor': ''})
 
 # Definindo precedência dos operadores
 precedence = (
@@ -29,96 +30,28 @@ def p_inicio(p):
     # for i in p:
     #     print(i)
     print(p[3])
-                        
     
-def p_condicional(p):
+def p_id(p):
     '''
-    condicional : atomica
-                | atomica LOGICO atomica
+    id : ID
     '''
-    if len(p) == 4:
-        if p[2] == '&&':
-            p[0] = p[1] and p[3]
-        else:
-            p[0] = p[1] or p[3]
-    else:
-        p[0] = p[1]
-        
+    for i in variaveis:
+        if i['nome'] == f'{p[1]}':
+            p[0] = f'{p[1]}'
+    
+    if str(p[0]) == 'None':     
+        raise NameError(f"Variavel '{p[1]}' não definida")
 
-def p_condicional_atomica(p):
-    '''
-    atomica : RESPOSTABOOLEANA
-            | NUM
-            | ID
-            | NAO condicional
-            | condicional RELACIONAL condicional
-    '''
-    
-    #se for uma string, buscar na lista de variaveis
-    
-    tamanho = len(p)
-    if tamanho == 2:
-        for i in variaveis:
-            if i['nome'] == p[1]:
-                p[1] = int(i['valor'])
-                
-        p[0] = p[1]
-        
-    elif tamanho == 3:
-        p[0] = not p[1]
-
-    elif tamanho == 4:
-        if p[2] == '>':
-            p[0] = p[1] > p[3]
-        elif p[2] == '<':
-            p[0] = p[1] < p[3]
-        elif p[2] == '=':
-            p[0] = p[1] = p[3]
-        elif p[2] == '!=':
-            p[0] = p[1] != p[3]
-        elif p[2] == '>=':
-            p[0] = p[1] > p[3]
-        elif p[2] == '<=':
-            p[0] = p[1] > p[3]
-      
-def p_senao(p):
-    '''
-    senao : SENAO ABRECHAVE bloco FECHACHAVE
-    '''
-    # print("--------------SENAO: ")
-    # for i in p:
-    #     print(i)
-
-def p_se(p):
-    '''
-    se : SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-        | SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao
-      '''
-    
-    print("-----------------------------SE: ")
-    if p[3] == True:
-        print("executa o se")
-        p[0] = p[6]
-    elif len(p) >= 8:
-        print("EXECUTA O Senao")
-        p[0] = p[7]
-    
 def p_le(p):
     '''
-    le : LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
+    le : LE ABREPARENTESE TIPO id FECHAPARENTESE PONTOEVIRGULA
     '''
-    print("LEITURA DE DADO:")
-    print("Tipo: ", p[3])
-    print("Variavel: ", p[4])
-    
     if p[3] == 'txt':
-            p[0] = f'{p[4]} = input()\n'
+        p[0] = f'{p[4]} = input()\n'
     elif p[3] == 'num':
         p[0] = f'{p[4]} = float(input())\n'
     elif p[3] == 'vet':
         p[0] = f'{p[4]} = input()\n{p[4]} = {p[4]}.split()\n{p[4]} = [int(valor) for valor in {p[4]}]\n'
-    #variaveis[0] = nome variaveis[1] = valor
-    # p[4] = input("")
         print("--------------LE: ")
         for i in p:
             print(i)
@@ -132,6 +65,7 @@ def p_imp(p):
     # print("--------------IMP: ")
     # for i in p:
     #     print(i)
+                        
 
 def p_str(p):
     '''str  : TXT
@@ -167,7 +101,7 @@ def p_bloco(p):
     
 def p_expressao(p):
     '''
-    expressao : ID
+    expressao : id
               | NUM
               | aritimetico
               | ABREPARENTESE expressao FECHAPARENTESE
@@ -200,26 +134,7 @@ def p_aritimetico(p):
             p[0] = f'{p[1]} * {p[3]}'
         case '/':
             p[0] = f'{p[1]} / {p[3]}'
-    # if p[2] == '+':
-    #     p[0] = float(p[1]) + float(p[3])
-    # elif p[2] == '-':
-    #     p[0] = float(p[1]) - float(p[3])
-    # elif p[2] == '*':
-    #     p[0] = float(p[1]) * float(p[3])
-    # elif p[2] == '/':
-    #     p[0] = float(p[1]) /  float(p[3])
-    # print("ARITIMETICO: ",p)
-    # for i in p:
-    #     print(i)
-# ---------------------------------------------------------------------   
-def p_enqt(p):
-    ''' 
-    enqt : ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
-    '''
-    print("--------------ENQT:")
-    for i in p:
-        print(i)
-        
+
 def p_atribuicao(p):
     '''
     atribuicao : ATRIBUIR expressao
@@ -233,7 +148,7 @@ def p_atribuicao(p):
 def p_lista(p):
     '''
     lista : NUM
-          | ID
+          | id
           | lista VIRGULA lista
     '''
     if len(p) == 2:
@@ -243,44 +158,123 @@ def p_lista(p):
 
 def p_atribuir(p):
     '''
-    atribuir : ID atribuicao PONTOEVIRGULA
+    atribuir : id atribuicao PONTOEVIRGULA
              | TIPO ID atribuicao PONTOEVIRGULA 
-             | TIPO ID ATRIBUIR expressao PONTOEVIRGULA 
     '''
     if len(p) == 5:
         p[0] = f'{p[2]} {p[3]}\n'
-        # variaveis.append({'nome': p[2], 'valor': p[4]})
+        variaveis.append({'nome': p[2], 'valor': p[4]})
     else:
-        p[0] = f'{p[1]} {p[2]}: {p[4]}\n'
+        p[0] = f'{p[1]} {p[2]}\n'
     
     # print("--------------ATRIBUIR: ")
     # for i in p:
     #     print(i)
+    # print(variaveis)    
+     
+def p_condicional(p):
+    '''
+    condicional : atomica
+                | atomica LOGICO atomica
+    '''
+    if len(p) == 4:
+        if p[2] == '&&':
+            p[0] = f'{p[1]} and {p[3]}'
+        else:
+            f'{p[0]} = {p[1]} or {p[3]}'
+    else:
+        p[0] = p[1]
         
-    # for i in variaveis:
-    #     if i['nome'] == p[2]:
-    #         i['valor'] = p[4]
-    #         print("Valor de", i['nome'], "atualizado para ", i['valor'])
-    #     else:
-    #         variaveis.append({'nome': p[2], 'valor': p[4]})
+
+def p_condicional_atomica(p):
+    '''
+    atomica : RESPOSTABOOLEANA
+            | NUM
+            | id
+            | NAO condicional
+            | condicional RELACIONAL condicional
+    '''
     
-    variaveis.append({'nome': p[2], 'valor': p[4]})
-    #imprimindo apenas valor:
+    #se for uma string, buscar na lista de variaveis
     
-    # for i in variaveis:
-    #     print("Nome: ", i['nome'], "Valor: ", i['valor'])
+    tamanho = len(p)
+    if tamanho == 2:
+        if p[1] == 'V':
+            p[0] = 'True'
+        elif p[1] == 'F':
+            p[0] = 'False'
+        else:
+            p[0] = f'{p[1]}'
+
+    elif tamanho == 3:
+        p[0] = f'not {p[1]}'
+
+    elif tamanho == 4:
+        match(p[2]):
+            case '>':
+                p[0] = f'{p[1]} > {p[3]}'
+            case '<':
+                p[0] = f'{p[1]} < {p[3]}'
+            case '=':
+                p[0] = f'{p[1]} = {p[3]}'
+            case '!=':
+                p[0] = f'{p[1]} != {p[3]}'
+            case '>=':
+                p[0] = f'{p[1]} >= {p[3]}'
+            case '<=':
+                p[0] = f'{p[1]} <= {p[3]}'
+
+def p_enqt(p):
+    ''' 
+    enqt : ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE blocos FECHACHAVE
+    '''
+    p[0] = f'while {p[2]} :\n{tabulacao(p[6])}'
+    
+def tabulacao(s):
+    aux = s.split('\n')
+    aux = ['\t'+i for i in aux]
+    return '\n'.join(aux)    
+          
+def p_senao(p):
+    '''
+    senao : SENAO ABRECHAVE bloco FECHACHAVE
+    '''
+    # print("--------------SENAO: ")
+    # for i in p:
+    #     print(i)
+
+def p_se(p):
+    '''
+    se : SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
+        | SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao
+      '''
+    
+    print("-----------------------------SE: ")
+    if p[3] == True:
+        print("executa o se")
+        p[0] = p[6]
+    elif len(p) >= 8:
+        print("EXECUTA O Senao")
+        p[0] = p[7]
+    
+    
+
+# ---------------------------------------------------------------------   
+
     
 # Tratamento de erro sintático
 def p_error(p):
     print(f"Erro de sintaxe: Token inesperado '{p.value}' na linha {p.lineno}, coluna {p.lexpos}")
 
-# Adicione as ações e regras conforme necessário
 
 # Criando o analisador sintático
 parser = yacc.yacc(debug=True, write_tables=True)
 
-with open('main.ble', 'r') as file:
+with open('main3.ble', 'r') as file:
     code = file.read()
 
 # Fazendo o parser do código
-result = parser.parse(code)
+try:
+    result = parser.parse(code)
+except NameError as e:
+    print(e)

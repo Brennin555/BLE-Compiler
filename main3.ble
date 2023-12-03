@@ -1,3 +1,10 @@
-main {
-
+main{
+    num x: 12;
+    num k: 2;
+    (k<x)->{
+        (x!=k)->{
+            imp("pamonha");
+            le(num k);
+        }
+    }
 }
