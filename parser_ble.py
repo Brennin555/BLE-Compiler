@@ -16,69 +16,32 @@ def p_programa(p):
     '''
     programa : inicio
     '''
-    print("--------------PROGRAMA: ")
-    for i in p:
-        print(i)
+    # print("--------------PROGRAMA: ")
+    # for i in p:
+    #     print(i)
 
 def p_inicio(p):
     '''
     inicio : INICIO ABRECHAVE blocos FECHACHAVE
     '''
-    print("--------------INICIO: ")
-    for i in p:
-        print(i)
-                        
-def p_tipo(p):
-    '''
-    tipo : TXT
-         | NUM
-    '''
-    # Adicione ações conforme necessário
-    p[0] = p[1]
-    print("O TIPO EH: ",p[0])
-    print("--------------TIPO: ")
-    for i in p:
-        print(i)
-          
-def p_txt(p):
-    '''
-    txt : TXT
-    '''
-    p[0] = p[1]
-    print(p[0])
-    print("--------------TXT: ")
-    for i in p:
-        print(i)
-    
-# def p_senao(p):
-#     '''
-#     senao : SENAO ABRECHAVE operacoes FECHACHAVE
-#     '''
-#     print("--------------SENAO: ")
-#     for i in p:
-#         print(i)
-      
-# def p_se(p):
-#     '''
-#     se : SE ABREPARENTESE expressao FECHAPARENTESE ABRECHAVE operacoes FECHACHAVE
-#        | SE ABREPARENTESE expressao FECHAPARENTESE ABRECHAVE operacoes FECHACHAVE senao
-#        | SE ABREPARENTESE ID RELACIONAL NUM FECHAPARENTESE ABRECHAVE imp FECHACHAVE
-#        | SE ABREPARENTESE ID relacional ID FECHAPARENTESE ABRECHAVE imp FECHACHAVE
-#     '''
-#     # p[0] = (p[2], p[4])
-#     print("--------------SE: ")
-#     for i in p:
-#         print(i)
-    
+    # f = open("ble_code.py", "w")
+    # f.write(f"if __name__ == __main__:\n\t{p[3]}\n")
+    # f.close()
+    print(p[3])
+
 def p_le(p):
     '''
     le : LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
-       | LE ABREPARENTESE ID FECHAPARENTESE
     '''
-    print("LEITURA DE DADO:")
-    print("Tipo: ", p[3])
-    print("Variavel: ", p[4])
-    
+    # print("LEITURA DE DADO:")
+    # print("Tipo: ", p[3])
+    # print("Variavel: ", p[4])
+    if p[3] == 'txt':
+        p[0] = f'{p[4]} = input()\n'
+    elif p[3] == 'num':
+        p[0] = f'{p[4]} = float(input())\n'
+    elif p[3] == 'vet':
+        p[0] = f'{p[4]} = input()\n{p[4]} = {p[4]}.split()\n{p[4]} = [int(valor) for valor in {p[4]}]\n'
     #variaveis[0] = nome variaveis[1] = valor
     # p[4] = input("")
     print("--------------LE: ")
@@ -88,12 +51,11 @@ def p_le(p):
 def p_imp(p):
     '''
     imp : IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
-        | IMP ABREPARENTESE expressao FECHAPARENTESE
     '''
-    print(p[3])
-    print("--------------IMP: ")
-    for i in p:
-        print(i)
+    p[0] = f'print({p[3]})\n'
+    # print("--------------IMP: ")
+    # for i in p:
+    #     print(i)
 
 
 def p_blocos(p):
@@ -101,22 +63,26 @@ def p_blocos(p):
     blocos : bloco blocos
            | bloco
     '''
-    print("--------------BLOCOS: ")
-    for i in p:
-        print(i)
+    if str(p[0]) == 'None':
+        p[0] = p[1]
+    else:
+        p[0] = str(p[0]) + p[1]
+    # print("--------------BLOCOS: ")
+    # for i in p:
+    #     print(i)
 
 def p_bloco(p):
     '''
-    bloco   :  enqt
+    bloco   : enqt
             | imp
             | le
             | atribuir
             | atribuicao
-            | expressao
     '''
-    print("--------------BLOCO: ")
-    for i in p:
-        print(i)
+    p[0] = p[1]
+    # print("--------------BLOCO: ")
+    # for i in p:
+    #     print(i)
     
 def p_expressao(p):
     '''
@@ -137,9 +103,9 @@ def p_expressao(p):
         p[0] = p[1]
         
 
-    print("--------------EXPRESSAO:")
-    for i in p:
-        print(i)
+    # print("--------------EXPRESSAO:")
+    # for i in p:
+    #     print(i)
     
 def p_aritimetico(p):
     '''aritimetico  : expressao OPERADOR_DIVISAO expressao
@@ -147,22 +113,32 @@ def p_aritimetico(p):
                     | expressao OPERADOR_MAIS expressao
                     | expressao OPERADOR_MENOS expressao
     '''
-    if p[2] == '+':
-        p[0] = float(p[1]) + float(p[3])
-    elif p[2] == '-':
-        p[0] = float(p[1]) - float(p[3])
-    elif p[2] == '*':
-        p[0] = float(p[1]) * float(p[3])
-    elif p[2] == '/':
-        p[0] = float(p[1]) /  float(p[3])
-    print("ARITIMETICO: ",p)
-    for i in p:
-        print(i)
+    match p[2]:
+        case '+':
+            p[0] = f'{p[1]} + {p[3]}'
+        case '-':
+            p[0] = f'{p[1]} - {p[3]}'
+        case '*':
+            p[0] = f'{p[1]} * {p[3]}'
+        case '/':
+            p[0] = f'{p[1]} / {p[3]}'
         
 def p_atribuicao(p):
     '''
     atribuicao : ATRIBUIR expressao
-               | ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE   
+               | ATRIBUIR ABRECOLCHETE lista FECHACOLCHETE   
+    '''
+    if len(p) == 3:
+        p[0] = f'= {p[2]}'
+    else:
+        p[0] = f'= [{p[2]}]'
+
+def p_lista(p):
+    '''
+    lista : NUM
+          | ID
+          | lista VIRGULA NUM
+          
     '''
 
 def p_atribuir(p):
@@ -171,9 +147,9 @@ def p_atribuir(p):
              | TIPO ID atribuicao PONTOEVIRGULA 
              | TIPO ID ATRIBUIR expressao PONTOEVIRGULA 
     '''
-    print("--------------ATRIBUIR: ")
-    for i in p:
-        print(i)
+    # print("--------------ATRIBUIR: ")
+    # for i in p:
+    #     print(i)
        
     variaveis.append({'nome': p[2], 'valor': p[4]})
     #imprimindo apenas valor:
@@ -198,16 +174,22 @@ def p_condicional(p):
 def p_condicional_atomica(p):
     '''
     atomica : RESPOSTABOOLEANA
-            | NUM
             | ID
+            | NUM
             | NAO condicional
             | condicional RELACIONAL condicional
             | condicional LOGICO condicional
     '''
+    #se for um id, buscar na lista de variaveis
+
     tamanho = len(p)
     if tamanho == 2:
+        for i in variaveis:
+            if i['nome'] == p[1]:
+                p[1] = int(i['valor'])
+
         p[0] = p[1]
-        
+
     elif tamanho == 3:
         p[0] = not p[1]
 
@@ -231,9 +213,14 @@ def p_enqt(p):
     ''' 
     enqt : ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
     '''
-    while p[2]:
-        print('foi')
-        p[0] = p[6]
+    # while p[2]:
+    #     print(p[6])
+    #     break
+    while true:
+        if (p[2] == False) or (p[2] == 0):
+            break
+        else:
+            p[0] = p[6]
     print("--------------ENQT:")
     for i in p:
         print(i)

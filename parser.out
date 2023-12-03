@@ -30,54 +30,49 @@ Grammar
 Rule 0     S' -> programa
 Rule 1     programa -> inicio
 Rule 2     inicio -> INICIO ABRECHAVE blocos FECHACHAVE
-Rule 3     tipo -> TXT
-Rule 4     tipo -> NUM
-Rule 5     txt -> TXT
-Rule 6     le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
-Rule 7     le -> LE ABREPARENTESE ID FECHAPARENTESE
-Rule 8     imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
-Rule 9     imp -> IMP ABREPARENTESE expressao FECHAPARENTESE
-Rule 10    blocos -> bloco blocos
-Rule 11    blocos -> bloco
-Rule 12    bloco -> enqt
-Rule 13    bloco -> imp
-Rule 14    bloco -> le
-Rule 15    bloco -> atribuir
-Rule 16    bloco -> atribuicao
-Rule 17    bloco -> expressao
-Rule 18    expressao -> ID
-Rule 19    expressao -> NUM
-Rule 20    expressao -> TXT
-Rule 21    expressao -> aritimetico
-Rule 22    expressao -> ABREPARENTESE expressao FECHAPARENTESE
-Rule 23    expressao -> RESPOSTABOOLEANA
-Rule 24    aritimetico -> expressao OPERADOR_DIVISAO expressao
-Rule 25    aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao
-Rule 26    aritimetico -> expressao OPERADOR_MAIS expressao
-Rule 27    aritimetico -> expressao OPERADOR_MENOS expressao
-Rule 28    atribuicao -> ATRIBUIR expressao
-Rule 29    atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE
-Rule 30    atribuir -> ID atribuicao PONTOEVIRGULA
-Rule 31    atribuir -> TIPO ID atribuicao PONTOEVIRGULA
-Rule 32    atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA
-Rule 33    condicional -> atomica
-Rule 34    condicional -> atomica LOGICO atomica
-Rule 35    atomica -> RESPOSTABOOLEANA
-Rule 36    atomica -> NUM
-Rule 37    atomica -> ID
-Rule 38    atomica -> NAO condicional
-Rule 39    atomica -> condicional RELACIONAL condicional
-Rule 40    atomica -> condicional LOGICO condicional
-Rule 41    enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
+Rule 3     le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
+Rule 4     imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
+Rule 5     blocos -> bloco blocos
+Rule 6     blocos -> bloco
+Rule 7     bloco -> enqt
+Rule 8     bloco -> imp
+Rule 9     bloco -> le
+Rule 10    bloco -> atribuir
+Rule 11    bloco -> atribuicao
+Rule 12    bloco -> expressao
+Rule 13    expressao -> ID
+Rule 14    expressao -> NUM
+Rule 15    expressao -> TXT
+Rule 16    expressao -> aritimetico
+Rule 17    expressao -> ABREPARENTESE expressao FECHAPARENTESE
+Rule 18    expressao -> RESPOSTABOOLEANA
+Rule 19    aritimetico -> expressao OPERADOR_DIVISAO expressao
+Rule 20    aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao
+Rule 21    aritimetico -> expressao OPERADOR_MAIS expressao
+Rule 22    aritimetico -> expressao OPERADOR_MENOS expressao
+Rule 23    atribuicao -> ATRIBUIR expressao
+Rule 24    atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE
+Rule 25    atribuir -> ID atribuicao PONTOEVIRGULA
+Rule 26    atribuir -> TIPO ID atribuicao PONTOEVIRGULA
+Rule 27    atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA
+Rule 28    condicional -> atomica
+Rule 29    condicional -> atomica LOGICO atomica
+Rule 30    atomica -> RESPOSTABOOLEANA
+Rule 31    atomica -> ID
+Rule 32    atomica -> NUM
+Rule 33    atomica -> NAO condicional
+Rule 34    atomica -> condicional RELACIONAL condicional
+Rule 35    atomica -> condicional LOGICO condicional
+Rule 36    enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
 
 Terminals, with rules where they appear
 
 ABREASPAS            : 
-ABRECHAVE            : 2 41
-ABRECOLCHETE         : 29
-ABREPARENTESE        : 6 7 8 9 22 41
+ABRECHAVE            : 2 36
+ABRECOLCHETE         : 24
+ABREPARENTESE        : 3 4 17 36
 ATRIBUICAO           : 
-ATRIBUIR             : 28 29 32
+ATRIBUIR             : 23 24 27
 BLOCO                : 
 BLOCOS               : 
 CARACTERE            : 
@@ -85,36 +80,36 @@ COMENTARIOS          :
 DEFVARIAVEL          : 
 DIGITO               : 
 E                    : 
-ENQT                 : 41
+ENQT                 : 36
 ESPACO               : 
 FECHAASPAS           : 
-FECHACHAVE           : 2 41
-FECHACOLCHETE        : 29
-FECHAPARENTESE       : 6 7 8 9 22 41
+FECHACHAVE           : 2 36
+FECHACOLCHETE        : 24
+FECHAPARENTESE       : 3 4 17 36
 FIM                  : 
-ID                   : 6 7 18 30 31 32 37
-IMP                  : 8 9
+ID                   : 3 13 25 26 27 31
+IMP                  : 4
 INICIO               : 2
-LE                   : 6 7
+LE                   : 3
 LINETERMINATOR       : 
-LOGICO               : 34 40
-NAO                  : 38
-NUM                  : 4 19 36
-OPERADOR_DIVISAO     : 24
-OPERADOR_MAIS        : 26
-OPERADOR_MENOS       : 27
-OPERADOR_MULTIPLICACAO : 25
+LOGICO               : 29 35
+NAO                  : 33
+NUM                  : 14 32
+OPERADOR_DIVISAO     : 19
+OPERADOR_MAIS        : 21
+OPERADOR_MENOS       : 22
+OPERADOR_MULTIPLICACAO : 20
 OU                   : 
-PONTOEVIRGULA        : 6 8 30 31 32
+PONTOEVIRGULA        : 3 4 25 26 27
 PRA                  : 
 QUEBRALINHA          : 
-RELACIONAL           : 39
-RESPOSTABOOLEANA     : 23 35
+RELACIONAL           : 34
+RESPOSTABOOLEANA     : 18 30
 SE                   : 
 SENAO                : 
 SIMBOLO              : 
-TIPO                 : 6 31 32
-TXT                  : 3 5 20
+TIPO                 : 3 26 27
+TXT                  : 15
 VET                  : 
 VF                   : 
 VIRGULA              : 
@@ -122,21 +117,19 @@ error                :
 
 Nonterminals, with rules where they appear
 
-aritimetico          : 21
-atomica              : 33 34 34
-atribuicao           : 16 30 31
-atribuir             : 15
-bloco                : 10 11 41
-blocos               : 2 10
-condicional          : 38 39 39 40 40 41
-enqt                 : 12
-expressao            : 8 9 17 22 24 24 25 25 26 26 27 27 28 29 32
-imp                  : 13
+aritimetico          : 16
+atomica              : 28 29 29
+atribuicao           : 11 25 26
+atribuir             : 10
+bloco                : 5 6 36
+blocos               : 2 5
+condicional          : 33 34 34 35 35 36
+enqt                 : 7
+expressao            : 4 12 17 19 19 20 20 21 21 22 22 23 24 27
+imp                  : 8
 inicio               : 1
-le                   : 14
+le                   : 9
 programa             : 0
-tipo                 : 
-txt                  : 
 
 Parsing method: LALR
 
@@ -174,34 +167,32 @@ state 3
 state 4
 
     (2) inicio -> INICIO ABRECHAVE . blocos FECHACHAVE
-    (10) blocos -> . bloco blocos
-    (11) blocos -> . bloco
-    (12) bloco -> . enqt
-    (13) bloco -> . imp
-    (14) bloco -> . le
-    (15) bloco -> . atribuir
-    (16) bloco -> . atribuicao
-    (17) bloco -> . expressao
-    (41) enqt -> . ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
-    (8) imp -> . IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
-    (9) imp -> . IMP ABREPARENTESE expressao FECHAPARENTESE
-    (6) le -> . LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
-    (7) le -> . LE ABREPARENTESE ID FECHAPARENTESE
-    (30) atribuir -> . ID atribuicao PONTOEVIRGULA
-    (31) atribuir -> . TIPO ID atribuicao PONTOEVIRGULA
-    (32) atribuir -> . TIPO ID ATRIBUIR expressao PONTOEVIRGULA
-    (28) atribuicao -> . ATRIBUIR expressao
-    (29) atribuicao -> . ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE
-    (18) expressao -> . ID
-    (19) expressao -> . NUM
-    (20) expressao -> . TXT
-    (21) expressao -> . aritimetico
-    (22) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
-    (23) expressao -> . RESPOSTABOOLEANA
-    (24) aritimetico -> . expressao OPERADOR_DIVISAO expressao
-    (25) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> . expressao OPERADOR_MAIS expressao
-    (27) aritimetico -> . expressao OPERADOR_MENOS expressao
+    (5) blocos -> . bloco blocos
+    (6) blocos -> . bloco
+    (7) bloco -> . enqt
+    (8) bloco -> . imp
+    (9) bloco -> . le
+    (10) bloco -> . atribuir
+    (11) bloco -> . atribuicao
+    (12) bloco -> . expressao
+    (36) enqt -> . ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
+    (4) imp -> . IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
+    (3) le -> . LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
+    (25) atribuir -> . ID atribuicao PONTOEVIRGULA
+    (26) atribuir -> . TIPO ID atribuicao PONTOEVIRGULA
+    (27) atribuir -> . TIPO ID ATRIBUIR expressao PONTOEVIRGULA
+    (23) atribuicao -> . ATRIBUIR expressao
+    (24) atribuicao -> . ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE
+    (13) expressao -> . ID
+    (14) expressao -> . NUM
+    (15) expressao -> . TXT
+    (16) expressao -> . aritimetico
+    (17) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
+    (18) expressao -> . RESPOSTABOOLEANA
+    (19) aritimetico -> . expressao OPERADOR_DIVISAO expressao
+    (20) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> . expressao OPERADOR_MAIS expressao
+    (22) aritimetico -> . expressao OPERADOR_MENOS expressao
 
     ABREPARENTESE   shift and go to state 13
     IMP             shift and go to state 14
@@ -232,38 +223,36 @@ state 5
 
 state 6
 
-    (10) blocos -> bloco . blocos
-    (11) blocos -> bloco .
-    (10) blocos -> . bloco blocos
-    (11) blocos -> . bloco
-    (12) bloco -> . enqt
-    (13) bloco -> . imp
-    (14) bloco -> . le
-    (15) bloco -> . atribuir
-    (16) bloco -> . atribuicao
-    (17) bloco -> . expressao
-    (41) enqt -> . ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
-    (8) imp -> . IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
-    (9) imp -> . IMP ABREPARENTESE expressao FECHAPARENTESE
-    (6) le -> . LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
-    (7) le -> . LE ABREPARENTESE ID FECHAPARENTESE
-    (30) atribuir -> . ID atribuicao PONTOEVIRGULA
-    (31) atribuir -> . TIPO ID atribuicao PONTOEVIRGULA
-    (32) atribuir -> . TIPO ID ATRIBUIR expressao PONTOEVIRGULA
-    (28) atribuicao -> . ATRIBUIR expressao
-    (29) atribuicao -> . ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE
-    (18) expressao -> . ID
-    (19) expressao -> . NUM
-    (20) expressao -> . TXT
-    (21) expressao -> . aritimetico
-    (22) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
-    (23) expressao -> . RESPOSTABOOLEANA
-    (24) aritimetico -> . expressao OPERADOR_DIVISAO expressao
-    (25) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> . expressao OPERADOR_MAIS expressao
-    (27) aritimetico -> . expressao OPERADOR_MENOS expressao
+    (5) blocos -> bloco . blocos
+    (6) blocos -> bloco .
+    (5) blocos -> . bloco blocos
+    (6) blocos -> . bloco
+    (7) bloco -> . enqt
+    (8) bloco -> . imp
+    (9) bloco -> . le
+    (10) bloco -> . atribuir
+    (11) bloco -> . atribuicao
+    (12) bloco -> . expressao
+    (36) enqt -> . ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
+    (4) imp -> . IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
+    (3) le -> . LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
+    (25) atribuir -> . ID atribuicao PONTOEVIRGULA
+    (26) atribuir -> . TIPO ID atribuicao PONTOEVIRGULA
+    (27) atribuir -> . TIPO ID ATRIBUIR expressao PONTOEVIRGULA
+    (23) atribuicao -> . ATRIBUIR expressao
+    (24) atribuicao -> . ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE
+    (13) expressao -> . ID
+    (14) expressao -> . NUM
+    (15) expressao -> . TXT
+    (16) expressao -> . aritimetico
+    (17) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
+    (18) expressao -> . RESPOSTABOOLEANA
+    (19) aritimetico -> . expressao OPERADOR_DIVISAO expressao
+    (20) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> . expressao OPERADOR_MAIS expressao
+    (22) aritimetico -> . expressao OPERADOR_MENOS expressao
 
-    FECHACHAVE      reduce using rule 11 (blocos -> bloco .)
+    FECHACHAVE      reduce using rule 6 (blocos -> bloco .)
     ABREPARENTESE   shift and go to state 13
     IMP             shift and go to state 14
     LE              shift and go to state 15
@@ -286,102 +275,102 @@ state 6
 
 state 7
 
-    (12) bloco -> enqt .
+    (7) bloco -> enqt .
 
-    ABREPARENTESE   reduce using rule 12 (bloco -> enqt .)
-    IMP             reduce using rule 12 (bloco -> enqt .)
-    LE              reduce using rule 12 (bloco -> enqt .)
-    ID              reduce using rule 12 (bloco -> enqt .)
-    TIPO            reduce using rule 12 (bloco -> enqt .)
-    ATRIBUIR        reduce using rule 12 (bloco -> enqt .)
-    NUM             reduce using rule 12 (bloco -> enqt .)
-    TXT             reduce using rule 12 (bloco -> enqt .)
-    RESPOSTABOOLEANA reduce using rule 12 (bloco -> enqt .)
-    FECHACHAVE      reduce using rule 12 (bloco -> enqt .)
+    ABREPARENTESE   reduce using rule 7 (bloco -> enqt .)
+    IMP             reduce using rule 7 (bloco -> enqt .)
+    LE              reduce using rule 7 (bloco -> enqt .)
+    ID              reduce using rule 7 (bloco -> enqt .)
+    TIPO            reduce using rule 7 (bloco -> enqt .)
+    ATRIBUIR        reduce using rule 7 (bloco -> enqt .)
+    NUM             reduce using rule 7 (bloco -> enqt .)
+    TXT             reduce using rule 7 (bloco -> enqt .)
+    RESPOSTABOOLEANA reduce using rule 7 (bloco -> enqt .)
+    FECHACHAVE      reduce using rule 7 (bloco -> enqt .)
 
 
 state 8
 
-    (13) bloco -> imp .
+    (8) bloco -> imp .
 
-    ABREPARENTESE   reduce using rule 13 (bloco -> imp .)
-    IMP             reduce using rule 13 (bloco -> imp .)
-    LE              reduce using rule 13 (bloco -> imp .)
-    ID              reduce using rule 13 (bloco -> imp .)
-    TIPO            reduce using rule 13 (bloco -> imp .)
-    ATRIBUIR        reduce using rule 13 (bloco -> imp .)
-    NUM             reduce using rule 13 (bloco -> imp .)
-    TXT             reduce using rule 13 (bloco -> imp .)
-    RESPOSTABOOLEANA reduce using rule 13 (bloco -> imp .)
-    FECHACHAVE      reduce using rule 13 (bloco -> imp .)
+    ABREPARENTESE   reduce using rule 8 (bloco -> imp .)
+    IMP             reduce using rule 8 (bloco -> imp .)
+    LE              reduce using rule 8 (bloco -> imp .)
+    ID              reduce using rule 8 (bloco -> imp .)
+    TIPO            reduce using rule 8 (bloco -> imp .)
+    ATRIBUIR        reduce using rule 8 (bloco -> imp .)
+    NUM             reduce using rule 8 (bloco -> imp .)
+    TXT             reduce using rule 8 (bloco -> imp .)
+    RESPOSTABOOLEANA reduce using rule 8 (bloco -> imp .)
+    FECHACHAVE      reduce using rule 8 (bloco -> imp .)
 
 
 state 9
 
-    (14) bloco -> le .
+    (9) bloco -> le .
 
-    ABREPARENTESE   reduce using rule 14 (bloco -> le .)
-    IMP             reduce using rule 14 (bloco -> le .)
-    LE              reduce using rule 14 (bloco -> le .)
-    ID              reduce using rule 14 (bloco -> le .)
-    TIPO            reduce using rule 14 (bloco -> le .)
-    ATRIBUIR        reduce using rule 14 (bloco -> le .)
-    NUM             reduce using rule 14 (bloco -> le .)
-    TXT             reduce using rule 14 (bloco -> le .)
-    RESPOSTABOOLEANA reduce using rule 14 (bloco -> le .)
-    FECHACHAVE      reduce using rule 14 (bloco -> le .)
+    ABREPARENTESE   reduce using rule 9 (bloco -> le .)
+    IMP             reduce using rule 9 (bloco -> le .)
+    LE              reduce using rule 9 (bloco -> le .)
+    ID              reduce using rule 9 (bloco -> le .)
+    TIPO            reduce using rule 9 (bloco -> le .)
+    ATRIBUIR        reduce using rule 9 (bloco -> le .)
+    NUM             reduce using rule 9 (bloco -> le .)
+    TXT             reduce using rule 9 (bloco -> le .)
+    RESPOSTABOOLEANA reduce using rule 9 (bloco -> le .)
+    FECHACHAVE      reduce using rule 9 (bloco -> le .)
 
 
 state 10
 
-    (15) bloco -> atribuir .
+    (10) bloco -> atribuir .
 
-    ABREPARENTESE   reduce using rule 15 (bloco -> atribuir .)
-    IMP             reduce using rule 15 (bloco -> atribuir .)
-    LE              reduce using rule 15 (bloco -> atribuir .)
-    ID              reduce using rule 15 (bloco -> atribuir .)
-    TIPO            reduce using rule 15 (bloco -> atribuir .)
-    ATRIBUIR        reduce using rule 15 (bloco -> atribuir .)
-    NUM             reduce using rule 15 (bloco -> atribuir .)
-    TXT             reduce using rule 15 (bloco -> atribuir .)
-    RESPOSTABOOLEANA reduce using rule 15 (bloco -> atribuir .)
-    FECHACHAVE      reduce using rule 15 (bloco -> atribuir .)
+    ABREPARENTESE   reduce using rule 10 (bloco -> atribuir .)
+    IMP             reduce using rule 10 (bloco -> atribuir .)
+    LE              reduce using rule 10 (bloco -> atribuir .)
+    ID              reduce using rule 10 (bloco -> atribuir .)
+    TIPO            reduce using rule 10 (bloco -> atribuir .)
+    ATRIBUIR        reduce using rule 10 (bloco -> atribuir .)
+    NUM             reduce using rule 10 (bloco -> atribuir .)
+    TXT             reduce using rule 10 (bloco -> atribuir .)
+    RESPOSTABOOLEANA reduce using rule 10 (bloco -> atribuir .)
+    FECHACHAVE      reduce using rule 10 (bloco -> atribuir .)
 
 
 state 11
 
-    (16) bloco -> atribuicao .
+    (11) bloco -> atribuicao .
 
-    ABREPARENTESE   reduce using rule 16 (bloco -> atribuicao .)
-    IMP             reduce using rule 16 (bloco -> atribuicao .)
-    LE              reduce using rule 16 (bloco -> atribuicao .)
-    ID              reduce using rule 16 (bloco -> atribuicao .)
-    TIPO            reduce using rule 16 (bloco -> atribuicao .)
-    ATRIBUIR        reduce using rule 16 (bloco -> atribuicao .)
-    NUM             reduce using rule 16 (bloco -> atribuicao .)
-    TXT             reduce using rule 16 (bloco -> atribuicao .)
-    RESPOSTABOOLEANA reduce using rule 16 (bloco -> atribuicao .)
-    FECHACHAVE      reduce using rule 16 (bloco -> atribuicao .)
+    ABREPARENTESE   reduce using rule 11 (bloco -> atribuicao .)
+    IMP             reduce using rule 11 (bloco -> atribuicao .)
+    LE              reduce using rule 11 (bloco -> atribuicao .)
+    ID              reduce using rule 11 (bloco -> atribuicao .)
+    TIPO            reduce using rule 11 (bloco -> atribuicao .)
+    ATRIBUIR        reduce using rule 11 (bloco -> atribuicao .)
+    NUM             reduce using rule 11 (bloco -> atribuicao .)
+    TXT             reduce using rule 11 (bloco -> atribuicao .)
+    RESPOSTABOOLEANA reduce using rule 11 (bloco -> atribuicao .)
+    FECHACHAVE      reduce using rule 11 (bloco -> atribuicao .)
 
 
 state 12
 
-    (17) bloco -> expressao .
-    (24) aritimetico -> expressao . OPERADOR_DIVISAO expressao
-    (25) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> expressao . OPERADOR_MAIS expressao
-    (27) aritimetico -> expressao . OPERADOR_MENOS expressao
+    (12) bloco -> expressao .
+    (19) aritimetico -> expressao . OPERADOR_DIVISAO expressao
+    (20) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> expressao . OPERADOR_MAIS expressao
+    (22) aritimetico -> expressao . OPERADOR_MENOS expressao
 
-    ABREPARENTESE   reduce using rule 17 (bloco -> expressao .)
-    IMP             reduce using rule 17 (bloco -> expressao .)
-    LE              reduce using rule 17 (bloco -> expressao .)
-    ID              reduce using rule 17 (bloco -> expressao .)
-    TIPO            reduce using rule 17 (bloco -> expressao .)
-    ATRIBUIR        reduce using rule 17 (bloco -> expressao .)
-    NUM             reduce using rule 17 (bloco -> expressao .)
-    TXT             reduce using rule 17 (bloco -> expressao .)
-    RESPOSTABOOLEANA reduce using rule 17 (bloco -> expressao .)
-    FECHACHAVE      reduce using rule 17 (bloco -> expressao .)
+    ABREPARENTESE   reduce using rule 12 (bloco -> expressao .)
+    IMP             reduce using rule 12 (bloco -> expressao .)
+    LE              reduce using rule 12 (bloco -> expressao .)
+    ID              reduce using rule 12 (bloco -> expressao .)
+    TIPO            reduce using rule 12 (bloco -> expressao .)
+    ATRIBUIR        reduce using rule 12 (bloco -> expressao .)
+    NUM             reduce using rule 12 (bloco -> expressao .)
+    TXT             reduce using rule 12 (bloco -> expressao .)
+    RESPOSTABOOLEANA reduce using rule 12 (bloco -> expressao .)
+    FECHACHAVE      reduce using rule 12 (bloco -> expressao .)
     OPERADOR_DIVISAO shift and go to state 25
     OPERADOR_MULTIPLICACAO shift and go to state 26
     OPERADOR_MAIS   shift and go to state 27
@@ -390,26 +379,26 @@ state 12
 
 state 13
 
-    (41) enqt -> ABREPARENTESE . condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
-    (22) expressao -> ABREPARENTESE . expressao FECHAPARENTESE
-    (33) condicional -> . atomica
-    (34) condicional -> . atomica LOGICO atomica
-    (18) expressao -> . ID
-    (19) expressao -> . NUM
-    (20) expressao -> . TXT
-    (21) expressao -> . aritimetico
-    (22) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
-    (23) expressao -> . RESPOSTABOOLEANA
-    (35) atomica -> . RESPOSTABOOLEANA
-    (36) atomica -> . NUM
-    (37) atomica -> . ID
-    (38) atomica -> . NAO condicional
-    (39) atomica -> . condicional RELACIONAL condicional
-    (40) atomica -> . condicional LOGICO condicional
-    (24) aritimetico -> . expressao OPERADOR_DIVISAO expressao
-    (25) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> . expressao OPERADOR_MAIS expressao
-    (27) aritimetico -> . expressao OPERADOR_MENOS expressao
+    (36) enqt -> ABREPARENTESE . condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
+    (17) expressao -> ABREPARENTESE . expressao FECHAPARENTESE
+    (28) condicional -> . atomica
+    (29) condicional -> . atomica LOGICO atomica
+    (13) expressao -> . ID
+    (14) expressao -> . NUM
+    (15) expressao -> . TXT
+    (16) expressao -> . aritimetico
+    (17) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
+    (18) expressao -> . RESPOSTABOOLEANA
+    (30) atomica -> . RESPOSTABOOLEANA
+    (31) atomica -> . ID
+    (32) atomica -> . NUM
+    (33) atomica -> . NAO condicional
+    (34) atomica -> . condicional RELACIONAL condicional
+    (35) atomica -> . condicional LOGICO condicional
+    (19) aritimetico -> . expressao OPERADOR_DIVISAO expressao
+    (20) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> . expressao OPERADOR_MAIS expressao
+    (22) aritimetico -> . expressao OPERADOR_MENOS expressao
 
     ID              shift and go to state 33
     NUM             shift and go to state 34
@@ -425,69 +414,67 @@ state 13
 
 state 14
 
-    (8) imp -> IMP . ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
-    (9) imp -> IMP . ABREPARENTESE expressao FECHAPARENTESE
+    (4) imp -> IMP . ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
 
     ABREPARENTESE   shift and go to state 37
 
 
 state 15
 
-    (6) le -> LE . ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
-    (7) le -> LE . ABREPARENTESE ID FECHAPARENTESE
+    (3) le -> LE . ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
 
     ABREPARENTESE   shift and go to state 38
 
 
 state 16
 
-    (31) atribuir -> TIPO . ID atribuicao PONTOEVIRGULA
-    (32) atribuir -> TIPO . ID ATRIBUIR expressao PONTOEVIRGULA
+    (26) atribuir -> TIPO . ID atribuicao PONTOEVIRGULA
+    (27) atribuir -> TIPO . ID ATRIBUIR expressao PONTOEVIRGULA
 
     ID              shift and go to state 39
 
 
 state 17
 
-    (30) atribuir -> ID . atribuicao PONTOEVIRGULA
-    (18) expressao -> ID .
-    (28) atribuicao -> . ATRIBUIR expressao
-    (29) atribuicao -> . ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE
+    (25) atribuir -> ID . atribuicao PONTOEVIRGULA
+    (13) expressao -> ID .
+    (23) atribuicao -> . ATRIBUIR expressao
+    (24) atribuicao -> . ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE
 
   ! shift/reduce conflict for ATRIBUIR resolved as shift
-    OPERADOR_DIVISAO reduce using rule 18 (expressao -> ID .)
-    OPERADOR_MULTIPLICACAO reduce using rule 18 (expressao -> ID .)
-    OPERADOR_MAIS   reduce using rule 18 (expressao -> ID .)
-    OPERADOR_MENOS  reduce using rule 18 (expressao -> ID .)
-    ABREPARENTESE   reduce using rule 18 (expressao -> ID .)
-    IMP             reduce using rule 18 (expressao -> ID .)
-    LE              reduce using rule 18 (expressao -> ID .)
-    ID              reduce using rule 18 (expressao -> ID .)
-    TIPO            reduce using rule 18 (expressao -> ID .)
-    NUM             reduce using rule 18 (expressao -> ID .)
-    TXT             reduce using rule 18 (expressao -> ID .)
-    RESPOSTABOOLEANA reduce using rule 18 (expressao -> ID .)
-    FECHACHAVE      reduce using rule 18 (expressao -> ID .)
+    OPERADOR_DIVISAO reduce using rule 13 (expressao -> ID .)
+    OPERADOR_MULTIPLICACAO reduce using rule 13 (expressao -> ID .)
+    OPERADOR_MAIS   reduce using rule 13 (expressao -> ID .)
+    OPERADOR_MENOS  reduce using rule 13 (expressao -> ID .)
+    ABREPARENTESE   reduce using rule 13 (expressao -> ID .)
+    IMP             reduce using rule 13 (expressao -> ID .)
+    LE              reduce using rule 13 (expressao -> ID .)
+    ID              reduce using rule 13 (expressao -> ID .)
+    TIPO            reduce using rule 13 (expressao -> ID .)
+    NUM             reduce using rule 13 (expressao -> ID .)
+    TXT             reduce using rule 13 (expressao -> ID .)
+    RESPOSTABOOLEANA reduce using rule 13 (expressao -> ID .)
+    FECHACHAVE      reduce using rule 13 (expressao -> ID .)
     ATRIBUIR        shift and go to state 18
 
-  ! ATRIBUIR        [ reduce using rule 18 (expressao -> ID .) ]
+  ! ATRIBUIR        [ reduce using rule 13 (expressao -> ID .) ]
 
     atribuicao                     shift and go to state 40
 
 state 18
 
-    (28) atribuicao -> ATRIBUIR . expressao
-    (29) atribuicao -> ATRIBUIR . ABRECOLCHETE expressao FECHACOLCHETE
-    (18) expressao -> . ID
-    (19) expressao -> . NUM
-    (20) expressao -> . TXT
-    (21) expressao -> . aritimetico
-    (22) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
-    (23) expressao -> . RESPOSTABOOLEANA
-    (24) aritimetico -> . expressao OPERADOR_DIVISAO expressao
-    (25) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> . expressao OPERADOR_MAIS expressao
-    (27) aritimetico -> . expressao OPERADOR_MENOS expressao
+    (23) atribuicao -> ATRIBUIR . expressao
+    (24) atribuicao -> ATRIBUIR . ABRECOLCHETE expressao FECHACOLCHETE
+    (13) expressao -> . ID
+    (14) expressao -> . NUM
+    (15) expressao -> . TXT
+    (16) expressao -> . aritimetico
+    (17) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
+    (18) expressao -> . RESPOSTABOOLEANA
+    (19) aritimetico -> . expressao OPERADOR_DIVISAO expressao
+    (20) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> . expressao OPERADOR_MAIS expressao
+    (22) aritimetico -> . expressao OPERADOR_MENOS expressao
 
     ABRECOLCHETE    shift and go to state 42
     ID              shift and go to state 43
@@ -501,94 +488,94 @@ state 18
 
 state 19
 
-    (19) expressao -> NUM .
+    (14) expressao -> NUM .
 
-    OPERADOR_DIVISAO reduce using rule 19 (expressao -> NUM .)
-    OPERADOR_MULTIPLICACAO reduce using rule 19 (expressao -> NUM .)
-    OPERADOR_MAIS   reduce using rule 19 (expressao -> NUM .)
-    OPERADOR_MENOS  reduce using rule 19 (expressao -> NUM .)
-    ABREPARENTESE   reduce using rule 19 (expressao -> NUM .)
-    IMP             reduce using rule 19 (expressao -> NUM .)
-    LE              reduce using rule 19 (expressao -> NUM .)
-    ID              reduce using rule 19 (expressao -> NUM .)
-    TIPO            reduce using rule 19 (expressao -> NUM .)
-    ATRIBUIR        reduce using rule 19 (expressao -> NUM .)
-    NUM             reduce using rule 19 (expressao -> NUM .)
-    TXT             reduce using rule 19 (expressao -> NUM .)
-    RESPOSTABOOLEANA reduce using rule 19 (expressao -> NUM .)
-    FECHACHAVE      reduce using rule 19 (expressao -> NUM .)
-    PONTOEVIRGULA   reduce using rule 19 (expressao -> NUM .)
-    FECHAPARENTESE  reduce using rule 19 (expressao -> NUM .)
-    FECHACOLCHETE   reduce using rule 19 (expressao -> NUM .)
+    OPERADOR_DIVISAO reduce using rule 14 (expressao -> NUM .)
+    OPERADOR_MULTIPLICACAO reduce using rule 14 (expressao -> NUM .)
+    OPERADOR_MAIS   reduce using rule 14 (expressao -> NUM .)
+    OPERADOR_MENOS  reduce using rule 14 (expressao -> NUM .)
+    ABREPARENTESE   reduce using rule 14 (expressao -> NUM .)
+    IMP             reduce using rule 14 (expressao -> NUM .)
+    LE              reduce using rule 14 (expressao -> NUM .)
+    ID              reduce using rule 14 (expressao -> NUM .)
+    TIPO            reduce using rule 14 (expressao -> NUM .)
+    ATRIBUIR        reduce using rule 14 (expressao -> NUM .)
+    NUM             reduce using rule 14 (expressao -> NUM .)
+    TXT             reduce using rule 14 (expressao -> NUM .)
+    RESPOSTABOOLEANA reduce using rule 14 (expressao -> NUM .)
+    FECHACHAVE      reduce using rule 14 (expressao -> NUM .)
+    PONTOEVIRGULA   reduce using rule 14 (expressao -> NUM .)
+    FECHAPARENTESE  reduce using rule 14 (expressao -> NUM .)
+    FECHACOLCHETE   reduce using rule 14 (expressao -> NUM .)
 
 
 state 20
 
-    (20) expressao -> TXT .
+    (15) expressao -> TXT .
 
-    OPERADOR_DIVISAO reduce using rule 20 (expressao -> TXT .)
-    OPERADOR_MULTIPLICACAO reduce using rule 20 (expressao -> TXT .)
-    OPERADOR_MAIS   reduce using rule 20 (expressao -> TXT .)
-    OPERADOR_MENOS  reduce using rule 20 (expressao -> TXT .)
-    ABREPARENTESE   reduce using rule 20 (expressao -> TXT .)
-    IMP             reduce using rule 20 (expressao -> TXT .)
-    LE              reduce using rule 20 (expressao -> TXT .)
-    ID              reduce using rule 20 (expressao -> TXT .)
-    TIPO            reduce using rule 20 (expressao -> TXT .)
-    ATRIBUIR        reduce using rule 20 (expressao -> TXT .)
-    NUM             reduce using rule 20 (expressao -> TXT .)
-    TXT             reduce using rule 20 (expressao -> TXT .)
-    RESPOSTABOOLEANA reduce using rule 20 (expressao -> TXT .)
-    FECHACHAVE      reduce using rule 20 (expressao -> TXT .)
-    FECHAPARENTESE  reduce using rule 20 (expressao -> TXT .)
-    PONTOEVIRGULA   reduce using rule 20 (expressao -> TXT .)
-    FECHACOLCHETE   reduce using rule 20 (expressao -> TXT .)
+    OPERADOR_DIVISAO reduce using rule 15 (expressao -> TXT .)
+    OPERADOR_MULTIPLICACAO reduce using rule 15 (expressao -> TXT .)
+    OPERADOR_MAIS   reduce using rule 15 (expressao -> TXT .)
+    OPERADOR_MENOS  reduce using rule 15 (expressao -> TXT .)
+    ABREPARENTESE   reduce using rule 15 (expressao -> TXT .)
+    IMP             reduce using rule 15 (expressao -> TXT .)
+    LE              reduce using rule 15 (expressao -> TXT .)
+    ID              reduce using rule 15 (expressao -> TXT .)
+    TIPO            reduce using rule 15 (expressao -> TXT .)
+    ATRIBUIR        reduce using rule 15 (expressao -> TXT .)
+    NUM             reduce using rule 15 (expressao -> TXT .)
+    TXT             reduce using rule 15 (expressao -> TXT .)
+    RESPOSTABOOLEANA reduce using rule 15 (expressao -> TXT .)
+    FECHACHAVE      reduce using rule 15 (expressao -> TXT .)
+    FECHAPARENTESE  reduce using rule 15 (expressao -> TXT .)
+    PONTOEVIRGULA   reduce using rule 15 (expressao -> TXT .)
+    FECHACOLCHETE   reduce using rule 15 (expressao -> TXT .)
 
 
 state 21
 
-    (21) expressao -> aritimetico .
+    (16) expressao -> aritimetico .
 
-    OPERADOR_DIVISAO reduce using rule 21 (expressao -> aritimetico .)
-    OPERADOR_MULTIPLICACAO reduce using rule 21 (expressao -> aritimetico .)
-    OPERADOR_MAIS   reduce using rule 21 (expressao -> aritimetico .)
-    OPERADOR_MENOS  reduce using rule 21 (expressao -> aritimetico .)
-    ABREPARENTESE   reduce using rule 21 (expressao -> aritimetico .)
-    IMP             reduce using rule 21 (expressao -> aritimetico .)
-    LE              reduce using rule 21 (expressao -> aritimetico .)
-    ID              reduce using rule 21 (expressao -> aritimetico .)
-    TIPO            reduce using rule 21 (expressao -> aritimetico .)
-    ATRIBUIR        reduce using rule 21 (expressao -> aritimetico .)
-    NUM             reduce using rule 21 (expressao -> aritimetico .)
-    TXT             reduce using rule 21 (expressao -> aritimetico .)
-    RESPOSTABOOLEANA reduce using rule 21 (expressao -> aritimetico .)
-    FECHACHAVE      reduce using rule 21 (expressao -> aritimetico .)
-    FECHAPARENTESE  reduce using rule 21 (expressao -> aritimetico .)
-    PONTOEVIRGULA   reduce using rule 21 (expressao -> aritimetico .)
-    FECHACOLCHETE   reduce using rule 21 (expressao -> aritimetico .)
+    OPERADOR_DIVISAO reduce using rule 16 (expressao -> aritimetico .)
+    OPERADOR_MULTIPLICACAO reduce using rule 16 (expressao -> aritimetico .)
+    OPERADOR_MAIS   reduce using rule 16 (expressao -> aritimetico .)
+    OPERADOR_MENOS  reduce using rule 16 (expressao -> aritimetico .)
+    ABREPARENTESE   reduce using rule 16 (expressao -> aritimetico .)
+    IMP             reduce using rule 16 (expressao -> aritimetico .)
+    LE              reduce using rule 16 (expressao -> aritimetico .)
+    ID              reduce using rule 16 (expressao -> aritimetico .)
+    TIPO            reduce using rule 16 (expressao -> aritimetico .)
+    ATRIBUIR        reduce using rule 16 (expressao -> aritimetico .)
+    NUM             reduce using rule 16 (expressao -> aritimetico .)
+    TXT             reduce using rule 16 (expressao -> aritimetico .)
+    RESPOSTABOOLEANA reduce using rule 16 (expressao -> aritimetico .)
+    FECHACHAVE      reduce using rule 16 (expressao -> aritimetico .)
+    FECHAPARENTESE  reduce using rule 16 (expressao -> aritimetico .)
+    PONTOEVIRGULA   reduce using rule 16 (expressao -> aritimetico .)
+    FECHACOLCHETE   reduce using rule 16 (expressao -> aritimetico .)
 
 
 state 22
 
-    (23) expressao -> RESPOSTABOOLEANA .
+    (18) expressao -> RESPOSTABOOLEANA .
 
-    OPERADOR_DIVISAO reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    OPERADOR_MULTIPLICACAO reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    OPERADOR_MAIS   reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    OPERADOR_MENOS  reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    ABREPARENTESE   reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    IMP             reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    LE              reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    ID              reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    TIPO            reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    ATRIBUIR        reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    NUM             reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    TXT             reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    RESPOSTABOOLEANA reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    FECHACHAVE      reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    PONTOEVIRGULA   reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    FECHAPARENTESE  reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    FECHACOLCHETE   reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
+    OPERADOR_DIVISAO reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    OPERADOR_MULTIPLICACAO reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    OPERADOR_MAIS   reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    OPERADOR_MENOS  reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    ABREPARENTESE   reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    IMP             reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    LE              reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    ID              reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    TIPO            reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    ATRIBUIR        reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    NUM             reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    TXT             reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    RESPOSTABOOLEANA reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    FECHACHAVE      reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    PONTOEVIRGULA   reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    FECHAPARENTESE  reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    FECHACOLCHETE   reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
 
 
 state 23
@@ -600,24 +587,24 @@ state 23
 
 state 24
 
-    (10) blocos -> bloco blocos .
+    (5) blocos -> bloco blocos .
 
-    FECHACHAVE      reduce using rule 10 (blocos -> bloco blocos .)
+    FECHACHAVE      reduce using rule 5 (blocos -> bloco blocos .)
 
 
 state 25
 
-    (24) aritimetico -> expressao OPERADOR_DIVISAO . expressao
-    (18) expressao -> . ID
-    (19) expressao -> . NUM
-    (20) expressao -> . TXT
-    (21) expressao -> . aritimetico
-    (22) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
-    (23) expressao -> . RESPOSTABOOLEANA
-    (24) aritimetico -> . expressao OPERADOR_DIVISAO expressao
-    (25) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> . expressao OPERADOR_MAIS expressao
-    (27) aritimetico -> . expressao OPERADOR_MENOS expressao
+    (19) aritimetico -> expressao OPERADOR_DIVISAO . expressao
+    (13) expressao -> . ID
+    (14) expressao -> . NUM
+    (15) expressao -> . TXT
+    (16) expressao -> . aritimetico
+    (17) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
+    (18) expressao -> . RESPOSTABOOLEANA
+    (19) aritimetico -> . expressao OPERADOR_DIVISAO expressao
+    (20) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> . expressao OPERADOR_MAIS expressao
+    (22) aritimetico -> . expressao OPERADOR_MENOS expressao
 
     ID              shift and go to state 43
     NUM             shift and go to state 19
@@ -630,17 +617,17 @@ state 25
 
 state 26
 
-    (25) aritimetico -> expressao OPERADOR_MULTIPLICACAO . expressao
-    (18) expressao -> . ID
-    (19) expressao -> . NUM
-    (20) expressao -> . TXT
-    (21) expressao -> . aritimetico
-    (22) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
-    (23) expressao -> . RESPOSTABOOLEANA
-    (24) aritimetico -> . expressao OPERADOR_DIVISAO expressao
-    (25) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> . expressao OPERADOR_MAIS expressao
-    (27) aritimetico -> . expressao OPERADOR_MENOS expressao
+    (20) aritimetico -> expressao OPERADOR_MULTIPLICACAO . expressao
+    (13) expressao -> . ID
+    (14) expressao -> . NUM
+    (15) expressao -> . TXT
+    (16) expressao -> . aritimetico
+    (17) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
+    (18) expressao -> . RESPOSTABOOLEANA
+    (19) aritimetico -> . expressao OPERADOR_DIVISAO expressao
+    (20) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> . expressao OPERADOR_MAIS expressao
+    (22) aritimetico -> . expressao OPERADOR_MENOS expressao
 
     ID              shift and go to state 43
     NUM             shift and go to state 19
@@ -653,17 +640,17 @@ state 26
 
 state 27
 
-    (26) aritimetico -> expressao OPERADOR_MAIS . expressao
-    (18) expressao -> . ID
-    (19) expressao -> . NUM
-    (20) expressao -> . TXT
-    (21) expressao -> . aritimetico
-    (22) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
-    (23) expressao -> . RESPOSTABOOLEANA
-    (24) aritimetico -> . expressao OPERADOR_DIVISAO expressao
-    (25) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> . expressao OPERADOR_MAIS expressao
-    (27) aritimetico -> . expressao OPERADOR_MENOS expressao
+    (21) aritimetico -> expressao OPERADOR_MAIS . expressao
+    (13) expressao -> . ID
+    (14) expressao -> . NUM
+    (15) expressao -> . TXT
+    (16) expressao -> . aritimetico
+    (17) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
+    (18) expressao -> . RESPOSTABOOLEANA
+    (19) aritimetico -> . expressao OPERADOR_DIVISAO expressao
+    (20) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> . expressao OPERADOR_MAIS expressao
+    (22) aritimetico -> . expressao OPERADOR_MENOS expressao
 
     ID              shift and go to state 43
     NUM             shift and go to state 19
@@ -676,17 +663,17 @@ state 27
 
 state 28
 
-    (27) aritimetico -> expressao OPERADOR_MENOS . expressao
-    (18) expressao -> . ID
-    (19) expressao -> . NUM
-    (20) expressao -> . TXT
-    (21) expressao -> . aritimetico
-    (22) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
-    (23) expressao -> . RESPOSTABOOLEANA
-    (24) aritimetico -> . expressao OPERADOR_DIVISAO expressao
-    (25) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> . expressao OPERADOR_MAIS expressao
-    (27) aritimetico -> . expressao OPERADOR_MENOS expressao
+    (22) aritimetico -> expressao OPERADOR_MENOS . expressao
+    (13) expressao -> . ID
+    (14) expressao -> . NUM
+    (15) expressao -> . TXT
+    (16) expressao -> . aritimetico
+    (17) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
+    (18) expressao -> . RESPOSTABOOLEANA
+    (19) aritimetico -> . expressao OPERADOR_DIVISAO expressao
+    (20) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> . expressao OPERADOR_MAIS expressao
+    (22) aritimetico -> . expressao OPERADOR_MENOS expressao
 
     ID              shift and go to state 43
     NUM             shift and go to state 19
@@ -699,17 +686,17 @@ state 28
 
 state 29
 
-    (22) expressao -> ABREPARENTESE . expressao FECHAPARENTESE
-    (18) expressao -> . ID
-    (19) expressao -> . NUM
-    (20) expressao -> . TXT
-    (21) expressao -> . aritimetico
-    (22) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
-    (23) expressao -> . RESPOSTABOOLEANA
-    (24) aritimetico -> . expressao OPERADOR_DIVISAO expressao
-    (25) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> . expressao OPERADOR_MAIS expressao
-    (27) aritimetico -> . expressao OPERADOR_MENOS expressao
+    (17) expressao -> ABREPARENTESE . expressao FECHAPARENTESE
+    (13) expressao -> . ID
+    (14) expressao -> . NUM
+    (15) expressao -> . TXT
+    (16) expressao -> . aritimetico
+    (17) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
+    (18) expressao -> . RESPOSTABOOLEANA
+    (19) aritimetico -> . expressao OPERADOR_DIVISAO expressao
+    (20) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> . expressao OPERADOR_MAIS expressao
+    (22) aritimetico -> . expressao OPERADOR_MENOS expressao
 
     ID              shift and go to state 43
     NUM             shift and go to state 19
@@ -722,9 +709,9 @@ state 29
 
 state 30
 
-    (41) enqt -> ABREPARENTESE condicional . FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
-    (39) atomica -> condicional . RELACIONAL condicional
-    (40) atomica -> condicional . LOGICO condicional
+    (36) enqt -> ABREPARENTESE condicional . FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
+    (34) atomica -> condicional . RELACIONAL condicional
+    (35) atomica -> condicional . LOGICO condicional
 
     FECHAPARENTESE  shift and go to state 48
     RELACIONAL      shift and go to state 49
@@ -733,11 +720,11 @@ state 30
 
 state 31
 
-    (22) expressao -> ABREPARENTESE expressao . FECHAPARENTESE
-    (24) aritimetico -> expressao . OPERADOR_DIVISAO expressao
-    (25) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> expressao . OPERADOR_MAIS expressao
-    (27) aritimetico -> expressao . OPERADOR_MENOS expressao
+    (17) expressao -> ABREPARENTESE expressao . FECHAPARENTESE
+    (19) aritimetico -> expressao . OPERADOR_DIVISAO expressao
+    (20) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> expressao . OPERADOR_MAIS expressao
+    (22) aritimetico -> expressao . OPERADOR_MENOS expressao
 
     FECHAPARENTESE  shift and go to state 51
     OPERADOR_DIVISAO shift and go to state 25
@@ -748,83 +735,83 @@ state 31
 
 state 32
 
-    (33) condicional -> atomica .
-    (34) condicional -> atomica . LOGICO atomica
+    (28) condicional -> atomica .
+    (29) condicional -> atomica . LOGICO atomica
 
   ! shift/reduce conflict for LOGICO resolved as shift
-    FECHAPARENTESE  reduce using rule 33 (condicional -> atomica .)
-    RELACIONAL      reduce using rule 33 (condicional -> atomica .)
+    FECHAPARENTESE  reduce using rule 28 (condicional -> atomica .)
+    RELACIONAL      reduce using rule 28 (condicional -> atomica .)
     LOGICO          shift and go to state 52
 
-  ! LOGICO          [ reduce using rule 33 (condicional -> atomica .) ]
+  ! LOGICO          [ reduce using rule 28 (condicional -> atomica .) ]
 
 
 state 33
 
-    (18) expressao -> ID .
-    (37) atomica -> ID .
+    (13) expressao -> ID .
+    (31) atomica -> ID .
 
-  ! reduce/reduce conflict for FECHAPARENTESE resolved using rule 18 (expressao -> ID .)
-    FECHAPARENTESE  reduce using rule 18 (expressao -> ID .)
-    OPERADOR_DIVISAO reduce using rule 18 (expressao -> ID .)
-    OPERADOR_MULTIPLICACAO reduce using rule 18 (expressao -> ID .)
-    OPERADOR_MAIS   reduce using rule 18 (expressao -> ID .)
-    OPERADOR_MENOS  reduce using rule 18 (expressao -> ID .)
-    LOGICO          reduce using rule 37 (atomica -> ID .)
-    RELACIONAL      reduce using rule 37 (atomica -> ID .)
+  ! reduce/reduce conflict for FECHAPARENTESE resolved using rule 13 (expressao -> ID .)
+    FECHAPARENTESE  reduce using rule 13 (expressao -> ID .)
+    OPERADOR_DIVISAO reduce using rule 13 (expressao -> ID .)
+    OPERADOR_MULTIPLICACAO reduce using rule 13 (expressao -> ID .)
+    OPERADOR_MAIS   reduce using rule 13 (expressao -> ID .)
+    OPERADOR_MENOS  reduce using rule 13 (expressao -> ID .)
+    LOGICO          reduce using rule 31 (atomica -> ID .)
+    RELACIONAL      reduce using rule 31 (atomica -> ID .)
 
-  ! FECHAPARENTESE  [ reduce using rule 37 (atomica -> ID .) ]
+  ! FECHAPARENTESE  [ reduce using rule 31 (atomica -> ID .) ]
 
 
 state 34
 
-    (19) expressao -> NUM .
-    (36) atomica -> NUM .
+    (14) expressao -> NUM .
+    (32) atomica -> NUM .
 
-  ! reduce/reduce conflict for FECHAPARENTESE resolved using rule 19 (expressao -> NUM .)
-    FECHAPARENTESE  reduce using rule 19 (expressao -> NUM .)
-    OPERADOR_DIVISAO reduce using rule 19 (expressao -> NUM .)
-    OPERADOR_MULTIPLICACAO reduce using rule 19 (expressao -> NUM .)
-    OPERADOR_MAIS   reduce using rule 19 (expressao -> NUM .)
-    OPERADOR_MENOS  reduce using rule 19 (expressao -> NUM .)
-    LOGICO          reduce using rule 36 (atomica -> NUM .)
-    RELACIONAL      reduce using rule 36 (atomica -> NUM .)
+  ! reduce/reduce conflict for FECHAPARENTESE resolved using rule 14 (expressao -> NUM .)
+    FECHAPARENTESE  reduce using rule 14 (expressao -> NUM .)
+    OPERADOR_DIVISAO reduce using rule 14 (expressao -> NUM .)
+    OPERADOR_MULTIPLICACAO reduce using rule 14 (expressao -> NUM .)
+    OPERADOR_MAIS   reduce using rule 14 (expressao -> NUM .)
+    OPERADOR_MENOS  reduce using rule 14 (expressao -> NUM .)
+    LOGICO          reduce using rule 32 (atomica -> NUM .)
+    RELACIONAL      reduce using rule 32 (atomica -> NUM .)
 
-  ! FECHAPARENTESE  [ reduce using rule 36 (atomica -> NUM .) ]
+  ! FECHAPARENTESE  [ reduce using rule 32 (atomica -> NUM .) ]
 
 
 state 35
 
-    (23) expressao -> RESPOSTABOOLEANA .
-    (35) atomica -> RESPOSTABOOLEANA .
+    (18) expressao -> RESPOSTABOOLEANA .
+    (30) atomica -> RESPOSTABOOLEANA .
 
-  ! reduce/reduce conflict for FECHAPARENTESE resolved using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    FECHAPARENTESE  reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    OPERADOR_DIVISAO reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    OPERADOR_MULTIPLICACAO reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    OPERADOR_MAIS   reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    OPERADOR_MENOS  reduce using rule 23 (expressao -> RESPOSTABOOLEANA .)
-    LOGICO          reduce using rule 35 (atomica -> RESPOSTABOOLEANA .)
-    RELACIONAL      reduce using rule 35 (atomica -> RESPOSTABOOLEANA .)
+  ! reduce/reduce conflict for FECHAPARENTESE resolved using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    FECHAPARENTESE  reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    OPERADOR_DIVISAO reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    OPERADOR_MULTIPLICACAO reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    OPERADOR_MAIS   reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    OPERADOR_MENOS  reduce using rule 18 (expressao -> RESPOSTABOOLEANA .)
+    LOGICO          reduce using rule 30 (atomica -> RESPOSTABOOLEANA .)
+    RELACIONAL      reduce using rule 30 (atomica -> RESPOSTABOOLEANA .)
 
-  ! FECHAPARENTESE  [ reduce using rule 35 (atomica -> RESPOSTABOOLEANA .) ]
+  ! FECHAPARENTESE  [ reduce using rule 30 (atomica -> RESPOSTABOOLEANA .) ]
 
 
 state 36
 
-    (38) atomica -> NAO . condicional
-    (33) condicional -> . atomica
-    (34) condicional -> . atomica LOGICO atomica
-    (35) atomica -> . RESPOSTABOOLEANA
-    (36) atomica -> . NUM
-    (37) atomica -> . ID
-    (38) atomica -> . NAO condicional
-    (39) atomica -> . condicional RELACIONAL condicional
-    (40) atomica -> . condicional LOGICO condicional
+    (33) atomica -> NAO . condicional
+    (28) condicional -> . atomica
+    (29) condicional -> . atomica LOGICO atomica
+    (30) atomica -> . RESPOSTABOOLEANA
+    (31) atomica -> . ID
+    (32) atomica -> . NUM
+    (33) atomica -> . NAO condicional
+    (34) atomica -> . condicional RELACIONAL condicional
+    (35) atomica -> . condicional LOGICO condicional
 
     RESPOSTABOOLEANA shift and go to state 54
-    NUM             shift and go to state 55
-    ID              shift and go to state 56
+    ID              shift and go to state 55
+    NUM             shift and go to state 56
     NAO             shift and go to state 36
 
     condicional                    shift and go to state 53
@@ -832,18 +819,17 @@ state 36
 
 state 37
 
-    (8) imp -> IMP ABREPARENTESE . expressao FECHAPARENTESE PONTOEVIRGULA
-    (9) imp -> IMP ABREPARENTESE . expressao FECHAPARENTESE
-    (18) expressao -> . ID
-    (19) expressao -> . NUM
-    (20) expressao -> . TXT
-    (21) expressao -> . aritimetico
-    (22) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
-    (23) expressao -> . RESPOSTABOOLEANA
-    (24) aritimetico -> . expressao OPERADOR_DIVISAO expressao
-    (25) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> . expressao OPERADOR_MAIS expressao
-    (27) aritimetico -> . expressao OPERADOR_MENOS expressao
+    (4) imp -> IMP ABREPARENTESE . expressao FECHAPARENTESE PONTOEVIRGULA
+    (13) expressao -> . ID
+    (14) expressao -> . NUM
+    (15) expressao -> . TXT
+    (16) expressao -> . aritimetico
+    (17) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
+    (18) expressao -> . RESPOSTABOOLEANA
+    (19) aritimetico -> . expressao OPERADOR_DIVISAO expressao
+    (20) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> . expressao OPERADOR_MAIS expressao
+    (22) aritimetico -> . expressao OPERADOR_MENOS expressao
 
     ID              shift and go to state 43
     NUM             shift and go to state 19
@@ -856,50 +842,48 @@ state 37
 
 state 38
 
-    (6) le -> LE ABREPARENTESE . TIPO ID FECHAPARENTESE PONTOEVIRGULA
-    (7) le -> LE ABREPARENTESE . ID FECHAPARENTESE
+    (3) le -> LE ABREPARENTESE . TIPO ID FECHAPARENTESE PONTOEVIRGULA
 
     TIPO            shift and go to state 58
-    ID              shift and go to state 59
 
 
 state 39
 
-    (31) atribuir -> TIPO ID . atribuicao PONTOEVIRGULA
-    (32) atribuir -> TIPO ID . ATRIBUIR expressao PONTOEVIRGULA
-    (28) atribuicao -> . ATRIBUIR expressao
-    (29) atribuicao -> . ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE
+    (26) atribuir -> TIPO ID . atribuicao PONTOEVIRGULA
+    (27) atribuir -> TIPO ID . ATRIBUIR expressao PONTOEVIRGULA
+    (23) atribuicao -> . ATRIBUIR expressao
+    (24) atribuicao -> . ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE
 
-    ATRIBUIR        shift and go to state 61
+    ATRIBUIR        shift and go to state 60
 
-    atribuicao                     shift and go to state 60
+    atribuicao                     shift and go to state 59
 
 state 40
 
-    (30) atribuir -> ID atribuicao . PONTOEVIRGULA
+    (25) atribuir -> ID atribuicao . PONTOEVIRGULA
 
-    PONTOEVIRGULA   shift and go to state 62
+    PONTOEVIRGULA   shift and go to state 61
 
 
 state 41
 
-    (28) atribuicao -> ATRIBUIR expressao .
-    (24) aritimetico -> expressao . OPERADOR_DIVISAO expressao
-    (25) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> expressao . OPERADOR_MAIS expressao
-    (27) aritimetico -> expressao . OPERADOR_MENOS expressao
+    (23) atribuicao -> ATRIBUIR expressao .
+    (19) aritimetico -> expressao . OPERADOR_DIVISAO expressao
+    (20) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> expressao . OPERADOR_MAIS expressao
+    (22) aritimetico -> expressao . OPERADOR_MENOS expressao
 
-    ABREPARENTESE   reduce using rule 28 (atribuicao -> ATRIBUIR expressao .)
-    IMP             reduce using rule 28 (atribuicao -> ATRIBUIR expressao .)
-    LE              reduce using rule 28 (atribuicao -> ATRIBUIR expressao .)
-    ID              reduce using rule 28 (atribuicao -> ATRIBUIR expressao .)
-    TIPO            reduce using rule 28 (atribuicao -> ATRIBUIR expressao .)
-    ATRIBUIR        reduce using rule 28 (atribuicao -> ATRIBUIR expressao .)
-    NUM             reduce using rule 28 (atribuicao -> ATRIBUIR expressao .)
-    TXT             reduce using rule 28 (atribuicao -> ATRIBUIR expressao .)
-    RESPOSTABOOLEANA reduce using rule 28 (atribuicao -> ATRIBUIR expressao .)
-    FECHACHAVE      reduce using rule 28 (atribuicao -> ATRIBUIR expressao .)
-    PONTOEVIRGULA   reduce using rule 28 (atribuicao -> ATRIBUIR expressao .)
+    ABREPARENTESE   reduce using rule 23 (atribuicao -> ATRIBUIR expressao .)
+    IMP             reduce using rule 23 (atribuicao -> ATRIBUIR expressao .)
+    LE              reduce using rule 23 (atribuicao -> ATRIBUIR expressao .)
+    ID              reduce using rule 23 (atribuicao -> ATRIBUIR expressao .)
+    TIPO            reduce using rule 23 (atribuicao -> ATRIBUIR expressao .)
+    ATRIBUIR        reduce using rule 23 (atribuicao -> ATRIBUIR expressao .)
+    NUM             reduce using rule 23 (atribuicao -> ATRIBUIR expressao .)
+    TXT             reduce using rule 23 (atribuicao -> ATRIBUIR expressao .)
+    RESPOSTABOOLEANA reduce using rule 23 (atribuicao -> ATRIBUIR expressao .)
+    FECHACHAVE      reduce using rule 23 (atribuicao -> ATRIBUIR expressao .)
+    PONTOEVIRGULA   reduce using rule 23 (atribuicao -> ATRIBUIR expressao .)
     OPERADOR_DIVISAO shift and go to state 25
     OPERADOR_MULTIPLICACAO shift and go to state 26
     OPERADOR_MAIS   shift and go to state 27
@@ -908,17 +892,17 @@ state 41
 
 state 42
 
-    (29) atribuicao -> ATRIBUIR ABRECOLCHETE . expressao FECHACOLCHETE
-    (18) expressao -> . ID
-    (19) expressao -> . NUM
-    (20) expressao -> . TXT
-    (21) expressao -> . aritimetico
-    (22) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
-    (23) expressao -> . RESPOSTABOOLEANA
-    (24) aritimetico -> . expressao OPERADOR_DIVISAO expressao
-    (25) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> . expressao OPERADOR_MAIS expressao
-    (27) aritimetico -> . expressao OPERADOR_MENOS expressao
+    (24) atribuicao -> ATRIBUIR ABRECOLCHETE . expressao FECHACOLCHETE
+    (13) expressao -> . ID
+    (14) expressao -> . NUM
+    (15) expressao -> . TXT
+    (16) expressao -> . aritimetico
+    (17) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
+    (18) expressao -> . RESPOSTABOOLEANA
+    (19) aritimetico -> . expressao OPERADOR_DIVISAO expressao
+    (20) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> . expressao OPERADOR_MAIS expressao
+    (22) aritimetico -> . expressao OPERADOR_MENOS expressao
 
     ID              shift and go to state 43
     NUM             shift and go to state 19
@@ -926,57 +910,57 @@ state 42
     ABREPARENTESE   shift and go to state 29
     RESPOSTABOOLEANA shift and go to state 22
 
-    expressao                      shift and go to state 63
+    expressao                      shift and go to state 62
     aritimetico                    shift and go to state 21
 
 state 43
 
-    (18) expressao -> ID .
+    (13) expressao -> ID .
 
-    OPERADOR_DIVISAO reduce using rule 18 (expressao -> ID .)
-    OPERADOR_MULTIPLICACAO reduce using rule 18 (expressao -> ID .)
-    OPERADOR_MAIS   reduce using rule 18 (expressao -> ID .)
-    OPERADOR_MENOS  reduce using rule 18 (expressao -> ID .)
-    ABREPARENTESE   reduce using rule 18 (expressao -> ID .)
-    IMP             reduce using rule 18 (expressao -> ID .)
-    LE              reduce using rule 18 (expressao -> ID .)
-    ID              reduce using rule 18 (expressao -> ID .)
-    TIPO            reduce using rule 18 (expressao -> ID .)
-    ATRIBUIR        reduce using rule 18 (expressao -> ID .)
-    NUM             reduce using rule 18 (expressao -> ID .)
-    TXT             reduce using rule 18 (expressao -> ID .)
-    RESPOSTABOOLEANA reduce using rule 18 (expressao -> ID .)
-    FECHACHAVE      reduce using rule 18 (expressao -> ID .)
-    PONTOEVIRGULA   reduce using rule 18 (expressao -> ID .)
-    FECHAPARENTESE  reduce using rule 18 (expressao -> ID .)
-    FECHACOLCHETE   reduce using rule 18 (expressao -> ID .)
+    OPERADOR_DIVISAO reduce using rule 13 (expressao -> ID .)
+    OPERADOR_MULTIPLICACAO reduce using rule 13 (expressao -> ID .)
+    OPERADOR_MAIS   reduce using rule 13 (expressao -> ID .)
+    OPERADOR_MENOS  reduce using rule 13 (expressao -> ID .)
+    ABREPARENTESE   reduce using rule 13 (expressao -> ID .)
+    IMP             reduce using rule 13 (expressao -> ID .)
+    LE              reduce using rule 13 (expressao -> ID .)
+    ID              reduce using rule 13 (expressao -> ID .)
+    TIPO            reduce using rule 13 (expressao -> ID .)
+    ATRIBUIR        reduce using rule 13 (expressao -> ID .)
+    NUM             reduce using rule 13 (expressao -> ID .)
+    TXT             reduce using rule 13 (expressao -> ID .)
+    RESPOSTABOOLEANA reduce using rule 13 (expressao -> ID .)
+    FECHACHAVE      reduce using rule 13 (expressao -> ID .)
+    PONTOEVIRGULA   reduce using rule 13 (expressao -> ID .)
+    FECHAPARENTESE  reduce using rule 13 (expressao -> ID .)
+    FECHACOLCHETE   reduce using rule 13 (expressao -> ID .)
 
 
 state 44
 
-    (24) aritimetico -> expressao OPERADOR_DIVISAO expressao .
-    (24) aritimetico -> expressao . OPERADOR_DIVISAO expressao
-    (25) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> expressao . OPERADOR_MAIS expressao
-    (27) aritimetico -> expressao . OPERADOR_MENOS expressao
+    (19) aritimetico -> expressao OPERADOR_DIVISAO expressao .
+    (19) aritimetico -> expressao . OPERADOR_DIVISAO expressao
+    (20) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> expressao . OPERADOR_MAIS expressao
+    (22) aritimetico -> expressao . OPERADOR_MENOS expressao
 
-    OPERADOR_DIVISAO reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
-    OPERADOR_MULTIPLICACAO reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
-    OPERADOR_MAIS   reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
-    OPERADOR_MENOS  reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
-    ABREPARENTESE   reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
-    IMP             reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
-    LE              reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
-    ID              reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
-    TIPO            reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
-    ATRIBUIR        reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
-    NUM             reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
-    TXT             reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
-    RESPOSTABOOLEANA reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
-    FECHACHAVE      reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
-    FECHAPARENTESE  reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
-    PONTOEVIRGULA   reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
-    FECHACOLCHETE   reduce using rule 24 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    OPERADOR_DIVISAO reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    OPERADOR_MULTIPLICACAO reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    OPERADOR_MAIS   reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    OPERADOR_MENOS  reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    ABREPARENTESE   reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    IMP             reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    LE              reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    ID              reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    TIPO            reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    ATRIBUIR        reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    NUM             reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    TXT             reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    RESPOSTABOOLEANA reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    FECHACHAVE      reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    FECHAPARENTESE  reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    PONTOEVIRGULA   reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
+    FECHACOLCHETE   reduce using rule 19 (aritimetico -> expressao OPERADOR_DIVISAO expressao .)
 
   ! OPERADOR_DIVISAO [ shift and go to state 25 ]
   ! OPERADOR_MULTIPLICACAO [ shift and go to state 26 ]
@@ -986,29 +970,29 @@ state 44
 
 state 45
 
-    (25) aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .
-    (24) aritimetico -> expressao . OPERADOR_DIVISAO expressao
-    (25) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> expressao . OPERADOR_MAIS expressao
-    (27) aritimetico -> expressao . OPERADOR_MENOS expressao
+    (20) aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .
+    (19) aritimetico -> expressao . OPERADOR_DIVISAO expressao
+    (20) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> expressao . OPERADOR_MAIS expressao
+    (22) aritimetico -> expressao . OPERADOR_MENOS expressao
 
-    OPERADOR_DIVISAO reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    OPERADOR_MULTIPLICACAO reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    OPERADOR_MAIS   reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    OPERADOR_MENOS  reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    ABREPARENTESE   reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    IMP             reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    LE              reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    ID              reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    TIPO            reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    ATRIBUIR        reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    NUM             reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    TXT             reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    RESPOSTABOOLEANA reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    FECHACHAVE      reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    FECHAPARENTESE  reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    PONTOEVIRGULA   reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
-    FECHACOLCHETE   reduce using rule 25 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    OPERADOR_DIVISAO reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    OPERADOR_MULTIPLICACAO reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    OPERADOR_MAIS   reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    OPERADOR_MENOS  reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    ABREPARENTESE   reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    IMP             reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    LE              reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    ID              reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    TIPO            reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    ATRIBUIR        reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    NUM             reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    TXT             reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    RESPOSTABOOLEANA reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    FECHACHAVE      reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    FECHAPARENTESE  reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    PONTOEVIRGULA   reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
+    FECHACOLCHETE   reduce using rule 20 (aritimetico -> expressao OPERADOR_MULTIPLICACAO expressao .)
 
   ! OPERADOR_DIVISAO [ shift and go to state 25 ]
   ! OPERADOR_MULTIPLICACAO [ shift and go to state 26 ]
@@ -1018,211 +1002,210 @@ state 45
 
 state 46
 
-    (26) aritimetico -> expressao OPERADOR_MAIS expressao .
-    (24) aritimetico -> expressao . OPERADOR_DIVISAO expressao
-    (25) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> expressao . OPERADOR_MAIS expressao
-    (27) aritimetico -> expressao . OPERADOR_MENOS expressao
+    (21) aritimetico -> expressao OPERADOR_MAIS expressao .
+    (19) aritimetico -> expressao . OPERADOR_DIVISAO expressao
+    (20) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> expressao . OPERADOR_MAIS expressao
+    (22) aritimetico -> expressao . OPERADOR_MENOS expressao
 
-    OPERADOR_MAIS   reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .)
-    OPERADOR_MENOS  reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .)
-    ABREPARENTESE   reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .)
-    IMP             reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .)
-    LE              reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .)
-    ID              reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .)
-    TIPO            reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .)
-    ATRIBUIR        reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .)
-    NUM             reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .)
-    TXT             reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .)
-    RESPOSTABOOLEANA reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .)
-    FECHACHAVE      reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .)
-    FECHAPARENTESE  reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .)
-    PONTOEVIRGULA   reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .)
-    FECHACOLCHETE   reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .)
+    OPERADOR_MAIS   reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .)
+    OPERADOR_MENOS  reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .)
+    ABREPARENTESE   reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .)
+    IMP             reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .)
+    LE              reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .)
+    ID              reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .)
+    TIPO            reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .)
+    ATRIBUIR        reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .)
+    NUM             reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .)
+    TXT             reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .)
+    RESPOSTABOOLEANA reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .)
+    FECHACHAVE      reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .)
+    FECHAPARENTESE  reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .)
+    PONTOEVIRGULA   reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .)
+    FECHACOLCHETE   reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .)
     OPERADOR_DIVISAO shift and go to state 25
     OPERADOR_MULTIPLICACAO shift and go to state 26
 
-  ! OPERADOR_DIVISAO [ reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .) ]
-  ! OPERADOR_MULTIPLICACAO [ reduce using rule 26 (aritimetico -> expressao OPERADOR_MAIS expressao .) ]
+  ! OPERADOR_DIVISAO [ reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .) ]
+  ! OPERADOR_MULTIPLICACAO [ reduce using rule 21 (aritimetico -> expressao OPERADOR_MAIS expressao .) ]
   ! OPERADOR_MAIS   [ shift and go to state 27 ]
   ! OPERADOR_MENOS  [ shift and go to state 28 ]
 
 
 state 47
 
-    (27) aritimetico -> expressao OPERADOR_MENOS expressao .
-    (24) aritimetico -> expressao . OPERADOR_DIVISAO expressao
-    (25) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> expressao . OPERADOR_MAIS expressao
-    (27) aritimetico -> expressao . OPERADOR_MENOS expressao
+    (22) aritimetico -> expressao OPERADOR_MENOS expressao .
+    (19) aritimetico -> expressao . OPERADOR_DIVISAO expressao
+    (20) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> expressao . OPERADOR_MAIS expressao
+    (22) aritimetico -> expressao . OPERADOR_MENOS expressao
 
-    OPERADOR_MAIS   reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .)
-    OPERADOR_MENOS  reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .)
-    ABREPARENTESE   reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .)
-    IMP             reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .)
-    LE              reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .)
-    ID              reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .)
-    TIPO            reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .)
-    ATRIBUIR        reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .)
-    NUM             reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .)
-    TXT             reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .)
-    RESPOSTABOOLEANA reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .)
-    FECHACHAVE      reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .)
-    FECHAPARENTESE  reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .)
-    PONTOEVIRGULA   reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .)
-    FECHACOLCHETE   reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .)
+    OPERADOR_MAIS   reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .)
+    OPERADOR_MENOS  reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .)
+    ABREPARENTESE   reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .)
+    IMP             reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .)
+    LE              reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .)
+    ID              reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .)
+    TIPO            reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .)
+    ATRIBUIR        reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .)
+    NUM             reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .)
+    TXT             reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .)
+    RESPOSTABOOLEANA reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .)
+    FECHACHAVE      reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .)
+    FECHAPARENTESE  reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .)
+    PONTOEVIRGULA   reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .)
+    FECHACOLCHETE   reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .)
     OPERADOR_DIVISAO shift and go to state 25
     OPERADOR_MULTIPLICACAO shift and go to state 26
 
-  ! OPERADOR_DIVISAO [ reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .) ]
-  ! OPERADOR_MULTIPLICACAO [ reduce using rule 27 (aritimetico -> expressao OPERADOR_MENOS expressao .) ]
+  ! OPERADOR_DIVISAO [ reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .) ]
+  ! OPERADOR_MULTIPLICACAO [ reduce using rule 22 (aritimetico -> expressao OPERADOR_MENOS expressao .) ]
   ! OPERADOR_MAIS   [ shift and go to state 27 ]
   ! OPERADOR_MENOS  [ shift and go to state 28 ]
 
 
 state 48
 
-    (41) enqt -> ABREPARENTESE condicional FECHAPARENTESE . ENQT ABRECHAVE bloco FECHACHAVE
+    (36) enqt -> ABREPARENTESE condicional FECHAPARENTESE . ENQT ABRECHAVE bloco FECHACHAVE
 
-    ENQT            shift and go to state 64
+    ENQT            shift and go to state 63
 
 
 state 49
 
-    (39) atomica -> condicional RELACIONAL . condicional
-    (33) condicional -> . atomica
-    (34) condicional -> . atomica LOGICO atomica
-    (35) atomica -> . RESPOSTABOOLEANA
-    (36) atomica -> . NUM
-    (37) atomica -> . ID
-    (38) atomica -> . NAO condicional
-    (39) atomica -> . condicional RELACIONAL condicional
-    (40) atomica -> . condicional LOGICO condicional
+    (34) atomica -> condicional RELACIONAL . condicional
+    (28) condicional -> . atomica
+    (29) condicional -> . atomica LOGICO atomica
+    (30) atomica -> . RESPOSTABOOLEANA
+    (31) atomica -> . ID
+    (32) atomica -> . NUM
+    (33) atomica -> . NAO condicional
+    (34) atomica -> . condicional RELACIONAL condicional
+    (35) atomica -> . condicional LOGICO condicional
 
     RESPOSTABOOLEANA shift and go to state 54
-    NUM             shift and go to state 55
-    ID              shift and go to state 56
+    ID              shift and go to state 55
+    NUM             shift and go to state 56
+    NAO             shift and go to state 36
+
+    condicional                    shift and go to state 64
+    atomica                        shift and go to state 32
+
+state 50
+
+    (35) atomica -> condicional LOGICO . condicional
+    (28) condicional -> . atomica
+    (29) condicional -> . atomica LOGICO atomica
+    (30) atomica -> . RESPOSTABOOLEANA
+    (31) atomica -> . ID
+    (32) atomica -> . NUM
+    (33) atomica -> . NAO condicional
+    (34) atomica -> . condicional RELACIONAL condicional
+    (35) atomica -> . condicional LOGICO condicional
+
+    RESPOSTABOOLEANA shift and go to state 54
+    ID              shift and go to state 55
+    NUM             shift and go to state 56
     NAO             shift and go to state 36
 
     condicional                    shift and go to state 65
     atomica                        shift and go to state 32
 
-state 50
-
-    (40) atomica -> condicional LOGICO . condicional
-    (33) condicional -> . atomica
-    (34) condicional -> . atomica LOGICO atomica
-    (35) atomica -> . RESPOSTABOOLEANA
-    (36) atomica -> . NUM
-    (37) atomica -> . ID
-    (38) atomica -> . NAO condicional
-    (39) atomica -> . condicional RELACIONAL condicional
-    (40) atomica -> . condicional LOGICO condicional
-
-    RESPOSTABOOLEANA shift and go to state 54
-    NUM             shift and go to state 55
-    ID              shift and go to state 56
-    NAO             shift and go to state 36
-
-    condicional                    shift and go to state 66
-    atomica                        shift and go to state 32
-
 state 51
 
-    (22) expressao -> ABREPARENTESE expressao FECHAPARENTESE .
+    (17) expressao -> ABREPARENTESE expressao FECHAPARENTESE .
 
-    OPERADOR_DIVISAO reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
-    OPERADOR_MULTIPLICACAO reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
-    OPERADOR_MAIS   reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
-    OPERADOR_MENOS  reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
-    ABREPARENTESE   reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
-    IMP             reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
-    LE              reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
-    ID              reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
-    TIPO            reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
-    ATRIBUIR        reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
-    NUM             reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
-    TXT             reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
-    RESPOSTABOOLEANA reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
-    FECHACHAVE      reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
-    FECHAPARENTESE  reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
-    PONTOEVIRGULA   reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
-    FECHACOLCHETE   reduce using rule 22 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    OPERADOR_DIVISAO reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    OPERADOR_MULTIPLICACAO reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    OPERADOR_MAIS   reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    OPERADOR_MENOS  reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    ABREPARENTESE   reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    IMP             reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    LE              reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    ID              reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    TIPO            reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    ATRIBUIR        reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    NUM             reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    TXT             reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    RESPOSTABOOLEANA reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    FECHACHAVE      reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    FECHAPARENTESE  reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    PONTOEVIRGULA   reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
+    FECHACOLCHETE   reduce using rule 17 (expressao -> ABREPARENTESE expressao FECHAPARENTESE .)
 
 
 state 52
 
-    (34) condicional -> atomica LOGICO . atomica
-    (35) atomica -> . RESPOSTABOOLEANA
-    (36) atomica -> . NUM
-    (37) atomica -> . ID
-    (38) atomica -> . NAO condicional
-    (39) atomica -> . condicional RELACIONAL condicional
-    (40) atomica -> . condicional LOGICO condicional
-    (33) condicional -> . atomica
-    (34) condicional -> . atomica LOGICO atomica
+    (29) condicional -> atomica LOGICO . atomica
+    (30) atomica -> . RESPOSTABOOLEANA
+    (31) atomica -> . ID
+    (32) atomica -> . NUM
+    (33) atomica -> . NAO condicional
+    (34) atomica -> . condicional RELACIONAL condicional
+    (35) atomica -> . condicional LOGICO condicional
+    (28) condicional -> . atomica
+    (29) condicional -> . atomica LOGICO atomica
 
     RESPOSTABOOLEANA shift and go to state 54
-    NUM             shift and go to state 55
-    ID              shift and go to state 56
+    ID              shift and go to state 55
+    NUM             shift and go to state 56
     NAO             shift and go to state 36
 
-    atomica                        shift and go to state 67
-    condicional                    shift and go to state 68
+    atomica                        shift and go to state 66
+    condicional                    shift and go to state 67
 
 state 53
 
-    (38) atomica -> NAO condicional .
-    (39) atomica -> condicional . RELACIONAL condicional
-    (40) atomica -> condicional . LOGICO condicional
+    (33) atomica -> NAO condicional .
+    (34) atomica -> condicional . RELACIONAL condicional
+    (35) atomica -> condicional . LOGICO condicional
 
   ! shift/reduce conflict for RELACIONAL resolved as shift
   ! shift/reduce conflict for LOGICO resolved as shift
-    FECHAPARENTESE  reduce using rule 38 (atomica -> NAO condicional .)
+    FECHAPARENTESE  reduce using rule 33 (atomica -> NAO condicional .)
     RELACIONAL      shift and go to state 49
     LOGICO          shift and go to state 50
 
-  ! LOGICO          [ reduce using rule 38 (atomica -> NAO condicional .) ]
-  ! RELACIONAL      [ reduce using rule 38 (atomica -> NAO condicional .) ]
+  ! LOGICO          [ reduce using rule 33 (atomica -> NAO condicional .) ]
+  ! RELACIONAL      [ reduce using rule 33 (atomica -> NAO condicional .) ]
 
 
 state 54
 
-    (35) atomica -> RESPOSTABOOLEANA .
+    (30) atomica -> RESPOSTABOOLEANA .
 
-    RELACIONAL      reduce using rule 35 (atomica -> RESPOSTABOOLEANA .)
-    LOGICO          reduce using rule 35 (atomica -> RESPOSTABOOLEANA .)
-    FECHAPARENTESE  reduce using rule 35 (atomica -> RESPOSTABOOLEANA .)
+    RELACIONAL      reduce using rule 30 (atomica -> RESPOSTABOOLEANA .)
+    LOGICO          reduce using rule 30 (atomica -> RESPOSTABOOLEANA .)
+    FECHAPARENTESE  reduce using rule 30 (atomica -> RESPOSTABOOLEANA .)
 
 
 state 55
 
-    (36) atomica -> NUM .
+    (31) atomica -> ID .
 
-    RELACIONAL      reduce using rule 36 (atomica -> NUM .)
-    LOGICO          reduce using rule 36 (atomica -> NUM .)
-    FECHAPARENTESE  reduce using rule 36 (atomica -> NUM .)
+    RELACIONAL      reduce using rule 31 (atomica -> ID .)
+    LOGICO          reduce using rule 31 (atomica -> ID .)
+    FECHAPARENTESE  reduce using rule 31 (atomica -> ID .)
 
 
 state 56
 
-    (37) atomica -> ID .
+    (32) atomica -> NUM .
 
-    RELACIONAL      reduce using rule 37 (atomica -> ID .)
-    LOGICO          reduce using rule 37 (atomica -> ID .)
-    FECHAPARENTESE  reduce using rule 37 (atomica -> ID .)
+    RELACIONAL      reduce using rule 32 (atomica -> NUM .)
+    LOGICO          reduce using rule 32 (atomica -> NUM .)
+    FECHAPARENTESE  reduce using rule 32 (atomica -> NUM .)
 
 
 state 57
 
-    (8) imp -> IMP ABREPARENTESE expressao . FECHAPARENTESE PONTOEVIRGULA
-    (9) imp -> IMP ABREPARENTESE expressao . FECHAPARENTESE
-    (24) aritimetico -> expressao . OPERADOR_DIVISAO expressao
-    (25) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> expressao . OPERADOR_MAIS expressao
-    (27) aritimetico -> expressao . OPERADOR_MENOS expressao
+    (4) imp -> IMP ABREPARENTESE expressao . FECHAPARENTESE PONTOEVIRGULA
+    (19) aritimetico -> expressao . OPERADOR_DIVISAO expressao
+    (20) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> expressao . OPERADOR_MAIS expressao
+    (22) aritimetico -> expressao . OPERADOR_MENOS expressao
 
-    FECHAPARENTESE  shift and go to state 69
+    FECHAPARENTESE  shift and go to state 68
     OPERADOR_DIVISAO shift and go to state 25
     OPERADOR_MULTIPLICACAO shift and go to state 26
     OPERADOR_MAIS   shift and go to state 27
@@ -1231,40 +1214,33 @@ state 57
 
 state 58
 
-    (6) le -> LE ABREPARENTESE TIPO . ID FECHAPARENTESE PONTOEVIRGULA
+    (3) le -> LE ABREPARENTESE TIPO . ID FECHAPARENTESE PONTOEVIRGULA
 
-    ID              shift and go to state 70
+    ID              shift and go to state 69
 
 
 state 59
 
-    (7) le -> LE ABREPARENTESE ID . FECHAPARENTESE
+    (26) atribuir -> TIPO ID atribuicao . PONTOEVIRGULA
 
-    FECHAPARENTESE  shift and go to state 71
+    PONTOEVIRGULA   shift and go to state 70
 
 
 state 60
 
-    (31) atribuir -> TIPO ID atribuicao . PONTOEVIRGULA
-
-    PONTOEVIRGULA   shift and go to state 72
-
-
-state 61
-
-    (32) atribuir -> TIPO ID ATRIBUIR . expressao PONTOEVIRGULA
-    (28) atribuicao -> ATRIBUIR . expressao
-    (29) atribuicao -> ATRIBUIR . ABRECOLCHETE expressao FECHACOLCHETE
-    (18) expressao -> . ID
-    (19) expressao -> . NUM
-    (20) expressao -> . TXT
-    (21) expressao -> . aritimetico
-    (22) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
-    (23) expressao -> . RESPOSTABOOLEANA
-    (24) aritimetico -> . expressao OPERADOR_DIVISAO expressao
-    (25) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> . expressao OPERADOR_MAIS expressao
-    (27) aritimetico -> . expressao OPERADOR_MENOS expressao
+    (27) atribuir -> TIPO ID ATRIBUIR . expressao PONTOEVIRGULA
+    (23) atribuicao -> ATRIBUIR . expressao
+    (24) atribuicao -> ATRIBUIR . ABRECOLCHETE expressao FECHACOLCHETE
+    (13) expressao -> . ID
+    (14) expressao -> . NUM
+    (15) expressao -> . TXT
+    (16) expressao -> . aritimetico
+    (17) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
+    (18) expressao -> . RESPOSTABOOLEANA
+    (19) aritimetico -> . expressao OPERADOR_DIVISAO expressao
+    (20) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> . expressao OPERADOR_MAIS expressao
+    (22) aritimetico -> . expressao OPERADOR_MENOS expressao
 
     ABRECOLCHETE    shift and go to state 42
     ID              shift and go to state 43
@@ -1273,228 +1249,199 @@ state 61
     ABREPARENTESE   shift and go to state 29
     RESPOSTABOOLEANA shift and go to state 22
 
-    expressao                      shift and go to state 73
+    expressao                      shift and go to state 71
     aritimetico                    shift and go to state 21
+
+state 61
+
+    (25) atribuir -> ID atribuicao PONTOEVIRGULA .
+
+    ABREPARENTESE   reduce using rule 25 (atribuir -> ID atribuicao PONTOEVIRGULA .)
+    IMP             reduce using rule 25 (atribuir -> ID atribuicao PONTOEVIRGULA .)
+    LE              reduce using rule 25 (atribuir -> ID atribuicao PONTOEVIRGULA .)
+    ID              reduce using rule 25 (atribuir -> ID atribuicao PONTOEVIRGULA .)
+    TIPO            reduce using rule 25 (atribuir -> ID atribuicao PONTOEVIRGULA .)
+    ATRIBUIR        reduce using rule 25 (atribuir -> ID atribuicao PONTOEVIRGULA .)
+    NUM             reduce using rule 25 (atribuir -> ID atribuicao PONTOEVIRGULA .)
+    TXT             reduce using rule 25 (atribuir -> ID atribuicao PONTOEVIRGULA .)
+    RESPOSTABOOLEANA reduce using rule 25 (atribuir -> ID atribuicao PONTOEVIRGULA .)
+    FECHACHAVE      reduce using rule 25 (atribuir -> ID atribuicao PONTOEVIRGULA .)
+
 
 state 62
 
-    (30) atribuir -> ID atribuicao PONTOEVIRGULA .
+    (24) atribuicao -> ATRIBUIR ABRECOLCHETE expressao . FECHACOLCHETE
+    (19) aritimetico -> expressao . OPERADOR_DIVISAO expressao
+    (20) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> expressao . OPERADOR_MAIS expressao
+    (22) aritimetico -> expressao . OPERADOR_MENOS expressao
 
-    ABREPARENTESE   reduce using rule 30 (atribuir -> ID atribuicao PONTOEVIRGULA .)
-    IMP             reduce using rule 30 (atribuir -> ID atribuicao PONTOEVIRGULA .)
-    LE              reduce using rule 30 (atribuir -> ID atribuicao PONTOEVIRGULA .)
-    ID              reduce using rule 30 (atribuir -> ID atribuicao PONTOEVIRGULA .)
-    TIPO            reduce using rule 30 (atribuir -> ID atribuicao PONTOEVIRGULA .)
-    ATRIBUIR        reduce using rule 30 (atribuir -> ID atribuicao PONTOEVIRGULA .)
-    NUM             reduce using rule 30 (atribuir -> ID atribuicao PONTOEVIRGULA .)
-    TXT             reduce using rule 30 (atribuir -> ID atribuicao PONTOEVIRGULA .)
-    RESPOSTABOOLEANA reduce using rule 30 (atribuir -> ID atribuicao PONTOEVIRGULA .)
-    FECHACHAVE      reduce using rule 30 (atribuir -> ID atribuicao PONTOEVIRGULA .)
+    FECHACOLCHETE   shift and go to state 72
+    OPERADOR_DIVISAO shift and go to state 25
+    OPERADOR_MULTIPLICACAO shift and go to state 26
+    OPERADOR_MAIS   shift and go to state 27
+    OPERADOR_MENOS  shift and go to state 28
 
 
 state 63
 
-    (29) atribuicao -> ATRIBUIR ABRECOLCHETE expressao . FECHACOLCHETE
-    (24) aritimetico -> expressao . OPERADOR_DIVISAO expressao
-    (25) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> expressao . OPERADOR_MAIS expressao
-    (27) aritimetico -> expressao . OPERADOR_MENOS expressao
+    (36) enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT . ABRECHAVE bloco FECHACHAVE
 
-    FECHACOLCHETE   shift and go to state 74
-    OPERADOR_DIVISAO shift and go to state 25
-    OPERADOR_MULTIPLICACAO shift and go to state 26
-    OPERADOR_MAIS   shift and go to state 27
-    OPERADOR_MENOS  shift and go to state 28
+    ABRECHAVE       shift and go to state 73
 
 
 state 64
 
-    (41) enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT . ABRECHAVE bloco FECHACHAVE
+    (34) atomica -> condicional RELACIONAL condicional .
+    (34) atomica -> condicional . RELACIONAL condicional
+    (35) atomica -> condicional . LOGICO condicional
 
-    ABRECHAVE       shift and go to state 75
+  ! shift/reduce conflict for RELACIONAL resolved as shift
+  ! shift/reduce conflict for LOGICO resolved as shift
+    FECHAPARENTESE  reduce using rule 34 (atomica -> condicional RELACIONAL condicional .)
+    RELACIONAL      shift and go to state 49
+    LOGICO          shift and go to state 50
+
+  ! LOGICO          [ reduce using rule 34 (atomica -> condicional RELACIONAL condicional .) ]
+  ! RELACIONAL      [ reduce using rule 34 (atomica -> condicional RELACIONAL condicional .) ]
 
 
 state 65
 
-    (39) atomica -> condicional RELACIONAL condicional .
-    (39) atomica -> condicional . RELACIONAL condicional
-    (40) atomica -> condicional . LOGICO condicional
+    (35) atomica -> condicional LOGICO condicional .
+    (34) atomica -> condicional . RELACIONAL condicional
+    (35) atomica -> condicional . LOGICO condicional
 
   ! shift/reduce conflict for RELACIONAL resolved as shift
   ! shift/reduce conflict for LOGICO resolved as shift
-    FECHAPARENTESE  reduce using rule 39 (atomica -> condicional RELACIONAL condicional .)
+    FECHAPARENTESE  reduce using rule 35 (atomica -> condicional LOGICO condicional .)
     RELACIONAL      shift and go to state 49
     LOGICO          shift and go to state 50
 
-  ! LOGICO          [ reduce using rule 39 (atomica -> condicional RELACIONAL condicional .) ]
-  ! RELACIONAL      [ reduce using rule 39 (atomica -> condicional RELACIONAL condicional .) ]
+  ! LOGICO          [ reduce using rule 35 (atomica -> condicional LOGICO condicional .) ]
+  ! RELACIONAL      [ reduce using rule 35 (atomica -> condicional LOGICO condicional .) ]
 
 
 state 66
 
-    (40) atomica -> condicional LOGICO condicional .
-    (39) atomica -> condicional . RELACIONAL condicional
-    (40) atomica -> condicional . LOGICO condicional
+    (29) condicional -> atomica LOGICO atomica .
+    (28) condicional -> atomica .
+    (29) condicional -> atomica . LOGICO atomica
 
-  ! shift/reduce conflict for RELACIONAL resolved as shift
+  ! reduce/reduce conflict for RELACIONAL resolved using rule 28 (condicional -> atomica .)
+  ! reduce/reduce conflict for LOGICO resolved using rule 28 (condicional -> atomica .)
   ! shift/reduce conflict for LOGICO resolved as shift
-    FECHAPARENTESE  reduce using rule 40 (atomica -> condicional LOGICO condicional .)
-    RELACIONAL      shift and go to state 49
-    LOGICO          shift and go to state 50
+    FECHAPARENTESE  reduce using rule 29 (condicional -> atomica LOGICO atomica .)
+    RELACIONAL      reduce using rule 28 (condicional -> atomica .)
+    LOGICO          shift and go to state 52
 
-  ! LOGICO          [ reduce using rule 40 (atomica -> condicional LOGICO condicional .) ]
-  ! RELACIONAL      [ reduce using rule 40 (atomica -> condicional LOGICO condicional .) ]
+  ! RELACIONAL      [ reduce using rule 29 (condicional -> atomica LOGICO atomica .) ]
+  ! LOGICO          [ reduce using rule 29 (condicional -> atomica LOGICO atomica .) ]
+  ! LOGICO          [ reduce using rule 28 (condicional -> atomica .) ]
 
 
 state 67
 
-    (34) condicional -> atomica LOGICO atomica .
-    (33) condicional -> atomica .
-    (34) condicional -> atomica . LOGICO atomica
-
-  ! reduce/reduce conflict for RELACIONAL resolved using rule 33 (condicional -> atomica .)
-  ! reduce/reduce conflict for LOGICO resolved using rule 33 (condicional -> atomica .)
-  ! shift/reduce conflict for LOGICO resolved as shift
-    FECHAPARENTESE  reduce using rule 34 (condicional -> atomica LOGICO atomica .)
-    RELACIONAL      reduce using rule 33 (condicional -> atomica .)
-    LOGICO          shift and go to state 52
-
-  ! RELACIONAL      [ reduce using rule 34 (condicional -> atomica LOGICO atomica .) ]
-  ! LOGICO          [ reduce using rule 34 (condicional -> atomica LOGICO atomica .) ]
-  ! LOGICO          [ reduce using rule 33 (condicional -> atomica .) ]
-
-
-state 68
-
-    (39) atomica -> condicional . RELACIONAL condicional
-    (40) atomica -> condicional . LOGICO condicional
+    (34) atomica -> condicional . RELACIONAL condicional
+    (35) atomica -> condicional . LOGICO condicional
 
     RELACIONAL      shift and go to state 49
     LOGICO          shift and go to state 50
 
 
+state 68
+
+    (4) imp -> IMP ABREPARENTESE expressao FECHAPARENTESE . PONTOEVIRGULA
+
+    PONTOEVIRGULA   shift and go to state 74
+
+
 state 69
 
-    (8) imp -> IMP ABREPARENTESE expressao FECHAPARENTESE . PONTOEVIRGULA
-    (9) imp -> IMP ABREPARENTESE expressao FECHAPARENTESE .
+    (3) le -> LE ABREPARENTESE TIPO ID . FECHAPARENTESE PONTOEVIRGULA
 
-    PONTOEVIRGULA   shift and go to state 76
-    ABREPARENTESE   reduce using rule 9 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE .)
-    IMP             reduce using rule 9 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE .)
-    LE              reduce using rule 9 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE .)
-    ID              reduce using rule 9 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE .)
-    TIPO            reduce using rule 9 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE .)
-    ATRIBUIR        reduce using rule 9 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE .)
-    NUM             reduce using rule 9 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE .)
-    TXT             reduce using rule 9 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE .)
-    RESPOSTABOOLEANA reduce using rule 9 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE .)
-    FECHACHAVE      reduce using rule 9 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE .)
+    FECHAPARENTESE  shift and go to state 75
 
 
 state 70
 
-    (6) le -> LE ABREPARENTESE TIPO ID . FECHAPARENTESE PONTOEVIRGULA
+    (26) atribuir -> TIPO ID atribuicao PONTOEVIRGULA .
 
-    FECHAPARENTESE  shift and go to state 77
+    ABREPARENTESE   reduce using rule 26 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
+    IMP             reduce using rule 26 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
+    LE              reduce using rule 26 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
+    ID              reduce using rule 26 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
+    TIPO            reduce using rule 26 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
+    ATRIBUIR        reduce using rule 26 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
+    NUM             reduce using rule 26 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
+    TXT             reduce using rule 26 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
+    RESPOSTABOOLEANA reduce using rule 26 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
+    FECHACHAVE      reduce using rule 26 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
 
 
 state 71
 
-    (7) le -> LE ABREPARENTESE ID FECHAPARENTESE .
-
-    ABREPARENTESE   reduce using rule 7 (le -> LE ABREPARENTESE ID FECHAPARENTESE .)
-    IMP             reduce using rule 7 (le -> LE ABREPARENTESE ID FECHAPARENTESE .)
-    LE              reduce using rule 7 (le -> LE ABREPARENTESE ID FECHAPARENTESE .)
-    ID              reduce using rule 7 (le -> LE ABREPARENTESE ID FECHAPARENTESE .)
-    TIPO            reduce using rule 7 (le -> LE ABREPARENTESE ID FECHAPARENTESE .)
-    ATRIBUIR        reduce using rule 7 (le -> LE ABREPARENTESE ID FECHAPARENTESE .)
-    NUM             reduce using rule 7 (le -> LE ABREPARENTESE ID FECHAPARENTESE .)
-    TXT             reduce using rule 7 (le -> LE ABREPARENTESE ID FECHAPARENTESE .)
-    RESPOSTABOOLEANA reduce using rule 7 (le -> LE ABREPARENTESE ID FECHAPARENTESE .)
-    FECHACHAVE      reduce using rule 7 (le -> LE ABREPARENTESE ID FECHAPARENTESE .)
-
-
-state 72
-
-    (31) atribuir -> TIPO ID atribuicao PONTOEVIRGULA .
-
-    ABREPARENTESE   reduce using rule 31 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
-    IMP             reduce using rule 31 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
-    LE              reduce using rule 31 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
-    ID              reduce using rule 31 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
-    TIPO            reduce using rule 31 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
-    ATRIBUIR        reduce using rule 31 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
-    NUM             reduce using rule 31 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
-    TXT             reduce using rule 31 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
-    RESPOSTABOOLEANA reduce using rule 31 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
-    FECHACHAVE      reduce using rule 31 (atribuir -> TIPO ID atribuicao PONTOEVIRGULA .)
-
-
-state 73
-
-    (32) atribuir -> TIPO ID ATRIBUIR expressao . PONTOEVIRGULA
-    (28) atribuicao -> ATRIBUIR expressao .
-    (24) aritimetico -> expressao . OPERADOR_DIVISAO expressao
-    (25) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> expressao . OPERADOR_MAIS expressao
-    (27) aritimetico -> expressao . OPERADOR_MENOS expressao
+    (27) atribuir -> TIPO ID ATRIBUIR expressao . PONTOEVIRGULA
+    (23) atribuicao -> ATRIBUIR expressao .
+    (19) aritimetico -> expressao . OPERADOR_DIVISAO expressao
+    (20) aritimetico -> expressao . OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> expressao . OPERADOR_MAIS expressao
+    (22) aritimetico -> expressao . OPERADOR_MENOS expressao
 
   ! shift/reduce conflict for PONTOEVIRGULA resolved as shift
-    PONTOEVIRGULA   shift and go to state 78
+    PONTOEVIRGULA   shift and go to state 76
     OPERADOR_DIVISAO shift and go to state 25
     OPERADOR_MULTIPLICACAO shift and go to state 26
     OPERADOR_MAIS   shift and go to state 27
     OPERADOR_MENOS  shift and go to state 28
 
-  ! PONTOEVIRGULA   [ reduce using rule 28 (atribuicao -> ATRIBUIR expressao .) ]
+  ! PONTOEVIRGULA   [ reduce using rule 23 (atribuicao -> ATRIBUIR expressao .) ]
 
 
-state 74
+state 72
 
-    (29) atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .
+    (24) atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .
 
-    ABREPARENTESE   reduce using rule 29 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
-    IMP             reduce using rule 29 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
-    LE              reduce using rule 29 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
-    ID              reduce using rule 29 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
-    TIPO            reduce using rule 29 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
-    ATRIBUIR        reduce using rule 29 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
-    NUM             reduce using rule 29 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
-    TXT             reduce using rule 29 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
-    RESPOSTABOOLEANA reduce using rule 29 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
-    FECHACHAVE      reduce using rule 29 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
-    PONTOEVIRGULA   reduce using rule 29 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
+    ABREPARENTESE   reduce using rule 24 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
+    IMP             reduce using rule 24 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
+    LE              reduce using rule 24 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
+    ID              reduce using rule 24 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
+    TIPO            reduce using rule 24 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
+    ATRIBUIR        reduce using rule 24 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
+    NUM             reduce using rule 24 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
+    TXT             reduce using rule 24 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
+    RESPOSTABOOLEANA reduce using rule 24 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
+    FECHACHAVE      reduce using rule 24 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
+    PONTOEVIRGULA   reduce using rule 24 (atribuicao -> ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE .)
 
 
-state 75
+state 73
 
-    (41) enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE . bloco FECHACHAVE
-    (12) bloco -> . enqt
-    (13) bloco -> . imp
-    (14) bloco -> . le
-    (15) bloco -> . atribuir
-    (16) bloco -> . atribuicao
-    (17) bloco -> . expressao
-    (41) enqt -> . ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
-    (8) imp -> . IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
-    (9) imp -> . IMP ABREPARENTESE expressao FECHAPARENTESE
-    (6) le -> . LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
-    (7) le -> . LE ABREPARENTESE ID FECHAPARENTESE
-    (30) atribuir -> . ID atribuicao PONTOEVIRGULA
-    (31) atribuir -> . TIPO ID atribuicao PONTOEVIRGULA
-    (32) atribuir -> . TIPO ID ATRIBUIR expressao PONTOEVIRGULA
-    (28) atribuicao -> . ATRIBUIR expressao
-    (29) atribuicao -> . ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE
-    (18) expressao -> . ID
-    (19) expressao -> . NUM
-    (20) expressao -> . TXT
-    (21) expressao -> . aritimetico
-    (22) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
-    (23) expressao -> . RESPOSTABOOLEANA
-    (24) aritimetico -> . expressao OPERADOR_DIVISAO expressao
-    (25) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
-    (26) aritimetico -> . expressao OPERADOR_MAIS expressao
-    (27) aritimetico -> . expressao OPERADOR_MENOS expressao
+    (36) enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE . bloco FECHACHAVE
+    (7) bloco -> . enqt
+    (8) bloco -> . imp
+    (9) bloco -> . le
+    (10) bloco -> . atribuir
+    (11) bloco -> . atribuicao
+    (12) bloco -> . expressao
+    (36) enqt -> . ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE
+    (4) imp -> . IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
+    (3) le -> . LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA
+    (25) atribuir -> . ID atribuicao PONTOEVIRGULA
+    (26) atribuir -> . TIPO ID atribuicao PONTOEVIRGULA
+    (27) atribuir -> . TIPO ID ATRIBUIR expressao PONTOEVIRGULA
+    (23) atribuicao -> . ATRIBUIR expressao
+    (24) atribuicao -> . ATRIBUIR ABRECOLCHETE expressao FECHACOLCHETE
+    (13) expressao -> . ID
+    (14) expressao -> . NUM
+    (15) expressao -> . TXT
+    (16) expressao -> . aritimetico
+    (17) expressao -> . ABREPARENTESE expressao FECHAPARENTESE
+    (18) expressao -> . RESPOSTABOOLEANA
+    (19) aritimetico -> . expressao OPERADOR_DIVISAO expressao
+    (20) aritimetico -> . expressao OPERADOR_MULTIPLICACAO expressao
+    (21) aritimetico -> . expressao OPERADOR_MAIS expressao
+    (22) aritimetico -> . expressao OPERADOR_MENOS expressao
 
     ABREPARENTESE   shift and go to state 13
     IMP             shift and go to state 14
@@ -1506,7 +1453,7 @@ state 75
     TXT             shift and go to state 20
     RESPOSTABOOLEANA shift and go to state 22
 
-    bloco                          shift and go to state 79
+    bloco                          shift and go to state 77
     enqt                           shift and go to state 7
     imp                            shift and go to state 8
     le                             shift and go to state 9
@@ -1515,82 +1462,82 @@ state 75
     expressao                      shift and go to state 12
     aritimetico                    shift and go to state 21
 
+state 74
+
+    (4) imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .
+
+    ABREPARENTESE   reduce using rule 4 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
+    IMP             reduce using rule 4 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
+    LE              reduce using rule 4 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
+    ID              reduce using rule 4 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
+    TIPO            reduce using rule 4 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
+    ATRIBUIR        reduce using rule 4 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
+    NUM             reduce using rule 4 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
+    TXT             reduce using rule 4 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
+    RESPOSTABOOLEANA reduce using rule 4 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
+    FECHACHAVE      reduce using rule 4 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
+
+
+state 75
+
+    (3) le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE . PONTOEVIRGULA
+
+    PONTOEVIRGULA   shift and go to state 78
+
+
 state 76
 
-    (8) imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .
+    (27) atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .
 
-    ABREPARENTESE   reduce using rule 8 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
-    IMP             reduce using rule 8 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
-    LE              reduce using rule 8 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
-    ID              reduce using rule 8 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
-    TIPO            reduce using rule 8 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
-    ATRIBUIR        reduce using rule 8 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
-    NUM             reduce using rule 8 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
-    TXT             reduce using rule 8 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
-    RESPOSTABOOLEANA reduce using rule 8 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
-    FECHACHAVE      reduce using rule 8 (imp -> IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA .)
+    ABREPARENTESE   reduce using rule 27 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
+    IMP             reduce using rule 27 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
+    LE              reduce using rule 27 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
+    ID              reduce using rule 27 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
+    TIPO            reduce using rule 27 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
+    ATRIBUIR        reduce using rule 27 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
+    NUM             reduce using rule 27 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
+    TXT             reduce using rule 27 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
+    RESPOSTABOOLEANA reduce using rule 27 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
+    FECHACHAVE      reduce using rule 27 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
 
 
 state 77
 
-    (6) le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE . PONTOEVIRGULA
+    (36) enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco . FECHACHAVE
 
-    PONTOEVIRGULA   shift and go to state 80
+    FECHACHAVE      shift and go to state 79
 
 
 state 78
 
-    (32) atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .
+    (3) le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .
 
-    ABREPARENTESE   reduce using rule 32 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
-    IMP             reduce using rule 32 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
-    LE              reduce using rule 32 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
-    ID              reduce using rule 32 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
-    TIPO            reduce using rule 32 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
-    ATRIBUIR        reduce using rule 32 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
-    NUM             reduce using rule 32 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
-    TXT             reduce using rule 32 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
-    RESPOSTABOOLEANA reduce using rule 32 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
-    FECHACHAVE      reduce using rule 32 (atribuir -> TIPO ID ATRIBUIR expressao PONTOEVIRGULA .)
+    ABREPARENTESE   reduce using rule 3 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
+    IMP             reduce using rule 3 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
+    LE              reduce using rule 3 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
+    ID              reduce using rule 3 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
+    TIPO            reduce using rule 3 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
+    ATRIBUIR        reduce using rule 3 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
+    NUM             reduce using rule 3 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
+    TXT             reduce using rule 3 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
+    RESPOSTABOOLEANA reduce using rule 3 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
+    FECHACHAVE      reduce using rule 3 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
 
 
 state 79
 
-    (41) enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco . FECHACHAVE
+    (36) enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .
 
-    FECHACHAVE      shift and go to state 81
-
-
-state 80
-
-    (6) le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .
-
-    ABREPARENTESE   reduce using rule 6 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
-    IMP             reduce using rule 6 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
-    LE              reduce using rule 6 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
-    ID              reduce using rule 6 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
-    TIPO            reduce using rule 6 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
-    ATRIBUIR        reduce using rule 6 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
-    NUM             reduce using rule 6 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
-    TXT             reduce using rule 6 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
-    RESPOSTABOOLEANA reduce using rule 6 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
-    FECHACHAVE      reduce using rule 6 (le -> LE ABREPARENTESE TIPO ID FECHAPARENTESE PONTOEVIRGULA .)
-
-
-state 81
-
-    (41) enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .
-
-    ABREPARENTESE   reduce using rule 41 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
-    IMP             reduce using rule 41 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
-    LE              reduce using rule 41 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
-    ID              reduce using rule 41 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
-    TIPO            reduce using rule 41 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
-    ATRIBUIR        reduce using rule 41 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
-    NUM             reduce using rule 41 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
-    TXT             reduce using rule 41 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
-    RESPOSTABOOLEANA reduce using rule 41 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
-    FECHACHAVE      reduce using rule 41 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
+    ABREPARENTESE   reduce using rule 36 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
+    IMP             reduce using rule 36 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
+    LE              reduce using rule 36 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
+    ID              reduce using rule 36 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
+    TIPO            reduce using rule 36 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
+    ATRIBUIR        reduce using rule 36 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
+    NUM             reduce using rule 36 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
+    TXT             reduce using rule 36 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
+    RESPOSTABOOLEANA reduce using rule 36 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
+    FECHACHAVE      reduce using rule 36 (enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE bloco FECHACHAVE .)
 
 WARNING: 
 WARNING: Conflicts:
@@ -1599,17 +1546,17 @@ WARNING: shift/reduce conflict for ATRIBUIR in state 17 resolved as shift
 WARNING: shift/reduce conflict for LOGICO in state 32 resolved as shift
 WARNING: shift/reduce conflict for RELACIONAL in state 53 resolved as shift
 WARNING: shift/reduce conflict for LOGICO in state 53 resolved as shift
+WARNING: shift/reduce conflict for RELACIONAL in state 64 resolved as shift
+WARNING: shift/reduce conflict for LOGICO in state 64 resolved as shift
 WARNING: shift/reduce conflict for RELACIONAL in state 65 resolved as shift
 WARNING: shift/reduce conflict for LOGICO in state 65 resolved as shift
-WARNING: shift/reduce conflict for RELACIONAL in state 66 resolved as shift
 WARNING: shift/reduce conflict for LOGICO in state 66 resolved as shift
-WARNING: shift/reduce conflict for LOGICO in state 67 resolved as shift
-WARNING: shift/reduce conflict for PONTOEVIRGULA in state 73 resolved as shift
+WARNING: shift/reduce conflict for PONTOEVIRGULA in state 71 resolved as shift
 WARNING: reduce/reduce conflict in state 33 resolved using rule (expressao -> ID)
 WARNING: rejected rule (atomica -> ID) in state 33
 WARNING: reduce/reduce conflict in state 34 resolved using rule (expressao -> NUM)
 WARNING: rejected rule (atomica -> NUM) in state 34
 WARNING: reduce/reduce conflict in state 35 resolved using rule (expressao -> RESPOSTABOOLEANA)
 WARNING: rejected rule (atomica -> RESPOSTABOOLEANA) in state 35
-WARNING: reduce/reduce conflict in state 67 resolved using rule (condicional -> atomica)
-WARNING: rejected rule (condicional -> atomica LOGICO atomica) in state 67
+WARNING: reduce/reduce conflict in state 66 resolved using rule (condicional -> atomica)
+WARNING: rejected rule (condicional -> atomica LOGICO atomica) in state 66

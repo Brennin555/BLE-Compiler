@@ -1,6 +1,4 @@
 main{
-    imp("maria");
-    (1>0)->{
-        imp("roi");
-    }
+    imp("rabanada");
+    imp("palito");
 }
