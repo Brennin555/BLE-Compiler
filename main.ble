@@ -1,10 +1,11 @@
-main{
-    num x: 12;
-    num k: 2;
-    (k<x)->{
-        (x!=k)->{
-            imp("pamonha");
-            le(num k);
+main {
+    num x: 4;
+    c(x=4){
+        c(x<2){
+            imp(" x eh menor que 2");
+        }cnn{
+            imp("x eh maior que 2");
         }
     }
+    imp("maconha");
 }
