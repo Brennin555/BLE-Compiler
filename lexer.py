@@ -1,7 +1,7 @@
 # lexer.py
 import ply.lex as lex
 
-programaEscolhido = 1
+programaEscolhido = 2
 # programaEscolhido = int(input("Qual main deseja executar? : "))
 
 

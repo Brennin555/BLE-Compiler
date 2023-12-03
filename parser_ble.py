@@ -240,8 +240,7 @@ def p_senao(p):
     '''
     senao : SENAO ABRECHAVE bloco FECHACHAVE
     '''
-    p[0] = ''
-    p[0] = f'else:\n{tabulacao(p[3])}'
+    p[0] = f'else:\n{tabulacao(p[3])}\n'
     # print("--------------SENAO: ")
     # for i in p:
     #     print(i)
@@ -264,7 +263,6 @@ def p_pra(p):
     pra : PRA ABREPARENTESE id expressao expressao FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
     '''
     p[0] = ''
-    
     inicio=0
     final=int(p[4])
     inc=int(p[5])
