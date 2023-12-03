@@ -1,6 +1,10 @@
 # lexer.py
 import ply.lex as lex
 
+programaEscolhido = 1
+# programaEscolhido = int(input("Qual main deseja executar? : "))
+
+
 reserved_words = {
     'main': 'INICIO',
     'end': 'FIM',
@@ -119,8 +123,15 @@ def t_error(t):
 # Criando o analisador léxico
 lexer = lex.lex()
 
-with open('main.ble', 'r') as file:
-    input_string = file.read()
+if programaEscolhido == 1:
+    with open('main.ble', 'r') as file:
+        input_string = file.read()
+elif programaEscolhido == 2:
+    with open('main2.ble', 'r') as file:
+        input_string = file.read()
+elif programaEscolhido == 3:
+    with open('main3.ble', 'r') as file:
+        input_string = file.read()
 
 lexer.input(input_string)
 

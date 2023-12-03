@@ -1,5 +1,5 @@
 import ply.yacc as yacc
-from lexer import tokens
+from lexer import tokens, programaEscolhido
 
 # Lista de tokens (importada do lexer)
 tk = tokens
@@ -240,23 +240,24 @@ def p_senao(p):
     '''
     senao : SENAO ABRECHAVE bloco FECHACHAVE
     '''
+    p[0] = ''
+    p[0] = f'else:\n{tabulacao(p[3])}'
     # print("--------------SENAO: ")
     # for i in p:
     #     print(i)
 
 def p_se(p):
     '''
-    se : SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-        | SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao
+    se : SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE
+        | SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao
       '''
+    p[0] = ''
+    if len(p) == 8:
+        p[0] = f'if {p[3]}:\n{tabulacao(p[6])}'
+    else:
+        p[0] = f'if {p[3]}:\n{tabulacao(p[6])}\n{p[8]}'
+        
     
-    print("-----------------------------SE: ")
-    if p[3] == True:
-        print("executa o se")
-        p[0] = p[6]
-    elif len(p) >= 8:
-        print("EXECUTA O Senao")
-        p[0] = p[7]
     
 def p_pra(p):
     '''
@@ -284,9 +285,16 @@ def p_error(p):
 # Criando o analisador sintático
 parser = yacc.yacc(debug=True, write_tables=True)
 
-with open('main.ble', 'r') as file:
-    code = file.read()
-
+if programaEscolhido == 1:
+    with open('main.ble', 'r') as file:
+        code = file.read()
+elif programaEscolhido == 2:
+    with open('main2.ble', 'r') as file:
+        code = file.read()
+elif programaEscolhido == 3:
+    with open('main3.ble', 'r') as file:
+        code = file.read()
+        
 # Fazendo o parser do código
 try:
     result = parser.parse(code)

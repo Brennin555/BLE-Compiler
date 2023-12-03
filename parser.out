@@ -65,8 +65,8 @@ Rule 38    atomica -> NAO condicional
 Rule 39    atomica -> condicional RELACIONAL condicional
 Rule 40    enqt -> ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE blocos FECHACHAVE
 Rule 41    senao -> SENAO ABRECHAVE bloco FECHACHAVE
-Rule 42    se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-Rule 43    se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao
+Rule 42    se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE
+Rule 43    se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao
 Rule 44    pra -> PRA ABREPARENTESE id expressao expressao FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
 
 Terminals, with rules where they appear
@@ -125,8 +125,8 @@ aritimetico          : 19
 atomica              : 33 34 34
 atribuicao           : 16 31 32
 atribuir             : 15
-bloco                : 8 9 41 42 43 44
-blocos               : 2 8 40
+bloco                : 8 9 41 44
+blocos               : 2 8 40 42 43
 condicional          : 38 39 39 40 42 43
 enqt                 : 10
 expressao            : 6 20 22 22 23 23 24 24 25 25 26 44 44
@@ -188,8 +188,8 @@ state 4
     (16) bloco -> . atribuicao
     (40) enqt -> . ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE blocos FECHACHAVE
     (44) pra -> . PRA ABREPARENTESE id expressao expressao FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-    (42) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-    (43) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao
+    (42) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE
+    (43) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao
     (5) imp -> . IMP ABREPARENTESE str FECHAPARENTESE PONTOEVIRGULA
     (6) imp -> . IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
     (4) le -> . LE ABREPARENTESE TIPO id FECHAPARENTESE PONTOEVIRGULA
@@ -241,8 +241,8 @@ state 6
     (16) bloco -> . atribuicao
     (40) enqt -> . ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE blocos FECHACHAVE
     (44) pra -> . PRA ABREPARENTESE id expressao expressao FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-    (42) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-    (43) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao
+    (42) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE
+    (43) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao
     (5) imp -> . IMP ABREPARENTESE str FECHAPARENTESE PONTOEVIRGULA
     (6) imp -> . IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
     (4) le -> . LE ABREPARENTESE TIPO id FECHAPARENTESE PONTOEVIRGULA
@@ -418,8 +418,8 @@ state 16
 
 state 17
 
-    (42) se -> SE . ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-    (43) se -> SE . ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao
+    (42) se -> SE . ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE
+    (43) se -> SE . ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao
 
     ABREPARENTESE   shift and go to state 33
 
@@ -600,8 +600,8 @@ state 32
 
 state 33
 
-    (42) se -> SE ABREPARENTESE . condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-    (43) se -> SE ABREPARENTESE . condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao
+    (42) se -> SE ABREPARENTESE . condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE
+    (43) se -> SE ABREPARENTESE . condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao
     (33) condicional -> . atomica
     (34) condicional -> . atomica LOGICO atomica
     (35) atomica -> . RESPOSTABOOLEANA
@@ -918,8 +918,8 @@ state 49
 
 state 50
 
-    (42) se -> SE ABREPARENTESE condicional . FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-    (43) se -> SE ABREPARENTESE condicional . FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao
+    (42) se -> SE ABREPARENTESE condicional . FECHAPARENTESE ABRECHAVE blocos FECHACHAVE
+    (43) se -> SE ABREPARENTESE condicional . FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao
     (39) atomica -> condicional . RELACIONAL condicional
 
     FECHAPARENTESE  shift and go to state 69
@@ -1179,8 +1179,8 @@ state 68
 
 state 69
 
-    (42) se -> SE ABREPARENTESE condicional FECHAPARENTESE . ABRECHAVE bloco FECHACHAVE
-    (43) se -> SE ABREPARENTESE condicional FECHAPARENTESE . ABRECHAVE bloco FECHACHAVE senao
+    (42) se -> SE ABREPARENTESE condicional FECHAPARENTESE . ABRECHAVE blocos FECHACHAVE
+    (43) se -> SE ABREPARENTESE condicional FECHAPARENTESE . ABRECHAVE blocos FECHACHAVE senao
 
     ABRECHAVE       shift and go to state 83
 
@@ -1416,8 +1416,8 @@ state 81
     (16) bloco -> . atribuicao
     (40) enqt -> . ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE blocos FECHACHAVE
     (44) pra -> . PRA ABREPARENTESE id expressao expressao FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-    (42) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-    (43) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao
+    (42) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE
+    (43) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao
     (5) imp -> . IMP ABREPARENTESE str FECHAPARENTESE PONTOEVIRGULA
     (6) imp -> . IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
     (4) le -> . LE ABREPARENTESE TIPO id FECHAPARENTESE PONTOEVIRGULA
@@ -1464,8 +1464,10 @@ state 82
 
 state 83
 
-    (42) se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE . bloco FECHACHAVE
-    (43) se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE . bloco FECHACHAVE senao
+    (42) se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE . blocos FECHACHAVE
+    (43) se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE . blocos FECHACHAVE senao
+    (8) blocos -> . bloco blocos
+    (9) blocos -> . bloco
     (10) bloco -> . enqt
     (11) bloco -> . pra
     (12) bloco -> . se
@@ -1475,8 +1477,8 @@ state 83
     (16) bloco -> . atribuicao
     (40) enqt -> . ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE blocos FECHACHAVE
     (44) pra -> . PRA ABREPARENTESE id expressao expressao FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-    (42) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-    (43) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao
+    (42) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE
+    (43) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao
     (5) imp -> . IMP ABREPARENTESE str FECHAPARENTESE PONTOEVIRGULA
     (6) imp -> . IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
     (4) le -> . LE ABREPARENTESE TIPO id FECHAPARENTESE PONTOEVIRGULA
@@ -1495,7 +1497,8 @@ state 83
     ATRIBUIR        shift and go to state 22
     ID              shift and go to state 21
 
-    bloco                          shift and go to state 90
+    blocos                         shift and go to state 90
+    bloco                          shift and go to state 6
     enqt                           shift and go to state 7
     pra                            shift and go to state 8
     se                             shift and go to state 9
@@ -1570,8 +1573,8 @@ state 89
 
 state 90
 
-    (42) se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco . FECHACHAVE
-    (43) se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco . FECHACHAVE senao
+    (42) se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos . FECHACHAVE
+    (43) se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos . FECHACHAVE senao
 
     FECHACHAVE      shift and go to state 94
 
@@ -1618,8 +1621,8 @@ state 93
     (16) bloco -> . atribuicao
     (40) enqt -> . ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE blocos FECHACHAVE
     (44) pra -> . PRA ABREPARENTESE id expressao expressao FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-    (42) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-    (43) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao
+    (42) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE
+    (43) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao
     (5) imp -> . IMP ABREPARENTESE str FECHAPARENTESE PONTOEVIRGULA
     (6) imp -> . IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
     (4) le -> . LE ABREPARENTESE TIPO id FECHAPARENTESE PONTOEVIRGULA
@@ -1650,19 +1653,19 @@ state 93
 
 state 94
 
-    (42) se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE .
-    (43) se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE . senao
+    (42) se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE .
+    (43) se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE . senao
     (41) senao -> . SENAO ABRECHAVE bloco FECHACHAVE
 
-    ABREPARENTESE   reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE .)
-    PRA             reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE .)
-    SE              reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE .)
-    IMP             reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE .)
-    LE              reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE .)
-    TIPO            reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE .)
-    ATRIBUIR        reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE .)
-    ID              reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE .)
-    FECHACHAVE      reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE .)
+    ABREPARENTESE   reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE .)
+    PRA             reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE .)
+    SE              reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE .)
+    IMP             reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE .)
+    LE              reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE .)
+    TIPO            reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE .)
+    ATRIBUIR        reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE .)
+    ID              reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE .)
+    FECHACHAVE      reduce using rule 42 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE .)
     SENAO           shift and go to state 97
 
     senao                          shift and go to state 96
@@ -1676,17 +1679,17 @@ state 95
 
 state 96
 
-    (43) se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao .
+    (43) se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao .
 
-    ABREPARENTESE   reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao .)
-    PRA             reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao .)
-    SE              reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao .)
-    IMP             reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao .)
-    LE              reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao .)
-    TIPO            reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao .)
-    ATRIBUIR        reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao .)
-    ID              reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao .)
-    FECHACHAVE      reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao .)
+    ABREPARENTESE   reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao .)
+    PRA             reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao .)
+    SE              reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao .)
+    IMP             reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao .)
+    LE              reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao .)
+    TIPO            reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao .)
+    ATRIBUIR        reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao .)
+    ID              reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao .)
+    FECHACHAVE      reduce using rule 43 (se -> SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao .)
 
 
 state 97
@@ -1723,8 +1726,8 @@ state 99
     (16) bloco -> . atribuicao
     (40) enqt -> . ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE blocos FECHACHAVE
     (44) pra -> . PRA ABREPARENTESE id expressao expressao FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-    (42) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-    (43) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao
+    (42) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE
+    (43) se -> . SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao
     (5) imp -> . IMP ABREPARENTESE str FECHAPARENTESE PONTOEVIRGULA
     (6) imp -> . IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
     (4) le -> . LE ABREPARENTESE TIPO id FECHAPARENTESE PONTOEVIRGULA
