@@ -51,22 +51,8 @@ def p_imp(p):
     imp : IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
         | IMP ABREPARENTESE expressao FECHAPARENTESE
     '''
+    p[0] = p[3]
     print(p[3])
-
-def p_pra(p):
-    '''
-    pra : PRA ABREPARENTESE ID expressao expressao FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
-    '''
-    inc=int(p[5])
-    final=int(p[4])
-
-    for x in variaveis:
-       if(x['nome'] == p[3]):
-          inicio=int(x['valor']) 
-    for i in range(inicio,final,inc):
-        print(p[8])
-
-
 
 def p_variavel(p):
     '''
@@ -148,6 +134,20 @@ def p_bloco(p):
             | expressao
     '''
     p[0] = p[1]
+
+def p_pra(p):
+    '''
+    pra : PRA ABREPARENTESE ID expressao expressao FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
+    '''
+    inc=int(p[5])
+    final=int(p[4])
+
+    for x in variaveis:
+       if(x['nome'] == p[3]):
+          inicio=int(x['valor']) 
+    for i in range(inicio,final,inc):
+        print(p[8])
+
 # Tratamento de erro sintático
 def p_error(p):
     print(f"Erro de sintaxe: Token inesperado '{p.value}' na linha {p.lineno}, coluna {p.lexpos}")
