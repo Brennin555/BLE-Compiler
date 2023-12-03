@@ -64,8 +64,10 @@ def p_blocos(p):
            | bloco
     '''
     if str(p[0]) == 'None':
+        print(f'{p[0]} = {p[1]}')
         p[0] = p[1]
     else:
+        print(f'{p[0]} + {p[1]}')
         p[0] = str(p[0]) + p[1]
     # print("--------------BLOCOS: ")
     # for i in p:
@@ -88,17 +90,13 @@ def p_expressao(p):
     '''
     expressao : ID
               | NUM
-              | TXT
               | aritimetico
               | ABREPARENTESE expressao FECHAPARENTESE
-              | RESPOSTABOOLEANA
-              
-                         
     '''
     # | expressao PONTOEVIRGULA expressao
     # | expressao PONTOEVIRGULA
     if len(p) == 4:
-        p[0] = p[2]
+        p[0] = f'({p[2]})'
     else:
         p[0] = p[1]
         
@@ -137,9 +135,12 @@ def p_lista(p):
     '''
     lista : NUM
           | ID
-          | lista VIRGULA NUM
-          
+          | lista VIRGULA lista
     '''
+    if len(p) == 2:
+        p[0] = f'{p[1]}'
+    else:
+        p[0] = f'{p[1]} , {p[3]}'
 
 def p_atribuir(p):
     '''
