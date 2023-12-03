@@ -50,25 +50,29 @@ def p_le(p):
 
 def p_imp(p):
     '''
-    imp : IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
+    imp : IMP ABREPARENTESE str FECHAPARENTESE PONTOEVIRGULA
     '''
     p[0] = f'print({p[3]})\n'
     # print("--------------IMP: ")
     # for i in p:
     #     print(i)
 
+def p_str(p):
+    '''str  : TXT
+            | ID
+    '''
+    p[0] = p[1]
 
 def p_blocos(p):
     '''
     blocos : bloco blocos
            | bloco
     '''
-    if str(p[0]) == 'None':
-        print(f'{p[0]} = {p[1]}')
+    if len(p) == 2:
         p[0] = p[1]
     else:
-        print(f'{p[0]} + {p[1]}')
-        p[0] = str(p[0]) + p[1]
+        p[0] = p[1] + p[2]
+    
     # print("--------------BLOCOS: ")
     # for i in p:
     #     print(i)
@@ -145,16 +149,20 @@ def p_lista(p):
 def p_atribuir(p):
     '''
     atribuir : ID atribuicao PONTOEVIRGULA
-             | TIPO ID atribuicao PONTOEVIRGULA 
-             | TIPO ID ATRIBUIR expressao PONTOEVIRGULA 
+             | TIPO ID atribuicao PONTOEVIRGULA
     '''
     # print("--------------ATRIBUIR: ")
     # for i in p:
     #     print(i)
-       
-    variaveis.append({'nome': p[2], 'valor': p[4]})
+    if len(p) == 5:
+        p[0] = f'{p[2]} {p[3]}'
+        # variaveis.append({'nome': p[2], 'valor': p[4]})
+    else:
+        for i in variaveis:
+            if i['nome'] == p[1]:
+                p[1] = int(i['valor'])
+
     #imprimindo apenas valor:
-    
     for i in variaveis:
         print("Nome: ", i['nome'], "Valor: ", i['valor'])
 
@@ -179,7 +187,6 @@ def p_condicional_atomica(p):
             | NUM
             | NAO condicional
             | condicional RELACIONAL condicional
-            | condicional LOGICO condicional
     '''
     #se for um id, buscar na lista de variaveis
 
@@ -217,11 +224,7 @@ def p_enqt(p):
     # while p[2]:
     #     print(p[6])
     #     break
-    while true:
-        if (p[2] == False) or (p[2] == 0):
-            break
-        else:
-            p[0] = p[6]
+    
     print("--------------ENQT:")
     for i in p:
         print(i)
