@@ -1,16 +1,18 @@
 main{
-    num i: 0;
+
+    'Atribuicao de valores para as variaveis'
+    num i: 1;
     vf verifica: F;
     num j: 7;
-    'comentario teste'
     txt texto: "Ola mundo";
+    
     
     imp("O valor de texto eh: " + texto);
     imp("Insira um novo valor para texto: ");
     le(txt texto);
 
-    pra(i 10 1){
-        imp(i + " Hello World");
+    pra(i 11 1){
+        imp(i + ": " + texto);
     }
 
 }

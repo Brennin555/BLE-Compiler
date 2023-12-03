@@ -1,10 +1,13 @@
-i = 0.0
-verifica = False
-j = 7.0
-texto = "Ola mundo"
-print(str("O valor de texto eh: ") + texto)
-print("Insira um novo valor para texto: ")
-texto = input()
-for i in range(0,10,1):
-	print(str(i) + " Hello World")
-	
+x = 12.0
+k = 23239.0
+print("advinhe o numero")
+while k > x :
+	while x != k :
+		if k != x and k != 23239.0:
+			print("tente novamente")
+			
+		k = float(input())
+		if k == 12.0:
+			print("Parabens, voce acertou!!")
+			
+		

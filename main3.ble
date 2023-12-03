@@ -11,6 +11,9 @@ main{
             }
 
             le(num k);
+            c(k = 12){
+                imp("Parabens, voce acertou!!");
+            }
         }
     }
 }

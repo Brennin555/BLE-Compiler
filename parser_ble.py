@@ -55,6 +55,7 @@ def p_operacao(p):
     '''
     operacao : str OPERADOR_MAIS str
              | str OPERADOR_MAIS operacao
+             | expressao OPERADOR_MAIS operacao
              | str OPERADOR_MAIS expressao
              | expressao OPERADOR_MAIS str
     ''' 

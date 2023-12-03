@@ -1,9 +1,11 @@
 main {
     num x: 4;
+
     c(x<2){
         imp(" x eh menor que 2");
     }cnn{
         imp("x eh maior que 2");
     }
-    imp("Fora do c");
+    
+    imp("Print fora do c");
 }
