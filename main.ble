@@ -1,6 +1,6 @@
 main{
     num i: 0;
-    pra(i 10 +1){
+    pra(i 10 1){
         imp("Hello World");
     }
 }

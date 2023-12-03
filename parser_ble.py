@@ -20,7 +20,7 @@ def p_programa(p):
 
 def p_main(p):
     '''
-    inicio : INICIO ABRECHAVE bloco FECHACHAVE
+    inicio : INICIO ABRECHAVE blocos FECHACHAVE
     '''
                 
 def p_tipo(p):
@@ -53,30 +53,20 @@ def p_imp(p):
     '''
     print(p[3])
 
+def p_pra(p):
+    '''
+    pra : PRA ABREPARENTESE ID expressao expressao FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
+    '''
+    inc=int(p[5])
+    final=int(p[4])
 
-def p_declaracoes(p):
-    '''
-    declaracoes : declaracao PONTOEVIRGULA declaracoes
-                | QUEBRALINHA declaracoes
-                | COMENTARIOS QUEBRALINHA declaracoes
-                | QUEBRALINHA COMENTARIOS declaracoes
-                | COMENTARIOS
-                | TIPO ID ATRIBUIR expressao PONTOEVIRGULA
-                | TIPO ID ATRIBUICAO declaracao PONTOEVIRGULA
-                | TIPO ID ATRIBUIR TXT
-    '''
+    for x in variaveis:
+       if(x['nome'] == p[3]):
+          inicio=int(x['valor']) 
+    for i in range(inicio,final,inc):
+        print(p[8])
 
-def p_declaracao(p):
-    '''
-    declaracao : TIPO ESPACO CARACTERE atribuir
-               | TIPO ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir
-               | ESPACO CARACTERE atribuir
-               | ESPACO CARACTERE ABRECOLCHETE NUM FECHACOLCHETE atribuir
-               | tipo ESPACO ID ATRIBUIR expressao PONTOEVIRGULA
-               | tipo ESPACO ID ATRIBUICAO expressao PONTOEVIRGULA
-               
-                 
-    '''
+
 
 def p_variavel(p):
     '''
@@ -96,8 +86,6 @@ def p_expressao(p):
               
                          
     '''
-    # | expressao PONTOEVIRGULA expressao
-    # | expressao PONTOEVIRGULA
     if len(p) == 4:
         p[0] = p[2]
     else:
@@ -133,19 +121,22 @@ def p_atribuir(p):
              
     '''
     variaveis.append({'nome': p[2], 'valor': p[4]})
-    print(variaveis[0]['valor'])
+    # for i in variaveis:
+    #     print("Nome: ", i['nome'], "Valor: ", i['valor'])
 
 def p_incremento(p):
     '''
     incremento : ID OPERADOR_MAIS NUM
                | ID OPERADOR_MENOS NUM
+               | ID OPERADOR_MAIS ID
+               | ID OPERADOR_MENOS ID
     '''
 
-def p_pra(p):
+def p_blocos(p):
     '''
-    pra : PRA ABREPARENTESE ID ESPACO incremento FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
+    blocos : bloco blocos
+           | bloco
     '''
-
 
 def p_bloco(p):
     '''
@@ -154,9 +145,7 @@ def p_bloco(p):
             | le
             | atribuir
             | atribuicao
-            | expressao PONTOEVIRGULA bloco
-            | expressao PONTOEVIRGULA
-            
+            | expressao
     '''
     p[0] = p[1]
 # Tratamento de erro sintático
