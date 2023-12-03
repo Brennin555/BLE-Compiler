@@ -55,7 +55,7 @@ t_ATRIBUICAO = r'='
 t_SE = r'c'
 t_SENAO = r'cnn'
 t_ENQT = r'->'
-t_PRA = r'pra'
+# t_PRA = r'pra'
 t_RELACIONAL = r'[<>!]=? | [=]'
 t_LOGICO = r'[&|]'
 t_E = r'&&'
@@ -96,6 +96,9 @@ def t_NUM(t):
     t.value = float(t.value)  # Convertendo para float para representar números decimais
     return t
 
+def t_PRA(t):
+    r'pra'
+    return t
 
 # Ignorar espaços em branco
 t_ignore = ' \t'

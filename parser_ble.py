@@ -88,6 +88,7 @@ def p_blocos(p):
 def p_bloco(p):
     '''
     bloco : enqt
+             | pra
              | se
              | imp
              | le
@@ -141,9 +142,9 @@ def p_atribuicao(p):
                | ATRIBUIR ABRECOLCHETE lista FECHACOLCHETE   
     '''
     if len(p) == 3:
-        p[0] = f'= {p[2]}'
+        p[0] = f'{p[2]}'
     else:
-        p[0] = f'= [{p[2]}]'
+        p[0] = f'[{p[2]}]'
         
 def p_lista(p):
     '''
@@ -162,10 +163,10 @@ def p_atribuir(p):
              | TIPO ID atribuicao PONTOEVIRGULA 
     '''
     if len(p) == 5:
-        p[0] = f'{p[2]} {p[3]}\n'
-        variaveis.append({'nome': p[2], 'valor': p[4]})
+        p[0] = f'{p[2]} = {p[3]}\n'
+        variaveis.append({'nome': p[2], 'valor': p[3]})
     else:
-        p[0] = f'{p[1]} {p[2]}\n'
+        p[0] = f'{p[1]} = {p[2]}\n'
     
     # print("--------------ATRIBUIR: ")
     # for i in p:
@@ -257,8 +258,21 @@ def p_se(p):
         print("EXECUTA O Senao")
         p[0] = p[7]
     
+def p_pra(p):
+    '''
+    pra : PRA ABREPARENTESE id expressao expressao FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
+    '''
+    p[0] = ''
     
+    inicio=0
+    final=int(p[4])
+    inc=int(p[5])
 
+    for x in variaveis:
+       if(x['nome'] == p[3]):
+          inicio=float(x['valor'])        
+    p[0] = f'for {p[3]} in range({inicio},{final},{inc}):\n{tabulacao(p[8])}'
+    # print(inicio,final,inc)
 # ---------------------------------------------------------------------   
 
     
@@ -270,7 +284,7 @@ def p_error(p):
 # Criando o analisador sintático
 parser = yacc.yacc(debug=True, write_tables=True)
 
-with open('main3.ble', 'r') as file:
+with open('main.ble', 'r') as file:
     code = file.read()
 
 # Fazendo o parser do código

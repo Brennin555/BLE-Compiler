@@ -1,8 +1,9 @@
-main {
+main{
+    num i: 0;
+    vf verifica: F;
+    num j: 7;
 
-    num x: 1 + 4;
-    num y: 3;
-    vf verifica: V;
-    num z: 3+2;
-    num zz: x + y;
+    pra(i 10 1){
+        imp("Hello World");
+    }
 }
