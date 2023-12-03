@@ -1,5 +1,10 @@
 main {
-    c(1<2){
-        imp("IMPRIMIUUU");
+
+    num x: 3;
+
+    c(x<2){
+        imp("IMPRIMIUUU UM");
+    }cnn{
+        imp("IMPRIMIU DOIS");
     }
 }

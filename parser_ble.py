@@ -73,6 +73,13 @@ def p_condicional_atomica(p):
             | NAO condicional
             | condicional RELACIONAL condicional
     '''
+    
+    #se for uma string, buscar na lista de variaveis
+    if type(p[1]) == str:
+        for i in variaveis:
+            if i['nome'] == p[1]:
+                p[1] = i['valor'] 
+    
     tamanho = len(p)
     if tamanho == 2:
         p[0] = p[1]
@@ -94,26 +101,27 @@ def p_condicional_atomica(p):
         elif p[2] == '<=':
             p[0] = p[1] > p[3]
       
-# def p_senao(p):
-#     '''
-#     senao : SENAO ABRECHAVE bloco FECHACHAVE
-#     '''
-#     print("--------------SENAO: ")
-#     for i in p:
-#         print(i)
+def p_senao(p):
+    '''
+    senao : SENAO ABRECHAVE bloco FECHACHAVE
+    '''
+    print("--------------SENAO: ")
+    for i in p:
+        print(i)
 
 def p_se(p):
     '''
     se : SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
+        | SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE bloco FECHACHAVE senao
       '''
-    # p[0] = (p[2], p[4])
-    print("--------------SE: ")
+    
+    print("-----------------------------SE: ")
     if p[3] == True:
-        print("Condicional verdadeira")
-    else:
-        print("Condicional falsa")
-    for i in p:
-        print(i)
+        print("executa o se")
+        p[0] = p[6]
+    elif len(p) >= 8:
+        print("EXECUTA O Senao")
+        p[0] = p[7]
     
 def p_le(p):
     '''
