@@ -151,6 +151,7 @@ def p_aritimetico(p):
 def p_atribuicao(p):
     '''
     atribuicao : ATRIBUIR expressao
+               | ATRIBUIR str
                | ATRIBUIR ABRECOLCHETE lista FECHACOLCHETE   
     '''
     if len(p) == 3:
@@ -287,7 +288,7 @@ def p_pra(p):
        if(x['nome'] == p[3]):
           inicio=float(x['valor'])
           
-    p[0] = f'for {p[3]} in range({int(inicio)},{final},{inc}):\n{tabulacao(p[8])}'
+    p[0] = f'for {p[3]} in range({int(inicio)},{final},{inc}):\n{tabulacao(p[8])}\n'
     # print(inicio,final,inc)
 # ---------------------------------------------------------------------   
 

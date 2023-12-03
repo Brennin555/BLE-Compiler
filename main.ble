@@ -3,8 +3,13 @@ main{
     vf verifica: F;
     num j: 7;
     'comentariooo'
+    txt texto: "Ola mundo";
 
     pra(i 10 1){
         imp("Hello World");
     }
+
+    imp("Insira um novo valor para texto: ");
+    le(txt texto);
+    imp(texto);
 }
