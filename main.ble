@@ -1,5 +1,15 @@
-main {
+main{
+    num i: 0;
+    vf verifica: F;
+    num j: 7;
+    'comentariooo'
+    txt texto: "Ola mundo";
 
-    num x: 2,3 + 3;
-    imp("Hello World");
+    pra(i 10 1){
+        imp("Hello World");
+    }
+
+    imp("Insira um novo valor para texto: ");
+    le(txt texto);
+    imp(texto);
 }

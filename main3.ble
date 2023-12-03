@@ -3,7 +3,7 @@ main{
     num k: 2;
     (k<x)->{
         (x!=k)->{
-            imp("pamonha");
+            imp("pindamonhangaba");
             le(num k);
         }
     }

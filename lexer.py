@@ -1,6 +1,10 @@
 # lexer.py
 import ply.lex as lex
 
+programaEscolhido = 2
+programaEscolhido = int(input("Qual main deseja executar? : "))
+
+
 reserved_words = {
     'main': 'INICIO',
     'end': 'FIM',
@@ -55,7 +59,7 @@ t_ATRIBUICAO = r'='
 t_SE = r'c'
 t_SENAO = r'cnn'
 t_ENQT = r'->'
-t_PRA = r'pra'
+# t_PRA = r'pra'
 t_RELACIONAL = r'[<>!]=? | [=]'
 t_LOGICO = r'[&|]'
 t_E = r'&&'
@@ -96,6 +100,9 @@ def t_NUM(t):
     t.value = float(t.value)  # Convertendo para float para representar números decimais
     return t
 
+def t_PRA(t):
+    r'pra'
+    return t
 
 # Ignorar espaços em branco
 t_ignore = ' \t'
@@ -116,8 +123,15 @@ def t_error(t):
 # Criando o analisador léxico
 lexer = lex.lex()
 
-with open('main.ble', 'r') as file:
-    input_string = file.read()
+if programaEscolhido == 1:
+    with open('main.ble', 'r') as file:
+        input_string = file.read()
+elif programaEscolhido == 2:
+    with open('main2.ble', 'r') as file:
+        input_string = file.read()
+elif programaEscolhido == 3:
+    with open('main3.ble', 'r') as file:
+        input_string = file.read()
 
 lexer.input(input_string)
 

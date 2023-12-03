@@ -5,4 +5,5 @@ main {
     }cnn{
         imp("x eh maior que 2");
     }
+    imp("Fora do c");
 }
