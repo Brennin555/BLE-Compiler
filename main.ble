@@ -5,14 +5,21 @@ main{
     vf verifica: F;
     num j: 7;
     txt texto: "Ola mundo";
-    
-    
+    txt nome: " ";
     imp("O valor de texto eh: " + texto);
-    imp("Insira um novo valor para texto: ");
-    le(txt texto);
+    
+    imp("Insira seu nome: ");
+    le(txt nome);    
+    
+    c(nome = "Thaty" ou nome = "Thatyana"){
+        imp(nome + ", insira um novo valor para texto: ");
+    }cnn{
+        imp("Insira um novo valor para texto: ");
+    }
 
+    'Imprimindo varias vezes a variavel texto'
+    le(txt texto);
     pra(i 11 1){
         imp(i + ": " + texto);
     }
-
 }

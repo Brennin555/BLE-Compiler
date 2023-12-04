@@ -113,14 +113,16 @@ elif programaEscolhido == 3:
 
 lexer.input(input_string)
 
-# Agora você pode iterar sobre os tokens diretamente
+
+f = open("tokens.txt", "w")
+f.write("TOKENS:\n")
+f.write("Token".ljust(15) + "Lexema".ljust(15) + "Linha".ljust(10) + "Coluna".ljust(10) + "\n")
 for token in lexer:
     # print(token)
         # deixar alinhado os dados do print:
-    print(
-        token.type.ljust(15),
-        str(token.value).ljust(15),
-        str(token.lineno).ljust(10),
-        str(token.lexpos).ljust(10)
+    f.write(
+        token.type.ljust(15) +
+        str(token.value).ljust(15) +
+        str(token.lineno).ljust(10) +
+        str(token.lexpos).ljust(10) + "\n"
     )
-print("\n\n\n")

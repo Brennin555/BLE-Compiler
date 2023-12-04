@@ -14,38 +14,38 @@ Foram desenvolvidos 3 códigos utilizando a linguagem para apresentação da mes
 
 Para executar esta linguagem, é necessário:
 
-<li> Instalar o python (utilizamos a versão 3.11)</li>
+1. Instalar o python (utilizamos a versão 3.11)
 
 
-<li> Clonar este repositório:</li>
+2. Clonar este repositório:
 
 ```
     git clone https://github.com/Brennin555/BLE-Compiler.git
 ```
-<li> Instalar a biblioteca PLY: </li>
+ 3. Instalar a biblioteca PLY:
 
 ```
     pip install ply
 ```
  
-<li> Abrir o terminal e executar o arquivo `parser_ble.py`</li>
+4. Abrir o terminal e executar o arquivo `parser_ble.py`
 
 ```
     python parser_ble.py
-
 ```
 
 Ao executar o programa, ele te oferecerá 3 possibilidades de código para rodar. Escolha o que desejar.
 
-Executando esse comando, os analisadores léxico e sintático (lexer.py e parser_ble.py) realizaram a analise e transcrição do arquivo .ble escolhido para a linguagem Python. 
+Executando esse comando, os analisadores léxico e sintático (`lexer.py` e `parser_ble.py`) realizaram a analise e transcrição do arquivo .ble escolhido para a linguagem Python. 
 
 Após escolher e o programa rodar, execute o comando:
 
 ```
     python ble_code.py
-
 ```
 
-Apoós isso comando compilará o código python proveniente do código .ble gerado. 
+Após isso comando compilará o código python proveniente do código .ble gerado. 
 
-OBS: Os tokens identificados ao compilar o código estarão impressos no arquivo tokens.txt.
+OBS: Os tokens identificados ao compilar o código estarão impressos no arquivo `tokens.txt`. Cada vez que um novo código for compilado, a `tokens.txt` será sobreescrita. 
+
+Além disso, a pasta `tokens` contém os tokens referentes aos arquivos testes solicitados pela professora.

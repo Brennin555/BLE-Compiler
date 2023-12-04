@@ -186,29 +186,34 @@ def p_logico(p):
     logico : E
            | OU
     '''
-    p[0] = p[1]
+    p[0] = f'{p[1]}'
       
 def p_condicional(p):
     '''
     condicional : atomica
                 | atomica logico atomica
+                | condicional logico condicional
+                
     '''
     if len(p) == 4:
         if p[2] == 'e':
             p[0] = f'{p[1]} and {p[3]}'
-        else:
-            f'{p[0]} = {p[1]} or {p[3]}'
+        elif p[2] == 'ou':
+            p[0]= f'{p[1]} or {p[3]}'
     else:
-        p[0] = p[1]
+        p[0] = f'{p[1]}'
         
+    print("condicional: ", len(p))
+    print("condicional: ", p[0])
 
 def p_condicional_atomica(p):
     '''
     atomica : RESPOSTABOOLEANA
             | NUM
             | id
+            | str
             | NAO condicional
-            | condicional RELACIONAL condicional
+            | atomica RELACIONAL atomica
     '''
 
     tamanho = len(p)
@@ -237,6 +242,7 @@ def p_condicional_atomica(p):
                 p[0] = f'{p[1]} >= {p[3]}'
             case '<=':
                 p[0] = f'{p[1]} <= {p[3]}'
+    print("atomica: ", p[0])
 
 def p_enqt(p):
     ''' 
