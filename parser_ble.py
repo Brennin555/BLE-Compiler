@@ -4,7 +4,7 @@ from lexer import tokens, programaEscolhido
 # Lista de tokens (importada do lexer)
 tk = tokens
 variaveis = []
-variaveis.append({'nome': '', 'valor': ''})
+variaveis.append({'nome': '', 'valor': '', 'tipo': ''})
 
 # Definindo precedência dos operadores
 precedence = (
@@ -26,8 +26,6 @@ def p_inicio(p):
     f = open("ble_code.py", "w")
     f.write(f'{p[3]}')
     f.close()
-
-    # print(p[3])
     
 def p_id(p):
     '''
@@ -44,12 +42,14 @@ def p_le(p):
     '''
     le : LE ABREPARENTESE TIPO id FECHAPARENTESE PONTOEVIRGULA
     '''
-    if p[3] == 'txt':
-        p[0] = f'{p[4]} = input()\n'
-    elif p[3] == 'num':
-        p[0] = f'{p[4]} = float(input())\n'
-    elif p[3] == 'vet':
-        p[0] = f'{p[4]} = input()\n{p[4]} = {p[4]}.split()\n{p[4]} = [int(valor) for valor in {p[4]}]\n'
+        
+    if compara_var(p[4],p[3]):
+        if p[3] == 'txt':
+            p[0] = f'{p[4]} = input()\n'
+        elif p[3] == 'num':
+            p[0] = f'{p[4]} = float(input())\n'
+        elif p[3] == 'vet':
+            p[0] = f'{p[4]} = input()\n{p[4]} = {p[4]}.split()\n{p[4]} = [int(valor) for valor in {p[4]}]\n'
 
 def p_operacao(p):
     '''
@@ -108,6 +108,7 @@ def p_bloco(p):
              | se
              | imp
              | le
+             | defvariavel
              | atribuir
              | atribuicao
              | comentarios
@@ -119,8 +120,7 @@ def p_expressao(p):
     expressao : id
               | NUM
               | aritimetico
-              | ABREPARENTESE expressao FECHAPARENTESE
-              | RESPOSTABOOLEANA                     
+              | ABREPARENTESE expressao FECHAPARENTESE                     
     '''
     if len(p) == 4:
         p[0] = f'({p[2]})'
@@ -148,39 +148,62 @@ def p_atribuicao(p):
     atribuicao : ATRIBUIR expressao
                | ATRIBUIR str
                | ATRIBUIR ABRECOLCHETE lista FECHACOLCHETE   
+               | ATRIBUIR RESPOSTABOOLEANA
     '''
     if len(p) == 3:
-        p[0] = f'{p[2]}'
+        if p[2] == 'F':
+            p[0] = 'False'
+        elif p[2] == 'V':
+            p[0] = 'True'
+        else:
+            p[0] = f'{p[2]}'
     else:
-        p[0] = f'[{p[2]}]'
+        p[0] = f'[{p[3]}]'
         
-    if p[2] == 'F':
-        p[0] = 'False'
-    elif p[2] == 'V':
-        p[0] = 'True'
         
+def p_atribuir(p):
+    '''
+    atribuir : id atribuicao PONTOEVIRGULA
+             | TIPO ID atribuicao PONTOEVIRGULA
+             | TIPO ID ABRECOLCHETE NUM FECHACOLCHETE atribuicao PONTOEVIRGULA  
+    '''
+    if len(p) == 5:
+        p[0] = f'{p[2]} = {p[3]}\n'
+        variaveis.append({'nome': p[2], 'valor': p[3], 'tipo': p[1]})
+    elif len(p) == 8:
+            p[0] = f'{p[2]} = {p[6]}\n'
+            variaveis.append({'nome': p[2], 'valor': p[6], 'tipo': p[1]})
+    else:
+        p[0] = f'{p[1]} = {p[2]}\n'
+  
 def p_lista(p):
     '''
     lista : NUM
           | id
-          | lista VIRGULA lista
+          | lista lista
     '''
     if len(p) == 2:
         p[0] = f'{p[1]}'
     else:
-        p[0] = f'{p[1]} , {p[3]}'
-
-def p_atribuir(p):
+        p[0] = f'{p[1]} , {p[2]}'
+        
+def p_defvarivale(p):
     '''
-    atribuir : id atribuicao PONTOEVIRGULA
-             | TIPO ID atribuicao PONTOEVIRGULA 
+    defvariavel : TIPO ID PONTOEVIRGULA
     '''
-    if len(p) == 5:
-        p[0] = f'{p[2]} = {p[3]}\n'
-        variaveis.append({'nome': p[2], 'valor': p[3]})
+    if p[1] == 'txt':
+        variaveis.append({'nome': p[2], 'valor': '', 'tipo': p[1]})
+        p[0] = f'{p[2]} = ""\n'
+    elif p[1] == 'num':
+        variaveis.append({'nome': p[2], 'valor': '0', 'tipo': p[1]})
+        p[0] = f'{p[2]} = 0\n'
+    elif p[1] == 'vf':
+        variaveis.append({'nome': p[2], 'valor': 'False', 'tipo': p[1]})
+        p[0] = f'{p[2]} = False\n'
     else:
-        p[0] = f'{p[1]} = {p[2]}\n'
-  
+        variaveis.append({'nome': p[2], 'valor': '[]', 'tipo': p[1]})
+        p[0] = f'{p[2]} = []\n'
+
 def p_logico(p):
     '''
     logico : E
@@ -202,9 +225,6 @@ def p_condicional(p):
             p[0]= f'{p[1]} or {p[3]}'
     else:
         p[0] = f'{p[1]}'
-        
-    print("condicional: ", len(p))
-    print("condicional: ", p[0])
 
 def p_condicional_atomica(p):
     '''
@@ -242,7 +262,6 @@ def p_condicional_atomica(p):
                 p[0] = f'{p[1]} >= {p[3]}'
             case '<=':
                 p[0] = f'{p[1]} <= {p[3]}'
-    print("atomica: ", p[0])
 
 def p_enqt(p):
     ''' 
@@ -254,7 +273,15 @@ def tabulacao(s):
     aux = s.split('\n')
     aux = ['\t'+i for i in aux]
     return '\n'.join(aux)    
-          
+
+def compara_var(nome, tipo):
+    for var in variaveis:
+        if var['nome'] == nome:
+            break
+    if var['tipo'] == tipo:
+        return True
+    raise TypeError(f"Variavel '{nome}' não é do tipo '{tipo}'")
+
 def p_senao(p):
     '''
     senao : SENAO ABRECHAVE bloco FECHACHAVE
@@ -311,4 +338,6 @@ elif programaEscolhido == 3:
 try:
     result = parser.parse(code)
 except NameError as e:
+    print(e)
+except TypeError as e:
     print(e)

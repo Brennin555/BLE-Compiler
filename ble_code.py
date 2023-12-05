@@ -1,8 +1,9 @@
 i = 1.0
-verifica = False
 j = 7.0
+verifica = False
+vetor = [1.0 , 2.0 , 3.0]
 texto = "Ola mundo"
-nome = " "
+nome = ""
 print(str("O valor de texto eh: ") + texto)
 print("Insira seu nome: ")
 nome = input()

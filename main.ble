@@ -2,10 +2,13 @@ main{
 
     'Atribuicao de valores para as variaveis'
     num i: 1;
-    vf verifica: F;
     num j: 7;
+    vf verifica: F;
+    vet vetor[3]: [1 2 3];
+
+    ''
     txt texto: "Ola mundo";
-    txt nome: " ";
+    txt nome;
     imp("O valor de texto eh: " + texto);
     
     imp("Insira seu nome: ");
