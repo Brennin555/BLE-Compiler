@@ -1,11 +1,14 @@
 main {
-    num x: 4;
+    num x: 8;
 
-    c(x<2){
-        imp(" x eh menor que 2");
-    }cnn{
-        imp("x eh maior que 2");
+    (x!=0)->{    
+        imp("O valor de x eh: " + x + ", logo: ");
+
+        c(x<2){
+            imp(" x eh menor que 2");
+        }cnn{
+            imp("x eh maior que 2");
+        }
+        x: x - 1;
     }
-    
-    imp("Print fora do c");
 }

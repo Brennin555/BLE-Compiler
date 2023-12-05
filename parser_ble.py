@@ -59,17 +59,15 @@ def p_operacao(p):
              | str OPERADOR_MAIS expressao
              | expressao OPERADOR_MAIS str
     ''' 
-    if p[3] == 'str':
+    
+    if p[1] == 'str' and p[3] == 'str':
         p[0] = f'{p[1]} + {p[3]}'
-    else:
-        #converter para string com função
+    elif p[1] == 'str' and p[3] != 'str':
         p[0] = f'{p[1]} + str({p[3]})'
-
-    if p[1] == 'str':
-        p[0] = f'{p[1]} + {p[3]}'
-    else:
-        #converter para string com função
+    elif p[1] != 'str' and p[3] == 'str':
         p[0] = f'str({p[1]}) + {p[3]}'
+    else:
+        p[0] = f'str({p[1]}) + str({p[3]})'
 
 def p_imp(p):
     '''

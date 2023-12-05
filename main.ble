@@ -6,14 +6,17 @@ main{
     vf verifica: F;
     vet vetor[3]: [1 2 3];
 
-    ''
+    'Cria variaveis de texto'
     txt texto: "Ola mundo";
     txt nome;
+
+    'Imprime o valor de texto'
     imp("O valor de texto eh: " + texto);
     
     imp("Insira seu nome: ");
     le(txt nome);    
     
+    'Verifica se o nome da pessoa é Thaty ou Thatyana'
     c(nome = "Thaty" ou nome = "Thatyana"){
         imp(nome + ", insira um novo valor para texto: ");
     }cnn{

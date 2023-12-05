@@ -1,0 +1,113 @@
+TOKENS:
+Token          Lexema         Linha     Coluna    
+INICIO         main           1         0         
+ABRECHAVE      {              1         4         
+COMENTARIOS    'Atribuicao de valores para as variaveis'3         11        
+TIPO           num            4         57        
+ID             i              4         61        
+ATRIBUIR       :              4         62        
+NUM            1.0            4         64        
+PONTOEVIRGULA  ;              4         65        
+TIPO           num            5         71        
+ID             j              5         75        
+ATRIBUIR       :              5         76        
+NUM            7.0            5         78        
+PONTOEVIRGULA  ;              5         79        
+TIPO           vf             6         85        
+ID             verifica       6         88        
+ATRIBUIR       :              6         96        
+RESPOSTABOOLEANAF              6         98        
+PONTOEVIRGULA  ;              6         99        
+TIPO           vet            7         105       
+ID             vetor          7         109       
+ABRECOLCHETE   [              7         114       
+NUM            3.0            7         115       
+FECHACOLCHETE  ]              7         116       
+ATRIBUIR       :              7         117       
+ABRECOLCHETE   [              7         119       
+NUM            1.0            7         120       
+NUM            2.0            7         122       
+NUM            3.0            7         124       
+FECHACOLCHETE  ]              7         125       
+PONTOEVIRGULA  ;              7         126       
+COMENTARIOS    'Cria variaveis de texto'9         133       
+TIPO           txt            10        163       
+ID             texto          10        167       
+ATRIBUIR       :              10        172       
+TXT            "Ola mundo"    10        174       
+PONTOEVIRGULA  ;              10        185       
+TIPO           txt            11        191       
+ID             nome           11        195       
+PONTOEVIRGULA  ;              11        199       
+COMENTARIOS    'Imprime o valor de texto'13        206       
+IMP            imp            14        237       
+ABREPARENTESE  (              14        240       
+TXT            "O valor de texto eh: "14        241       
+OPERADOR_MAIS  +              14        265       
+ID             texto          14        267       
+FECHAPARENTESE )              14        272       
+PONTOEVIRGULA  ;              14        273       
+IMP            imp            16        284       
+ABREPARENTESE  (              16        287       
+TXT            "Insira seu nome: "16        288       
+FECHAPARENTESE )              16        307       
+PONTOEVIRGULA  ;              16        308       
+LE             le             17        314       
+ABREPARENTESE  (              17        316       
+TIPO           txt            17        317       
+ID             nome           17        321       
+FECHAPARENTESE )              17        325       
+PONTOEVIRGULA  ;              17        326       
+COMENTARIOS    'Verifica se o nome da pessoa é Thaty ou Thatyana'19        341       
+SE             c              20        397       
+ABREPARENTESE  (              20        398       
+ID             nome           20        399       
+RELACIONAL     =              20        404       
+TXT            "Thaty"        20        406       
+OU             ou             20        414       
+ID             nome           20        417       
+RELACIONAL     =              20        422       
+TXT            "Thatyana"     20        424       
+FECHAPARENTESE )              20        434       
+ABRECHAVE      {              20        435       
+IMP            imp            21        445       
+ABREPARENTESE  (              21        448       
+ID             nome           21        449       
+OPERADOR_MAIS  +              21        454       
+TXT            ", insira um novo valor para texto: "21        456       
+FECHAPARENTESE )              21        493       
+PONTOEVIRGULA  ;              21        494       
+FECHACHAVE     }              22        500       
+SENAO          cnn            22        501       
+ABRECHAVE      {              22        504       
+IMP            imp            23        514       
+ABREPARENTESE  (              23        517       
+TXT            "Insira um novo valor para texto: "23        518       
+FECHAPARENTESE )              23        553       
+PONTOEVIRGULA  ;              23        554       
+FECHACHAVE     }              24        560       
+COMENTARIOS    'Imprimindo varias vezes a variavel texto'26        567       
+LE             le             27        614       
+ABREPARENTESE  (              27        616       
+TIPO           txt            27        617       
+ID             texto          27        621       
+FECHAPARENTESE )              27        626       
+PONTOEVIRGULA  ;              27        627       
+PRA            pra            28        633       
+ABREPARENTESE  (              28        636       
+ID             i              28        637       
+NUM            11.0           28        639       
+NUM            1.0            28        642       
+FECHAPARENTESE )              28        643       
+ABRECHAVE      {              28        644       
+IMP            imp            29        654       
+ABREPARENTESE  (              29        657       
+ID             i              29        658       
+OPERADOR_MAIS  +              29        660       
+TXT            ": "           29        662       
+OPERADOR_MAIS  +              29        667       
+ID             texto          29        669       
+FECHAPARENTESE )              29        674       
+PONTOEVIRGULA  ;              29        675       
+FECHACHAVE     }              30        681       
+FECHACHAVE     }              31        683       
