@@ -5,6 +5,7 @@ from lexer import tokens, programaEscolhido
 tk = tokens
 variaveis = []
 variaveis.append({'nome': '', 'valor': '', 'tipo': ''})
+ident = open("identificadores.txt", "w")
 
 # Definindo precedência dos operadores
 precedence = (
@@ -18,6 +19,8 @@ def p_programa(p):
     '''
     programa : inicio
     '''
+    ident.write(f'FIM DO PROGRAMA\n')
+    ident.close()
 
 def p_inicio(p):
     '''
@@ -26,6 +29,7 @@ def p_inicio(p):
     f = open("ble_code.py", "w")
     f.write(f'{p[3]}')
     f.close()
+    ident.write(f'INICIO\n')
     
 def p_id(p):
     '''
@@ -42,6 +46,7 @@ def p_le(p):
     '''
     le : LE ABREPARENTESE TIPO id FECHAPARENTESE PONTOEVIRGULA
     '''
+    ident.write(f'LE\n')
         
     if compara_var(p[4],p[3]):
         if p[3] == 'txt':
@@ -75,6 +80,7 @@ def p_imp(p):
         | IMP ABREPARENTESE expressao FECHAPARENTESE PONTOEVIRGULA
         | IMP ABREPARENTESE operacao FECHAPARENTESE PONTOEVIRGULA
     '''
+    ident.write(f'IMP\n')
     
     p[0] = f'print({p[3]})\n'                  
 
@@ -99,6 +105,7 @@ def p_comentarios(p):
     '''
     comentarios : COMENTARIOS
     '''
+    ident.write(f'COMENTARIOS\n')
     p[0] = ''
 
 def p_bloco(p):
@@ -133,6 +140,7 @@ def p_aritimetico(p):
                     | expressao OPERADOR_MAIS expressao
                     | expressao OPERADOR_MENOS expressao
     '''
+    ident.write(f'ARITIMETICO\n')
     match p[2]:
         case '+':
             p[0] = f'{p[1]} + {p[3]}'
@@ -159,14 +167,14 @@ def p_atribuicao(p):
             p[0] = f'{p[2]}'
     else:
         p[0] = f'[{p[3]}]'
-        
-        
+               
 def p_atribuir(p):
     '''
     atribuir : id atribuicao PONTOEVIRGULA
              | TIPO ID atribuicao PONTOEVIRGULA
              | TIPO ID ABRECOLCHETE NUM FECHACOLCHETE atribuicao PONTOEVIRGULA  
     '''
+    ident.write(f'ATRIBUICAO\n')
     if len(p) == 5:
         p[0] = f'{p[2]} = {p[3]}\n'
         variaveis.append({'nome': p[2], 'valor': p[3], 'tipo': p[1]})
@@ -191,6 +199,7 @@ def p_defvarivale(p):
     '''
     defvariavel : TIPO ID PONTOEVIRGULA
     '''
+    ident.write(f'DEFVARIAVEL\n')
     if p[1] == 'txt':
         variaveis.append({'nome': p[2], 'valor': '', 'tipo': p[1]})
         p[0] = f'{p[2]} = ""\n'
@@ -235,7 +244,6 @@ def p_condicional_atomica(p):
             | NAO condicional
             | atomica RELACIONAL atomica
     '''
-
     tamanho = len(p)
     if tamanho == 2:
         if p[1] == 'V':
@@ -267,6 +275,7 @@ def p_enqt(p):
     ''' 
     enqt : ABREPARENTESE condicional FECHAPARENTESE ENQT ABRECHAVE blocos FECHACHAVE
     '''
+    ident.write(f'ENQT\n')
     p[0] = f'while {p[2]} :\n{tabulacao(p[6])}'
     
 def tabulacao(s):
@@ -286,6 +295,7 @@ def p_senao(p):
     '''
     senao : SENAO ABRECHAVE bloco FECHACHAVE
     '''
+    ident.write(f'SENAO\n')
     p[0] = f'else:\n{tabulacao(p[3])}\n'
     
 def p_se(p):
@@ -293,6 +303,7 @@ def p_se(p):
     se : SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE
         | SE ABREPARENTESE condicional FECHAPARENTESE ABRECHAVE blocos FECHACHAVE senao
       '''
+    ident.write(f'SE\n')
     p[0] = ''
     if len(p) == 8:
         p[0] = f'if {p[3]}:\n{tabulacao(p[6])}\n'
@@ -304,6 +315,7 @@ def p_pra(p):
     '''
     pra : PRA ABREPARENTESE id expressao expressao FECHAPARENTESE ABRECHAVE bloco FECHACHAVE
     '''
+    ident.write(f'PRA\n')
     p[0] = ''
     final=int(p[4])
     inc=int(p[5])
