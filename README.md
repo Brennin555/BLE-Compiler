@@ -1,4 +1,9 @@
-# BLE
+<div align="center">
+    <h1>
+         <img src="./preg.png" alt="Preguiça computeira" width="150">
+        Linguagem BLE  
+    </h1>
+</div>
 
 Linguagem desenvolvida para a matéria de ECOM06A, ministrada pela professora Thatyana Seraphim
 
