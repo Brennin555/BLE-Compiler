@@ -4,9 +4,9 @@ Linguagem desenvolvida para a matéria de ECOM06A, ministrada pela professora Th
 
 A linguagem desenvolvida neste projeto é a BLE, desenvolvida pelos alunos:
 
-Brenno de Oliveira da Rosa - 2021029935<br>
-Eduardo Alves Carvalho - 20210175570<br>
-Lucas Luan Belarmino Barbosa - 2021017872<br>
+[Brenno de Oliveira da Rosa](https://github.com/Brennin555) - 2021029935<br>
+[Eduardo Alves Carvalho](https://github.com/Eduardo2021017550) - 2021017550<br>
+[Lucas Luan Belarmino Barbosa](https://github.com/luc-llb) - 2021017872<br>
 
 A linguagem BLE foi desenvolvida utilizando Python, mais especificamente a biblioteca PLY (Python Lex Yacc)
 
@@ -46,6 +46,6 @@ Após escolher e o programa rodar, execute o comando:
 
 Após isso comando compilará o código python proveniente do código .ble gerado. 
 
-OBS: Os tokens identificados ao compilar o código estarão impressos no arquivo `tokens.txt`. Cada vez que um novo código for compilado, a `tokens.txt` será sobreescrita. 
+OBS: Os tokens identificados ao compilar o código (gerados pelo lexer) estarão impressos no arquivo `tokens.txt`. Cada vez que um novo código for compilado, a `tokens.txt` será sobreescrita. A pasta `tokens` contém os tokens referentes aos arquivos testes solicitados pela professora.
 
-Além disso, a pasta `tokens` contém os tokens referentes aos arquivos testes solicitados pela professora.
+Além disso, os identificadores identificados ao compilar o código (gerados pelo parser) estarão impressos no arquivo `identificadores.txt`. Cada vez que um novo código for compilado, a `identificadores.txt` será sobreescrita. A pasta `identificadores` contém os identificadores referentes aos arquivos testes solicitados pela professora.
