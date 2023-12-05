@@ -31,9 +31,11 @@ reserved_words = {
 tokens = [
     'INICIO', 'NUM', 'TXT', 'ABRECOLCHETE', 'FECHACOLCHETE',
     'IMP', 'LE', 'ATRIBUIR', 'SE', 'SENAO', 'ENQT', 'PRA',
-    'RELACIONAL', 'E', 'OU', 'NAO', 'TIPO', 'OPERADOR_MAIS', 'OPERADOR_MENOS', 'OPERADOR_DIVISAO', 'VIRGULA',
+    'RELACIONAL', 'E', 'OU', 'NAO', 'TIPO', 'OPERADOR_MAIS', 
+    'OPERADOR_MENOS', 'OPERADOR_DIVISAO',
     'OPERADOR_MULTIPLICACAO', 'PONTOEVIRGULA', 'ABREPARENTESE',
-    'FECHAPARENTESE', 'ABRECHAVE', 'FECHACHAVE', 'COMENTARIOS', 'ID', 'RESPOSTABOOLEANA'
+    'FECHAPARENTESE', 'ABRECHAVE', 'FECHACHAVE', 'COMENTARIOS', 
+    'ID', 'RESPOSTABOOLEANA'
 ]
 
 # Definindo as regras de expressão regular para alguns tokens
@@ -53,7 +55,6 @@ t_RELACIONAL = r'[<>!]=? | [=]'
 t_E = r'e'
 t_OU = r'ou'
 t_NAO = r'nao'
-t_VIRGULA = r','
 t_OPERADOR_MAIS = r'\+'
 t_OPERADOR_MENOS = r'-'
 t_OPERADOR_DIVISAO = r'/'

@@ -1,13 +1,11 @@
-x = 12.0
-k = 23239.0
-print("advinhe o numero")
-while k > x :
-	while x != k :
-		if k != x and k != 23239.0:
-			print("tente novamente")
-			
-		k = float(input())
-		if k == 12.0:
-			print("Parabens, voce acertou!!")
-			
+x = 8.0
+while x != 0.0 :
+	print(str("O valor de x eh: ") + str(str(x) + str(", logo: \n")))
+	if x < 2.0:
+		print(" x eh menor que 2")
 		
+	else:
+		print("x eh maior que 2")
+		
+	x = x - 1.0
+	

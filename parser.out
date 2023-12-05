@@ -2,6 +2,7 @@ Created by PLY version 3.11 (http://www.dabeaz.com/ply)
 
 Unused terminals:
 
+    PULARLINHA
     VIRGULA
 
 Grammar
@@ -93,6 +94,7 @@ OPERADOR_MULTIPLICACAO : 31
 OU                   : 46
 PONTOEVIRGULA        : 4 10 11 12 38 39 40 44
 PRA                  : 60
+PULARLINHA           : 
 RELACIONAL           : 55
 RESPOSTABOOLEANA     : 37 50
 SE                   : 58 59

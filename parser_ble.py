@@ -81,7 +81,9 @@ def p_imp(p):
 def p_str(p):
     '''str  : TXT
     '''
-    p[0] = p[1]
+    var = p[1]
+    
+    p[0] = p[1].replace('//', "\\n")
     
 def p_blocos(p):
     '''

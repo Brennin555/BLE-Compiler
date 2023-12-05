@@ -2,7 +2,7 @@ main {
     num x: 8;
 
     (x!=0)->{    
-        imp("O valor de x eh: " + x + ", logo: ");
+        imp("O valor de x eh: " + x + ", logo: //");
 
         c(x<2){
             imp(" x eh menor que 2");
